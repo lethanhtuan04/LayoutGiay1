@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="false"
+    >
+    <translate android:fromXDelta="-100%" android:toXDelta="0%"/>
+    <alpha android:fromAlpha="0.0" android:toAlpha="1.0"/>
+
+</set>
+<!-- Thuộc tính này chỉ định xem các hoạt cảnh con có sử dụng bộ trung gian chung (interpolator) hay không. Trong trường hợp này, giá trị là false, nghĩa là không sử dụng interpolator chung.
+<!- <translate android:fromXDelta="-100%" android:toXDelta="0%"/>: Đây là một hoạt cảnh dịch chuyển (translate) theo chiều ngang. fromXDelta chỉ định vị trí ban đầu theo trục x và toXDelta chỉ định vị trí đích. Trong ví dụ này, view sẽ di chuyển từ vị trí -100% chiều rộng của nó (bên trái) đến vị trí 0% (vị trí ban đầu).
+<! <alpha android:fromAlpha="0.0" android:toAlpha="1.0"/>: Đây là một hoạt cảnh thay đổi độ trong suốt (alpha) từ giá trị 0.0 (hoàn toàn trong suốt) đến 1.0 (hoàn toàn rõ ràng). Nó có tác dụng làm cho view xuất hiện từ không có gì đến rõ ràng dần dần.

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="false"
+    android:duration="2000"
+    >
+    <translate android:fromXDelta="0%" android:toXDelta="100%"/>
+    <alpha android:fromAlpha="1.0" android:toAlpha="0.0"/>
+
+</set>
+<!-- android:duration="2000": Đặt thời gian hoạt động của tập hợp hoạt cảnh là 2000 milliseconds (2 giây).
+<translate android:fromXDelta="0%" android:toXDelta="100%"/>: Đây là một hoạt cảnh dịch chuyển (translate) theo chiều ngang. fromXDelta chỉ định vị trí ban đầu theo trục x và toXDelta chỉ định vị trí đích. Trong ví dụ này, view sẽ di chuyển từ vị trí 0% (vị trí ban đầu) đến vị trí 100% chiều rộng của nó (bên phải).
+<! <alpha android:fromAlpha="1.0" android:toAlpha="0.0"/>: Đây là một hoạt cảnh thay đổi độ trong suốt (alpha) từ giá trị 1.0 (hoàn toàn rõ ràng) đến 0.0 (hoàn toàn trong suốt). Nó có tác dụng làm cho view biến mất theo độ trong suốt.
+
+
+
+Tóm lại, đoạn mã này tạo ra một tập hợp hoạt cảnh trong đó một view sẽ di chuyển từ bên trái đến bên phải và đồng thời mất dần trong suốt trong khoảng thời gian 2 giây.
