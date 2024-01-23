@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toobarmanhinhchinh"
-                app:title="Trang Chính"
+                app:title="Shop Giày"
                 android:background="#ff00dfff"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize">
