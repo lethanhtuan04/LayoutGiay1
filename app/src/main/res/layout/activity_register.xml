@@ -88,12 +88,12 @@
         app:layout_constraintTop_toBottomOf="@+id/adtEmail" />
 
     <EditText
-        android:id="@+id/edtconfirmPass"
+        android:id="@+id/edtCFPass"
         android:layout_width="350dp"
         android:layout_height="55dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/round_black_dark"
-        android:hint="Password"
+        android:hint="Confirm Password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:paddingStart="20dp"
@@ -105,17 +105,19 @@
         app:layout_constraintTop_toBottomOf="@+id/edtPass" />
 
     <ImageView
+        android:id="@+id/passCFIC"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/showpass_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/edtconfirmPass"
-        app:layout_constraintEnd_toEndOf="@+id/edtconfirmPass"
-        app:layout_constraintStart_toStartOf="@+id/edtconfirmPass"
-        app:layout_constraintTop_toTopOf="@+id/edtconfirmPass"
+        app:layout_constraintBottom_toBottomOf="@+id/edtCFPass"
+        app:layout_constraintEnd_toEndOf="@+id/edtCFPass"
+        app:layout_constraintStart_toStartOf="@+id/edtCFPass"
+        app:layout_constraintTop_toTopOf="@+id/edtCFPass"
         app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintVertical_bias="0.514"/>
 
     <ImageView
+        android:id="@+id/passIC"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:adjustViewBounds="true"
@@ -140,7 +142,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtconfirmPass" />
+        app:layout_constraintTop_toBottomOf="@+id/edtCFPass" />
 
     <LinearLayout
         android:layout_width="wrap_content"
