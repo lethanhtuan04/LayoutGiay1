@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".Register">
+    tools:context=".RegisterActivity">
 
 
     <TextView
@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/adtEmail"
+        android:id="@+id/edtEmail"
         android:layout_width="350dp"
         android:layout_height="55dp"
         android:background="@drawable/round_black_dark"
@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <EditText
         android:id="@+id/edtCFPass"
@@ -130,12 +130,12 @@
         app:layout_constraintVertical_bias="0.514" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignUp"
         android:layout_width="350dp"
         android:layout_height="55dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/round_mainblue"
-        android:text="Sign In"
+        android:text="Sign Up"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -153,7 +153,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin">
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp">
 
         <TextView
             android:id="@+id/textView4"
@@ -162,7 +162,7 @@
             android:text="Already have an account?" />
 
         <TextView
-            android:id="@+id/btnSignUp"
+            android:id="@+id/txtSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -172,4 +172,15 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/mError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/Red"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
