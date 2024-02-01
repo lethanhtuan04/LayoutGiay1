@@ -10,46 +10,52 @@
         android:id="@+id/drawerlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
 
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toobarmanhinhchinh"
-                app:title="Shop Giày"
-
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize">
+
+                android:layout_height="?actionBarSize"
+                app:title="Shop Giày">
 
             </androidx.appcompat.widget.Toolbar>
+
             <ViewFlipper
                 android:id="@+id/viewlipper"
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
             </ViewFlipper>
+
             <TextView
-                android:textSize="20sp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold"
-                android:text="Sản Phẩm Mới Nhất"
-                android:layout_marginTop="0dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:text="Sản Phẩm Mới Nhất"
+                android:textSize="20sp"
+                android:textStyle="bold">
 
             </TextView>
+
             <LinearLayout
 
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -80,6 +86,7 @@
                             android:text="Nike"
                             android:textStyle="bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -109,6 +116,7 @@
                             android:text="Adidas"
                             android:textStyle="bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -138,6 +146,7 @@
                             android:text="Converse"
                             android:textStyle="bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -167,14 +176,18 @@
                             android:text="Vans"
                             android:textStyle="bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:background="@drawable/btn_cat_background">
+
                             <ImageView
                                 android:id="@+id/viewPuma"
                                 android:layout_width="55dp"
@@ -183,6 +196,7 @@
                                 app:srcCompat="@drawable/puma" />
 
                         </LinearLayout>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -195,13 +209,12 @@
                 </LinearLayout>
 
 
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
 

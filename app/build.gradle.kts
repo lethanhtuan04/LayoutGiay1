@@ -39,4 +39,6 @@ dependencies {
     //glider
     implementation("com.github.bumptech.glide:glide:4.16.0");
 
+    implementation ("com.mikhaellopez:circularimageview:4.3.1");
+
 }
