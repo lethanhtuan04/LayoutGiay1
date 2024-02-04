@@ -3,11 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+   android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
     android:orientation="vertical"
-    android:background="#fff"
-    tools:context=".ProfilePractice">
+    android:background="@color/white"
+    tools:context=".ProfileActivity">
 
-    <include layout="@layout/toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear_ll"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Account Settings"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,85 +46,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="User2004"
-            android:textColor="#0000CD"
             android:textSize="20dp"
             android:layout_marginTop="8dp"
             android:layout_gravity="center"
             android:textStyle="bold"/>
-        <View
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#0000CD"
-            android:layout_marginTop="10dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_person_new" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginLeft="8dp"
+                android:text="Full Name"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:text="User"
+                android:textColor="#A9A9A9"
+                android:textSize="18sp" />
+        </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:layout_marginTop="20dp">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_person_new"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:textStyle="bold"
-            android:textColor="#000000 "
-            android:textSize="20sp"
-            android:layout_marginLeft="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User"
-            android:layout_marginLeft="25dp"
-            android:textSize="18sp"
-            android:textColor="#A9A9A9  "/>
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#A9A9A9  "
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:layout_marginTop="20dp">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_person_new"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textStyle="bold"
-            android:textColor="#000000 "
-            android:textSize="20dp"
-            android:layout_marginLeft="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2004"
-            android:layout_marginLeft="25dp"
-            android:textSize="18dp"
-            android:textColor="#A9A9A9  "/>
-    </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#A9A9A9  "
-        android:layout_marginTop="10dp"
+        android:layout_height="0.6dp"
+        android:background="#A9A9A9"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
 
@@ -118,28 +106,58 @@
             android:src="@drawable/ic_email"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="Email"
             android:textStyle="bold"
-            android:textColor="#000000 "
             android:textSize="20dp"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="8dp"/>
         <TextView
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="user@gmail.com"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="67dp"
             android:textSize="18sp"
             android:textColor="#A9A9A9  "/>
+
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#A9A9A9  "
-        android:layout_marginTop="10dp"
+        android:layout_height="0.6dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:background="#A9A9A9" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_lock"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="Password"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginLeft="8dp"/>
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="**********"
+            android:layout_marginLeft="28dp"
+            android:textSize="18sp"
+            android:textColor="#A9A9A9  "/>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
