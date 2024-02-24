@@ -2,19 +2,13 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="CartActivity">
-        <State />
-      </entry>
-      <entry key="DetailProActivity">
-        <State />
-      </entry>
-      <entry key="Login">
+      <entry key="Admin_Proflie">
         <State />
       </entry>
       <entry key="ProfileActivity">
         <State />
       </entry>
-      <entry key="RegisterActivity">
+      <entry key="ProfilePractice">
         <State />
       </entry>
       <entry key="app">
