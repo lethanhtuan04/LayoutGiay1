@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"    
+        android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
         android:gravity="center"
         android:text="Sign Up"
@@ -56,9 +56,9 @@
         android:id="@+id/edtEmail"
         android:layout_width="350dp"
         android:layout_height="55dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/round_black_dark"
         android:hint="Email"
-        android:layout_marginTop="15dp"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingStart="20dp"
@@ -111,10 +111,10 @@
         android:src="@drawable/showpass_gray"
         app:layout_constraintBottom_toBottomOf="@+id/edtCFPass"
         app:layout_constraintEnd_toEndOf="@+id/edtCFPass"
+        app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="@+id/edtCFPass"
         app:layout_constraintTop_toTopOf="@+id/edtCFPass"
-        app:layout_constraintHorizontal_bias="0.941"
-        app:layout_constraintVertical_bias="0.514"/>
+        app:layout_constraintVertical_bias="0.514" />
 
     <ImageView
         android:id="@+id/passIC"
@@ -124,9 +124,9 @@
         android:src="@drawable/showpass_gray"
         app:layout_constraintBottom_toBottomOf="@+id/edtPass"
         app:layout_constraintEnd_toEndOf="@+id/edtPass"
+        app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="@+id/edtPass"
         app:layout_constraintTop_toTopOf="@+id/edtPass"
-        app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintVertical_bias="0.514" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -135,6 +135,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/round_mainblue"
+        android:elevation="30dp"
         android:text="Sign Up"
         android:textAllCaps="false"
         android:textColor="@color/white"

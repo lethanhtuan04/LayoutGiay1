@@ -20,7 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     Toolbar toolbar;
     ViewFlipper viewFlipper;
     RecyclerView recyclerViewManHinhChinh;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         Anhxa();
         ActionBar();
         ActionViewFlipper();
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        toolbar =findViewById(R.id.toobarmanhinhchinh);
         viewFlipper=findViewById(R.id.viewlipper);
         recyclerViewManHinhChinh=findViewById(R.id.recycleview);
         listViewManHinhChinh=findViewById(R.id.listviewmanhinhchinh);
