@@ -21,11 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    Toolbar toolbar;
     ViewFlipper viewFlipper;
     RecyclerView recyclerViewManHinhChinh;
-    ListView listViewManHinhChinh;
-    NavigationView navigationView;
     DrawerLayout drawerLayout;
 
 
@@ -34,7 +31,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Anhxa();
-        ActionBar();
         ActionViewFlipper();
     }
 
@@ -59,25 +55,10 @@ public class HomeActivity extends AppCompatActivity {
         viewFlipper.setOutAnimation(slide_out);
     }
 
-    private void ActionBar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(android.R.drawable.ic_menu_sort_by_size);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-
-
-            }
-        });
-    }
 
     private void Anhxa() {
         viewFlipper=findViewById(R.id.viewlipper);
         recyclerViewManHinhChinh=findViewById(R.id.recycleview);
-        listViewManHinhChinh=findViewById(R.id.listviewmanhinhchinh);
-        navigationView=findViewById(R.id.navigationview);
         drawerLayout=findViewById(R.id.drawerlayout);
 
     }

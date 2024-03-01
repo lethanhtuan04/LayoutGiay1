@@ -13,33 +13,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:layout_margin="10dp">
-
-            <EditText
-                android:id="@+id/search"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/search_background"
-                android:drawableStart="@drawable/ic_search"
-                android:drawablePadding="10dp"
-                android:drawableTint="#808080"
-                android:hint="Search"
-                android:paddingStart="10dp"
-                android:singleLine="true"
-                android:textColorHint="@color/main_blue"
-                android:textSize="17dp" />
-        </FrameLayout>
-
 
     </LinearLayout>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerlayout"
+        android:layout_marginTop="55dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -51,8 +30,7 @@
             <ViewFlipper
                 android:id="@+id/viewlipper"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp" />
+                android:layout_height="200dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -231,27 +209,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="8dp">
-
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_marginRight="8dp"/>
             </LinearLayout>
         </LinearLayout>
 
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start">
 
-            <ListView
-                android:id="@+id/listviewmanhinhchinh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </ListView>
-
-        </com.google.android.material.navigation.NavigationView>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
