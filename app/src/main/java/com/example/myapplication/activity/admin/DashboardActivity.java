@@ -1,14 +1,16 @@
-package com.example.myapplication;
+package com.example.myapplication.activity.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class DetailProActivity extends AppCompatActivity {
+import com.example.myapplication.R;
+
+public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_pro);
+        setContentView(R.layout.activity_dashboard);
     }
 }

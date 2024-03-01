@@ -1,14 +1,16 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainProfileActivity extends AppCompatActivity {
+import com.example.myapplication.R;
+
+public class DetailProActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_profile);
+        setContentView(R.layout.activity_detail_pro);
     }
 }

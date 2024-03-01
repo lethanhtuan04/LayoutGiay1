@@ -1,25 +1,18 @@
-package com.example.myapplication;
-import android.graphics.PorterDuff;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.content.ContextCompat;
+package com.example.myapplication.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
+import com.example.myapplication.R;
+import com.example.myapplication.dbhelper.AccountDBHelper;
 
 public class LoginActivity extends AppCompatActivity {
     private boolean passShowing = false;
@@ -27,11 +20,11 @@ public class LoginActivity extends AppCompatActivity {
     private boolean checkedFavorite = false;
     private boolean checkedCart = false;
     private boolean checkedProfile = false;
-    BottomNavigationView bottomNav;
     TextView txtSignUp, viewError;
     AppCompatButton btnSignIn;
     ImageView PassIC;
     EditText edtPass, edtUser;
+    AccountDBHelper accountDBHelper;
 
 
     @Override
@@ -41,15 +34,29 @@ public class LoginActivity extends AppCompatActivity {
         addControlos();
         addShowPass();
         addSignIn();
+        setSignIn();
         //bắt đầu chạy trang register
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
+
+        });
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addSignIn();
+            }
         });
 
     }
+
+    private void setSignIn() {
+        accountDBHelper= new AccountDBHelper(LoginActivity.this);
+
+    }
+
 
     private void addSignIn() {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +82,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Viết hàm thực hiện chạy trang đăng nhập
 
-//                if(!user.isEmpty()&&!pass.isEmpty())
-//                {
-//
-//                }
+                if(!user.isEmpty()&&!pass.isEmpty())
+                {
+
+                }
             }
         });
     }
@@ -111,6 +118,5 @@ public class LoginActivity extends AppCompatActivity {
         txtSignUp = findViewById(R.id.txtSignUp);
         viewError = findViewById(R.id.mError);
 
-        bottomNav= findViewById(R.id.bottomNav);
     }
 }

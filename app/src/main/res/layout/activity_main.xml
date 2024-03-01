@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/topNavbar"
+        android:layout_weight="10"
+        android:background="#12000000"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintTop_toBottomOf="@+id/topNavbar" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:elevation="10dp"
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:background="@color/white"
+        app:itemIconSize="26dp"
+        app:itemIconTint="@color/color_bottom_menu"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu" />
+</LinearLayout>

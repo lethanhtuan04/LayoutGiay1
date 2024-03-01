@@ -14,26 +14,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainProfileActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".ProfileActivity"
+            android:name=".activity.admin.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".CartActivity"
+            android:name=".activity.AccountSettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailProActivity"
+            android:name=".activity.DetailProActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
