@@ -20,11 +20,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <FrameLayout
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:layout_weight="10">
 
 
                 <EditText
@@ -52,9 +53,9 @@
 
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawerlayout"
-            android:layout_marginTop="55dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -244,21 +245,19 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginRight="8dp"/>
+                        android:layout_marginRight="8dp" />
                 </LinearLayout>
             </LinearLayout>
-
-
 
 
         </androidx.drawerlayout.widget.DrawerLayout>
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="53dp"
+            android:background="@color/white"
             app:itemIconSize="26dp"
             app:itemIconTint="@color/color_bottom_menu"
             app:labelVisibilityMode="unlabeled"
