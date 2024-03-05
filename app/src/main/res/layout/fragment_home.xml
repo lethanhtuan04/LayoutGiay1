@@ -6,6 +6,7 @@
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <?xml version="1.0" encoding="utf-8"?>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,6 +20,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:layout_margin="10dp">
+
+
+                <EditText
+                    android:id="@+id/searchView"
+                    android:layout_width="428dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/search_background"
+                    android:drawableStart="@drawable/ic_search"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#808080"
+                    android:hint="Search"
+                    android:padding="10dp"
+                    android:paddingStart="10dp"
+                    android:singleLine="true"
+                    android:textColorHint="@color/main_blue"
+                    android:textSize="20dp" />
+
+
+            </FrameLayout>
 
         </LinearLayout>
 
@@ -32,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
 
                 <ViewFlipper
                     android:id="@+id/viewlipper"
@@ -225,5 +254,17 @@
         </androidx.drawerlayout.widget.DrawerLayout>
 
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+
+            android:id="@+id/bottomNav"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            app:itemIconSize="26dp"
+            app:itemIconTint="@color/color_bottom_menu"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_menu" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

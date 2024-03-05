@@ -1,13 +1,10 @@
-package com.example.myapplication;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
+package com.example.myapplication.activity;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 public class SearchViewActivity extends AppCompatActivity {
 
