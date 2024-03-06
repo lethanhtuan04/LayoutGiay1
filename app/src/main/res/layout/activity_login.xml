@@ -35,11 +35,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/edtUsername"
+        android:id="@+id/edtUserName"
         android:layout_width="350dp"
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
-        android:hint="UserName"
+        android:hint="Email"
         android:background="@drawable/round_black_dark"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
@@ -67,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
 
     <ImageView
         android:id="@+id/passIC"

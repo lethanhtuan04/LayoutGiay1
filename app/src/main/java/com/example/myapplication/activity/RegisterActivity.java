@@ -155,8 +155,8 @@ public class RegisterActivity extends AppCompatActivity {
         edtpass = findViewById(R.id.edtPass);
         edtcfpass = findViewById(R.id.edtCFPass);
 
-        edtuser = findViewById(R.id.edtUsername);
-        edtemail = findViewById(R.id.edtEmail);
+        edtuser = findViewById(R.id.edtUserName);
+        edtemail = findViewById(R.id.edtUserName);
         btnSignUp = findViewById(R.id.btnSignUp);
 
         mError = findViewById(R.id.mError);

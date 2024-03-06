@@ -11,8 +11,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.activity.admin.DashboardActivity;
 import com.example.myapplication.dbhelper.AccountDBHelper;
+import com.example.myapplication.model.Account;
 
 public class LoginActivity extends AppCompatActivity {
     private boolean passShowing = false;
@@ -23,9 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtSignUp, viewError;
     AppCompatButton btnSignIn;
     ImageView PassIC;
-    EditText edtPass, edtUser;
+    EditText edtPass, edtemail;
     AccountDBHelper accountDBHelper;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setSignIn() {
-        accountDBHelper= new AccountDBHelper(LoginActivity.this);
+        accountDBHelper = new AccountDBHelper(LoginActivity.this);
 
     }
 
@@ -62,33 +64,53 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = edtUser.getText().toString().trim();
+                String user = edtemail.getText().toString().trim();
                 String pass = edtPass.getText().toString().trim();
                 if (user.isEmpty()) {
                     viewError.setText("Please fill in all information completely");
-                    edtUser.setBackgroundResource(R.drawable.border_error_red);
+                    edtemail.setBackgroundResource(R.drawable.border_error_red);
+                } else {
+                    edtemail.setBackgroundResource(R.drawable.round_black_dark);
                 }
-                else {
-                    edtUser.setBackgroundResource(R.drawable.round_black_dark);
-                }
-                if(pass.isEmpty())
-                {
+                if (pass.isEmpty()) {
                     viewError.setText("Please fill in all information completely");
                     edtPass.setBackgroundResource(R.drawable.border_error_red);
-                }
-                else {
+                } else {
                     edtPass.setBackgroundResource(R.drawable.round_black_dark);
                 }
 
                 //Viết hàm thực hiện chạy trang đăng nhập
 
-                if(!user.isEmpty()&&!pass.isEmpty())
-                {
-
+                if (!user.isEmpty() && !pass.isEmpty()) {
+                    setLogin();
                 }
             }
         });
     }
+
+
+    private void setLogin() {
+        String email = edtemail.getText().toString();
+        String password = edtPass.getText().toString();
+        if (email.equals("admin") && password.equals("123")) {
+            Intent adminActivity = new Intent(this, DashboardActivity.class);
+            startActivity(adminActivity);
+            finish();
+            return;
+        }
+        Account account = accountDBHelper.getAccountByEmail(email);
+        if (email.equals(account.getEmail()) && password.equals(account.getPassword())) {
+            Intent mainActivity = new Intent(this, MainActivity.class);
+            startActivity(mainActivity);
+            finish();
+        } else {
+            viewError.setText("Wrong account or password");
+            edtemail.setText("");
+            edtPass.setText("");
+        }
+//            finish();
+    }
+
 
     private void addShowPass() {
         PassIC.setOnClickListener(new View.OnClickListener() {
@@ -110,11 +132,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
     private void addControlos() {
         btnSignIn = findViewById(R.id.btnSignIn);
         PassIC = findViewById(R.id.passIC);
         edtPass = findViewById(R.id.edtPassword);
-        edtUser = findViewById(R.id.edtUsername);
+        edtemail = findViewById(R.id.edtUserName);
         txtSignUp = findViewById(R.id.txtSignUp);
         viewError = findViewById(R.id.mError);
 
