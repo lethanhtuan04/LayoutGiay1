@@ -68,7 +68,7 @@
                 android:layout_marginRight="19dp"
                 android:background="@drawable/shadow_radius_0"
                 android:elevation="20dp"
-                android:text="Để cho dep"
+                android:text=""
                 android:textAlignment="center"
                 android:textSize="18dp"
                 android:textStyle="bold" />

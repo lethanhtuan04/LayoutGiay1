@@ -36,7 +36,7 @@
 
 
     <EditText
-        android:id="@+id/edtUsername"
+        android:id="@+id/edtUserName"
         android:layout_width="350dp"
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
 
 
     <EditText

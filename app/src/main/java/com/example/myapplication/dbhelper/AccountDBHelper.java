@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class AccountDBHelper extends SQLiteOpenHelper {
     public AccountDBHelper(@Nullable Context context) {
-        super(context,DBHelper.DATABASE_NAME, null, DBHelper.DATABASE_VERSION);
+        super(context, DBHelper.DATABASE_NAME, null, DBHelper.DATABASE_VERSION);
     }
     // Khai báo các biến và phương thức khác
 
@@ -81,19 +81,35 @@ public class AccountDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return account;
     }
-//    public Account getAccountByEmail(String email) {
-//        Account account = null;
-//        SQLiteDatabase db = getReadableDatabase();
-//        Cursor cursor = db.rawQuery(
-//                "SELECT * FROM " + TABLE_NAME + " WHERE email = ?",
-//                new String[]{email});
-//        if (cursor.getCount() > 0) {
-//            cursor.moveToFirst();
-//            account = cursorToAccount(cursor);
-//        }
-//        cursor.close();
-//        return account;
-//    }
+
+    public Account getAccountByRowId(long rowID) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM Account" + " WHERE rowid = ?",
+                new String[]{String.valueOf(rowID)});
+        Account account = null;
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            account = cursorToAccount(cursor);
+        }
+        cursor.close();
+        return account;
+    }
+
+    public Account getAccountByEmail(String email) {
+        Account account = null;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM Account" + " WHERE email = ?",
+                new String[]{email});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            account = cursorToAccount(cursor);
+        }
+        cursor.close();
+        return account;
+    }
+
 
 }
 
