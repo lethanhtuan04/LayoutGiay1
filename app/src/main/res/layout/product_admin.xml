@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/topNavbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_blue"
+        >
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="32dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/ic_arrowbackad" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="20"
+            android:ems="10"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="SẢN PHẨM"
+            android:textColor="@color/black"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:scrollbarSize="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/edtMaSP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Mã sản phẩm"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edtTenSP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:padding="20dp"
+                android:hint="Tên sản phẩm"
+                app:layout_constraintEnd_toEndOf="@+id/edtMaSP"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edtMaSP"
+                app:layout_constraintTop_toBottomOf="@+id/edtMaSP" />
+            <EditText
+                android:id="@+id/edtLoaiSP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:padding="20dp"
+                android:hint="Loại"
+                app:layout_constraintEnd_toEndOf="@+id/edtTenSP"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edtTenSP"
+                app:layout_constraintTop_toBottomOf="@+id/edtTenSP" />
+            <EditText
+                android:id="@+id/edtGiaSP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:padding="20dp"
+                android:hint="Giá"
+                app:layout_constraintEnd_toEndOf="@+id/edtLoaiSP"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edtLoaiSP"
+                app:layout_constraintTop_toBottomOf="@+id/edtLoaiSP" />
+            <EditText
+                android:id="@+id/edtMotaSP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:padding="20dp"
+                android:hint="Mô tả sản phẩm"
+                app:layout_constraintEnd_toEndOf="@+id/edtGiaSP"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edtGiaSP"
+                app:layout_constraintTop_toBottomOf="@+id/edtGiaSP" />
+
+
+            <EditText
+                android:id="@+id/edtHinhAnhSP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:hint="Hình ảnh sản phẩm"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/edtMotaSP"
+                app:layout_constraintStart_toStartOf="@+id/edtMotaSP"
+                app:layout_constraintTop_toBottomOf="@+id/edtMotaSP" />
+
+            <Button
+                android:id="@+id/btnThemSP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/main_blue"
+                android:text="THÊM"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/edtHinhAnhSP"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edtHinhAnhSP"
+                app:layout_constraintTop_toBottomOf="@+id/edtHinhAnhSP" />
+
+            <Button
+                android:id="@+id/btnSuaSP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/main_blue"
+                android:text="SỬA"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/edtThemSP"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edtThemSP"
+                app:layout_constraintTop_toBottomOf="@+id/btnThemSP"
+                tools:ignore="UnknownId" />
+
+            <Button
+                android:id="@+id/btnQlaiTC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/main_blue"
+                android:text="QUAY LẠI TRANG CHỦ"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnSuaSP"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnSuaSP"
+                app:layout_constraintTop_toBottomOf="@+id/btnSuaSP" />
+
+            <ImageButton
+                android:id="@+id/imgbtnAddPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.953"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtMotaSP"
+                app:srcCompat="@drawable/ic_imgad" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+</LinearLayout>
