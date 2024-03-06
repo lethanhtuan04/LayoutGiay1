@@ -59,19 +59,7 @@
             </RelativeLayout>
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                style="@android:style/Widget.Button"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginLeft="19dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="19dp"
-                android:background="@drawable/shadow_radius_0"
-                android:elevation="20dp"
-                android:text=""
-                android:textAlignment="center"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,6 +77,7 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         style="@android:style/Widget.Button"
+                        android:id="@+id/btnaccountSettings"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="5dp"
@@ -155,7 +144,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                style="@android:style/Widget.Button"
+                android:id="@+id/btnlogout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="19dp"
@@ -163,6 +152,7 @@
                 android:elevation="20dp"
                 android:text="Đăng xuất"
                 android:textAlignment="center"
+                android:textAllCaps="false"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 

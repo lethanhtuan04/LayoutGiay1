@@ -1,12 +1,12 @@
 package com.example.myapplication.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
 
@@ -16,6 +16,7 @@ import com.example.myapplication.R;
  * create an instance of this fragment.
  */
 public class CartFragment extends Fragment {
+    ImageView btnback;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +63,6 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false);
+
     }
 }

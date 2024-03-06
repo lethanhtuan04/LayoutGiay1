@@ -7,6 +7,18 @@
     tools:context=".activity.LoginActivity">
 
 
+    <ImageView
+        android:id="@+id/btnSItoHome"
+
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_home_outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -36,9 +48,13 @@
 
     <EditText
         android:id="@+id/edtUserName"
-        android:layout_width="350dp"
+
         android:layout_height="55dp"
+
         android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:hint="Email"
         android:background="@drawable/round_black_dark"
         android:paddingStart="20dp"
@@ -47,14 +63,15 @@
         android:inputType="text"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
     <EditText
         android:id="@+id/edtPassword"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_height="55dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/round_black_dark"
@@ -96,9 +113,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignIn"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:text="Sign In"
         android:textSize="16sp"
         android:textAllCaps="false"

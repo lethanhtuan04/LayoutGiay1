@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean checkedProfile = false;
     TextView txtSignUp, viewError;
     AppCompatButton btnSignIn;
-    ImageView PassIC;
+    ImageView PassIC,btnHome;
     EditText edtPass, edtemail;
     AccountDBHelper accountDBHelper;
 
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         addControlos();
         addShowPass();
-        addSignIn();
+//        addSignIn();
         setSignIn();
         //bắt đầu chạy trang register
         txtSignUp.setOnClickListener(new View.OnClickListener() {
@@ -45,22 +45,6 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addSignIn();
-            }
-        });
-
-    }
-
-    private void setSignIn() {
-        accountDBHelper = new AccountDBHelper(LoginActivity.this);
-
-    }
-
-
-    private void addSignIn() {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,11 +66,68 @@ public class LoginActivity extends AppCompatActivity {
                 //Viết hàm thực hiện chạy trang đăng nhập
 
                 if (!user.isEmpty() && !pass.isEmpty()) {
-                    setLogin();
+                    btnSignIn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                        }
+                    });
+//                    setLogin();
                 }
             }
         });
+
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }
+        });
+
     }
+
+    private void setSignIn() {
+        accountDBHelper = new AccountDBHelper(LoginActivity.this);
+
+    }
+
+
+//    private void addSignIn() {
+//        btnSignIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String user = edtemail.getText().toString().trim();
+//                String pass = edtPass.getText().toString().trim();
+//                if (user.isEmpty()) {
+//                    viewError.setText("Please fill in all information completely");
+//                    edtemail.setBackgroundResource(R.drawable.border_error_red);
+//                } else {
+//                    edtemail.setBackgroundResource(R.drawable.round_black_dark);
+//                }
+//                if (pass.isEmpty()) {
+//                    viewError.setText("Please fill in all information completely");
+//                    edtPass.setBackgroundResource(R.drawable.border_error_red);
+//                } else {
+//                    edtPass.setBackgroundResource(R.drawable.round_black_dark);
+//                }
+//
+//                //Viết hàm thực hiện chạy trang đăng nhập
+//
+//                if (!user.isEmpty() && !pass.isEmpty()) {
+//                    btnSignIn.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            startActivity(new Intent(LoginActivity.this, HomeFragment.class));
+//
+//                        }
+//                    });
+////                    setLogin();
+//                }
+//            }
+//        });
+//    }
 
 
     private void setLogin() {
@@ -134,6 +175,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void addControlos() {
+        btnHome=findViewById(R.id.btnSItoHome);
         btnSignIn = findViewById(R.id.btnSignIn);
         PassIC = findViewById(R.id.passIC);
         edtPass = findViewById(R.id.edtPassword);

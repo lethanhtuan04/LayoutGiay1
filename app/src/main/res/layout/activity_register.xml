@@ -7,6 +7,16 @@
     android:layout_gravity="center"
     tools:context=".activity.RegisterActivity">
 
+    <ImageView
+        android:id="@+id/btnSUtoHome"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_home_outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -37,9 +47,11 @@
 
     <EditText
         android:id="@+id/edtUserName"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/round_black_dark"
         android:hint="UserName"
         android:inputType="text"
@@ -54,9 +66,11 @@
 
     <EditText
         android:id="@+id/edtEmail"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/round_black_dark"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -72,8 +86,10 @@
 
     <EditText
         android:id="@+id/edtPass"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/round_black_dark"
         android:hint="Password"
@@ -89,9 +105,11 @@
 
     <EditText
         android:id="@+id/edtCFPass"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/round_black_dark"
         android:hint="Confirm Password"
         android:inputType="textPassword"
@@ -131,11 +149,13 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUp"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/round_mainblue"
         android:elevation="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:text="Sign Up"
         android:textAllCaps="false"
         android:textColor="@color/white"

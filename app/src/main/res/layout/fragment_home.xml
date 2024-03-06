@@ -1,80 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#08000000"
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/layout1"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="57dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:elevation="5dp"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="10">
+            <EditText
+                android:id="@+id/searchView"
+                android:layout_width="330dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:background="@drawable/search_background"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="10dp"
+                android:drawableTint="#808080"
+                android:hint="Search"
+                android:padding="5dp"
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                android:textColorHint="@color/main_blue"
+                android:textSize="20dp" />
 
-
-                <EditText
-                    android:id="@+id/searchView"
-                    android:layout_width="428dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/search_background"
-                    android:drawableStart="@drawable/ic_search"
-                    android:drawablePadding="10dp"
-                    android:drawableTint="#808080"
-                    android:hint="Search"
-                    android:padding="10dp"
-                    android:paddingStart="10dp"
-                    android:singleLine="true"
-                    android:textColorHint="@color/main_blue"
-                    android:textSize="20dp" />
-
-
-            </FrameLayout>
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_bell_outline" />
 
         </LinearLayout>
 
-        <androidx.drawerlayout.widget.DrawerLayout
-            android:id="@+id/drawerlayout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp">
+            android:layout_marginTop="57dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-
-                <ViewFlipper
-                    android:id="@+id/viewlipper"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:text="Nhãn hàng"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -84,186 +70,218 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <ViewFlipper
+                            android:id="@+id/viewlipper"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp"
+                            android:layout_marginBottom="15dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="25dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="Nhãn hàng"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:orientation="vertical">
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!-- Các nhãn hàng -->
+
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@drawable/btn_cat_background">
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
 
-                                <ImageView
-                                    android:id="@+id/viewNike"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_margin="2dp"
-                                    app:srcCompat="@drawable/nike" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/btn_cat_background">
+
+                                    <ImageView
+                                        android:id="@+id/viewNike"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
+                                        android:layout_margin="2dp"
+                                        app:srcCompat="@drawable/nike" />
+                                </LinearLayout>
+
+                   r             <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Nike"
+                                    android:textStyle="bold" />
+
                             </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Nike"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@drawable/btn_cat_background">
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
 
-                                <ImageView
-                                    android:id="@+id/viewAdidas"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_margin="2dp"
-                                    app:srcCompat="@drawable/adidas" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/btn_cat_background">
+
+                                    <ImageView
+                                        android:id="@+id/viewAdidas"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
+                                        android:layout_margin="2dp"
+                                        app:srcCompat="@drawable/adidas" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Adidas"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Adidas"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@drawable/btn_cat_background">
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
 
-                                <ImageView
-                                    android:id="@+id/viewConverse"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_margin="2dp"
-                                    app:srcCompat="@drawable/converse" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/btn_cat_background">
+
+                                    <ImageView
+                                        android:id="@+id/viewConverse"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
+                                        android:layout_margin="2dp"
+                                        app:srcCompat="@drawable/converse" />
 
 
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Converse"
+                                    android:textStyle="bold" />
                             </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Converse"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@drawable/btn_cat_background">
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
 
-                                <ImageView
-                                    android:id="@+id/viewVans"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_margin="2dp"
-                                    app:srcCompat="@drawable/vans" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/btn_cat_background">
+
+                                    <ImageView
+                                        android:id="@+id/viewVans"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
+                                        android:layout_margin="2dp"
+                                        app:srcCompat="@drawable/vans" />
 
 
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Vans"
+                                    android:textStyle="bold" />
                             </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Vans"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@drawable/btn_cat_background">
+                                android:orientation="vertical">
 
-                                <ImageView
-                                    android:id="@+id/viewPuma"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_margin="2dp"
-                                    app:srcCompat="@drawable/puma" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/btn_cat_background">
 
+                                    <ImageView
+                                        android:id="@+id/viewPuma"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
+                                        android:layout_margin="2dp"
+                                        app:srcCompat="@drawable/puma" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Puma"
+                                    android:textStyle="bold" />
                             </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Puma"
-                                android:textStyle="bold" />
                         </LinearLayout>
-
 
                     </LinearLayout>
 
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycleview"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="8dp" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:paddingLeft="25dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="7dp"
+                            android:text="Gợi ý"
+                            android:textColor="@color/black"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+
+                        <!-- RecyclerView sẽ hiển thị ở đây -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/vRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:numColumns="2"
+                            android:paddingLeft="10dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
-            </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
 
 
-        </androidx.drawerlayout.widget.DrawerLayout>
-
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNav"
-            android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:background="@color/white"
-            app:itemIconSize="26dp"
-            app:itemIconTint="@color/color_bottom_menu"
-            app:labelVisibilityMode="unlabeled"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_menu" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

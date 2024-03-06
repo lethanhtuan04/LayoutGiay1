@@ -18,15 +18,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView14"
+
+            android:id="@+id/btnBackPro"
             android:layout_width="30dp"
             android:layout_height="30dp"
-
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_back" />
 
         <ImageView
-            android:id="@+id/imageView15"
+            android:id="@+id/btnDetailtoCart"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="260dp"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/imnike"
+                    android:id="@+id/imgMain"
                     android:layout_width="match_parent"
                     android:layout_height="290dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -134,13 +134,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:inputType="number"
                             android:text="₫ 950.000"
                             android:textColor="@color/main_blue"
                             android:textSize="22sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/txtname"
+                            android:id="@+id/txtName"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginTop="2dp"

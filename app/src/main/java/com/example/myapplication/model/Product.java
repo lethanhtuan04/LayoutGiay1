@@ -1,28 +1,28 @@
 package com.example.myapplication.model;
 
 
+import java.io.Serializable;
 
-
-public class Product {
-    private Integer id;
-    private Integer type;
+public class Product implements Serializable {
+    private int id;
+    private int type;
     private String name;
-    private Double price;
-    private String image;
+    private double price;
+    private byte[] image;
     private String image1;
     private String image2;
     private String image3;
     private String image4;
 
     private String detail;
-    private Float star;
+    private float star;
     private String status;
     private Discount discount;
 
 
-    public Product(Integer id, Integer type, String name, Double price, String image,
+    public Product(int id, int type, String name, double price, byte[] image,
                    String image1, String image2, String image3, String image4,
-                   String detail, Float star, String status) {
+                   String detail, float star, String status) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -71,9 +71,9 @@ public class Product {
 
 
 
-//    public Product(Integer storeId, Integer type, String name) {
-//        this(-1, storeId, type, name, 0.0, defaultImage, null, 0.0f, null);
-//    }
+    //    public Product(Integer storeId, Integer type, String name) {
+    //        this(-1, storeId, type, name, 0.0, defaultImage, null, 0.0f, null);
+    //    }
 //
 //    public Product(Integer storeId, Integer type, String name, String image) {
 //        this(-1, storeId, type, name, 0.0, image, null, 0.0f, null);
@@ -118,15 +118,13 @@ public class Product {
             this.price = price;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
-
-
 
     public String getDetail() {
         return detail;

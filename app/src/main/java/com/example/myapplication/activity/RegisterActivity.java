@@ -15,11 +15,12 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.dbhelper.AccountDBHelper;
+import com.example.myapplication.fragment.HomeFragment;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView txtSignIn, mError;
     AppCompatButton btnSignUp;
-    ImageView ic_pass, ic_cfpass;
+    ImageView ic_pass, ic_cfpass,btnHome;
     EditText edtpass, edtcfpass, edtuser, edtemail;
     private boolean PassShowing = false;
     private boolean CFPassShowing = false;
@@ -37,6 +38,13 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+
             }
         });
 
@@ -85,7 +93,14 @@ public class RegisterActivity extends AppCompatActivity {
                     //Xác nhận mật khẩu trùng nhau
                     if (cf_pass.equals(pass)) //so sánh chuỗi
                     {
-                        registerAccount(user, email, pass);
+                        btnSignUp.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(RegisterActivity.this, HomeFragment.class));
+
+                            }
+                        });
+//                        registerAccount(user, email, pass);
 
                     } else {
 
@@ -154,9 +169,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         edtpass = findViewById(R.id.edtPass);
         edtcfpass = findViewById(R.id.edtCFPass);
-
+btnHome=findViewById(R.id.btnSUtoHome);
         edtuser = findViewById(R.id.edtUserName);
-        edtemail = findViewById(R.id.edtUserName);
+        edtemail = findViewById(R.id.edtEmail);
         btnSignUp = findViewById(R.id.btnSignUp);
 
         mError = findViewById(R.id.mError);
