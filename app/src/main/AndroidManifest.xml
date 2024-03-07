@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".activity.MainActivity2"
+            android:name=".TestActivity"
             android:exported="false" />
         <activity
             android:name=".utilities.LoadBannerActivity"

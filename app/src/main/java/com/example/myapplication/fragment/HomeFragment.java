@@ -82,29 +82,20 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
         recyclerView = view.findViewById(R.id.vRecyclerView);
         // Khởi tạo DBHelper và lấy tất cả sản phẩm từ cơ sở dữ liệu
         productDBHelper = new ProductDBHelper(requireContext());
         productList = productDBHelper.getAllProducts();
-//
 //        // Khởi tạo Adapter và gắn sản phẩm vào RecyclerView
         productRecyclerViewAdapter = new ProductRecyclerViewAdapter(productList, requireContext());
         recyclerView.setAdapter(productRecyclerViewAdapter);
-
 // Sử dụng GridLayoutManager với 2 cột và không cuộn
-
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager;
-        layoutManager = new GridLayoutManager(getContext(),2);
+        layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
-
-
         recyclerView.setFocusable(true);
         recyclerView.setNestedScrollingEnabled(false);
-//
-
-
         viewFlipper = view.findViewById(R.id.viewlipper);
         ActionViewFlipper();
         return view;
@@ -143,6 +134,5 @@ public class HomeFragment extends Fragment {
         viewFlipper.setInAnimation(slide_in);
         viewFlipper.setOutAnimation(slide_out);
     }
-
 
 }
