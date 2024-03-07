@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -85,13 +86,18 @@ public class MainActivity extends AppCompatActivity {
         database=openOrCreateDatabase(DB_NAME,MODE_PRIVATE, null);
         Cursor cursor= database.rawQuery("select * from tbUser", null);
         list.clear();
-       for(int i =0; i < cursor.getCount(); i++){
-           cursor.moveToPosition(i);
-            int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            Double price  = cursor.getDouble(2);
-            String status =cursor.getString(3);
-           boolean add = list.add(new Product(id, name, price, status, );
+      // for(int i =0; i < cursor.getCount(); i++){
+          // cursor.moveToPosition(i);
+        while(cursor.moveToNext()) {
+            String id = cursor.getString(0);
+            String type = cursor.getString(1);
+            String name = cursor.getString(2);
+            Double price  = cursor.getDouble(3);
+            String image = cursor.getString(4);
+            String detail = cursor.getString(5);
+            Float star = cursor.getFloat(6);
+            String status =cursor.getString(7);
+         list.add(new Product(id, type, name, price, image, detail, star, status));
        }
         adapter.notifyDataSetChanged();
     }

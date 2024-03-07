@@ -4,15 +4,11 @@ package com.example.myapplication.model;
 import java.sql.Blob;
 
 public class Product {
-    private Integer id;
-    private Integer type;
+    private String id;
+    private String type;
     private String name;
     private Double price;
-    private Blob image;
-    private Blob image1;
-    private Blob image2;
-    private Blob image3;
-    private Blob image4;
+    private String image;
 
     private String detail;
     private Float star;
@@ -20,18 +16,14 @@ public class Product {
     private Discount discount;
 
 
-    public Product(Integer id, Integer type, String name, Double price, Blob image,
-                   Blob image1, Blob image2, Blob image3, Blob image4,
+
+    public Product(String id, String type, String name, Double price, String image,
                    String detail, Float star, String status) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.price = price;
         this.image = image;
-        this.image1 = image1;
-        this.image2 = image2;
-        this.image3 = image3;
-        this.image4 = image4;
         this.detail = detail;
         this.star = star;
         this.status = status;
@@ -83,21 +75,21 @@ public class Product {
 //        this(-1, storeId, type, name, price, null, null, 0.0f, null);
 //    }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
-        if (type > 0 && type < 8)
+    public void setType(String type) {
+       // if (type > 0 && type < 8)
             this.type = type;
     }
 
