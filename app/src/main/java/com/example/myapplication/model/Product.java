@@ -1,18 +1,18 @@
 package com.example.myapplication.model;
 
 
-
+import java.sql.Blob;
 
 public class Product {
     private Integer id;
     private Integer type;
     private String name;
     private Double price;
-    private String image;
-    private String image1;
-    private String image2;
-    private String image3;
-    private String image4;
+    private Blob image;
+    private Blob image1;
+    private Blob image2;
+    private Blob image3;
+    private Blob image4;
 
     private String detail;
     private Float star;
@@ -20,8 +20,8 @@ public class Product {
     private Discount discount;
 
 
-    public Product(Integer id, Integer type, String name, Double price, String image,
-                   String image1, String image2, String image3, String image4,
+    public Product(Integer id, Integer type, String name, Double price, Blob image,
+                   Blob image1, Blob image2, Blob image3, Blob image4,
                    String detail, Float star, String status) {
         this.id = id;
         this.type = type;
@@ -37,37 +37,37 @@ public class Product {
         this.status = status;
     }
 
-    public String getImage1() {
-        return image1;
-    }
+    //public String getImage1() {
+      //  return image1;
+   // }
 
-    public void setImage1(String image1) {
-        this.image1 = image1;
-    }
+    //public void setImage1(String image1) {
+     //   this.image1 = image1;
+    //}
 
-    public String getImage2() {
-        return image2;
-    }
+    //  public String getImage2() {
+    //     return image2;
+    //  }
 
-    public void setImage2(String image2) {
-        this.image2 = image2;
-    }
+    //  public void setImage2(String image2) {
+    //   this.image2 = image2;
+    // }
 
-    public String getImage3() {
-        return image3;
-    }
+    //  public String getImage3() {
+    //    return image3;
+    // }
 
-    public void setImage3(String image3) {
-        this.image3 = image3;
-    }
+    //  public void setImage3(String image3) {
+    //  this.image3 = image3;
+    //  }
 
-    public String getImage4() {
-        return image4;
-    }
+    //   public String getImage4() {
+    //    return image4;
+    // }
 
-    public void setImage4(String image4) {
-        this.image4 = image4;
-    }
+    //  public void setImage4(String image4) {
+    //     this.image4 = image4;
+    // }
 
 
 
@@ -118,13 +118,13 @@ public class Product {
             this.price = price;
     }
 
-    public String getImage() {
-        return image;
-    }
+    // public String getImage() {
+    //     return image;
+    // }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+    // public void setImage(String image) {
+    //      this.image = image;
+    //  }
 
 
 

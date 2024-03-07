@@ -1,9 +1,13 @@
 package com.example.myapplication;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Adapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,29 +15,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.myapplication.Adapter.AdapterProduct;
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.fragment.CategoryFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.ProfileFragment;
+import com.example.myapplication.model.Product;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
     public String DB_NAME = "AppShoes";
     public String DB_SUFFIX_PATH = "/databases/";
-
+    public static SQLiteDatabase database = null;
+    ListView listView;
+    ArrayList<Product> list;
+    AdapterProduct adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         addControls();
+        readData();
         processCopy();
+
         //mặc đinh khi run app sẽ hiển thị trang HomeFragment
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
         // Khởi tạo và cấu hình BottomNavigationView
@@ -68,9 +81,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void readData() {
+        database=openOrCreateDatabase(DB_NAME,MODE_PRIVATE, null);
+        Cursor cursor= database.rawQuery("select * from tbUser", null);
+        list.clear();
+       for(int i =0; i < cursor.getCount(); i++){
+           cursor.moveToPosition(i);
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            Double price  = cursor.getDouble(2);
+            String status =cursor.getString(3);
+           boolean add = list.add(new Product(id, name, price, status, );
+       }
+        adapter.notifyDataSetChanged();
+    }
+
     private void addControls() {
         bottomNav = findViewById(R.id.bottomNav);
+        listView = (ListView) findViewById(R.id.listView);
+        list = new ArrayList<>();
+        adapter = new AdapterProduct(this, list);
+        listView.setAdapter(adapter);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
