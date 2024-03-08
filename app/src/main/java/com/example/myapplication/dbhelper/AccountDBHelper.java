@@ -17,29 +17,24 @@ public class AccountDBHelper extends SQLiteOpenHelper {
     public AccountDBHelper(@Nullable Context context) {
         super(context, DBHelper.DATABASE_NAME, null, DBHelper.DATABASE_VERSION);
     }
-    // Khai báo các biến và phương thức khác
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Không cần thực hiện bất kỳ thao tác nào ở đây
-//            db.execSQL(DBHelper.DATABASE_NAME);
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Không cần thực hiện thay đổi cấu trúc cơ sở dữ liệu ở đây
     }
 
     @NotNull
     @Contract("_ -> new")
     private Account cursorToAccount(@NotNull Cursor cursor) {
         return new Account(
-                cursor.getInt(0),
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getInt(4),
+                cursor.getInt(0), //id
+                cursor.getString(1),//username
+                cursor.getString(2),//pass
+                cursor.getInt(3),//roleid
+                cursor.getString(4),//email
                 cursor.getString(5)
         );
     }

@@ -16,16 +16,15 @@ import com.example.myapplication.R;
 import com.example.myapplication.activity.admin.DashboardActivity;
 import com.example.myapplication.dbhelper.AccountDBHelper;
 import com.example.myapplication.model.Account;
+import com.example.myapplication.utilities.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
-    private boolean passShowing = false;
-    private boolean checkedHome = true;
-    private boolean checkedFavorite = false;
-    private boolean checkedCart = false;
-    private boolean checkedProfile = false;
+    SessionManager sessionManager;
+
+    boolean passShowing = false;
     TextView txtSignUp, viewError;
     AppCompatButton btnSignIn;
-    ImageView PassIC,btnHome;
+    ImageView PassIC, btnHome;
     EditText edtPass, edtemail;
     AccountDBHelper accountDBHelper;
 
@@ -35,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         addControlos();
         addShowPass();
-//        addSignIn();
+        addSignIn();
         setSignIn();
         //bắt đầu chạy trang register
         txtSignUp.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +44,22 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }
+        });
+
+    }
+
+    private void setSignIn() {
+        accountDBHelper = new AccountDBHelper(LoginActivity.this);
+
+    }
+
+    private void addSignIn() {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,94 +77,42 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     edtPass.setBackgroundResource(R.drawable.round_black_dark);
                 }
-
                 //Viết hàm thực hiện chạy trang đăng nhập
-
                 if (!user.isEmpty() && !pass.isEmpty()) {
-                    btnSignIn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
-                        }
-                    });
-//                    setLogin();
+                    setLogin();
                 }
             }
         });
-
-
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            }
-        });
-
     }
-
-    private void setSignIn() {
-        accountDBHelper = new AccountDBHelper(LoginActivity.this);
-
-    }
-
-
-//    private void addSignIn() {
-//        btnSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String user = edtemail.getText().toString().trim();
-//                String pass = edtPass.getText().toString().trim();
-//                if (user.isEmpty()) {
-//                    viewError.setText("Please fill in all information completely");
-//                    edtemail.setBackgroundResource(R.drawable.border_error_red);
-//                } else {
-//                    edtemail.setBackgroundResource(R.drawable.round_black_dark);
-//                }
-//                if (pass.isEmpty()) {
-//                    viewError.setText("Please fill in all information completely");
-//                    edtPass.setBackgroundResource(R.drawable.border_error_red);
-//                } else {
-//                    edtPass.setBackgroundResource(R.drawable.round_black_dark);
-//                }
-//
-//                //Viết hàm thực hiện chạy trang đăng nhập
-//
-//                if (!user.isEmpty() && !pass.isEmpty()) {
-//                    btnSignIn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            startActivity(new Intent(LoginActivity.this, HomeFragment.class));
-//
-//                        }
-//                    });
-////                    setLogin();
-//                }
-//            }
-//        });
-//    }
 
 
     private void setLogin() {
-        String email = edtemail.getText().toString();
-        String password = edtPass.getText().toString();
-        if (email.equals("admin") && password.equals("123")) {
+        sessionManager = new SessionManager(getApplicationContext());
+        String username;
+        int roleid;
+
+        String email = edtemail.getText().toString().trim();
+        String password = edtPass.getText().toString().trim();
+        if (email.equals("admin") && password.equals("admin")) {
             Intent adminActivity = new Intent(this, DashboardActivity.class);
             startActivity(adminActivity);
-            finish();
             return;
         }
         Account account = accountDBHelper.getAccountByEmail(email);
         if (email.equals(account.getEmail()) && password.equals(account.getPassword())) {
+            //nếu tìm được acc thì thêm acc vào session
+            username = account.getUsername().trim();
+            roleid = account.getRoleID();
+            //nếu tìm được acc thì thêm acc vào session
+            sessionManager.createLoginSession(username, email, roleid);
             Intent mainActivity = new Intent(this, MainActivity.class);
             startActivity(mainActivity);
-            finish();
         } else {
             viewError.setText("Wrong account or password");
             edtemail.setText("");
             edtPass.setText("");
         }
-//            finish();
+
     }
 
 
@@ -175,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void addControlos() {
-        btnHome=findViewById(R.id.btnSItoHome);
+        btnHome = findViewById(R.id.btnSItoHome);
         btnSignIn = findViewById(R.id.btnSignIn);
         PassIC = findViewById(R.id.passIC);
         edtPass = findViewById(R.id.edtPassword);

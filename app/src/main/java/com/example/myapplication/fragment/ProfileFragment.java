@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
 import com.example.myapplication.activity.AccountSettingsActivity;
 import com.example.myapplication.activity.LoginActivity;
+import com.example.myapplication.utilities.SessionManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +21,7 @@ import com.example.myapplication.activity.LoginActivity;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+    SessionManager sessionManager;
     AppCompatButton btnaccountSettings, btnlogout;
 
 
@@ -68,25 +70,32 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        // Khởi tạo SessionManager
+        sessionManager = new SessionManager(requireActivity().getApplicationContext());
         btnlogout = view.findViewById(R.id.btnlogout);
+        btnaccountSettings = view.findViewById(R.id.btnaccountSettings);
+
+
+
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Gọi logoutUser() từ SessionManager để đăng xuất
+                sessionManager.logoutUser();
+                // Chuyển đến LoginActivity sau khi đăng xuất
                 startActivity(new Intent(getActivity(), LoginActivity.class));
-
             }
         });
-        btnaccountSettings = view.findViewById(R.id.btnaccountSettings);
         btnaccountSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Khởi chạy ActivitySettings khi nút được click
+                // Chuyển đến AccountSettingsActivity
                 startActivity(new Intent(getActivity(), AccountSettingsActivity.class));
             }
         });
-
         return view;
     }
+
+
 }

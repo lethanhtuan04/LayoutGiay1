@@ -11,7 +11,7 @@ public class    Account {
     public Account() {
     }
 
-    public Account(Integer id, String username, String email, String password, Integer roleID, String status) {
+    public Account(Integer id, String username, String password, Integer roleID, String email, String status) {
         this.setId(id);
         this.setUsername(username);
         this.setEmail(email);
@@ -20,8 +20,8 @@ public class    Account {
         this.setStatus(status);
     }
 
-    public Account(String username, String email, String password) {
-        this(-1, username, email, password, 2, null);
+    public Account(String username, String password, String email) {
+        this(-1, username, password, 2, email, null);
     }
 
     public Integer getId() {

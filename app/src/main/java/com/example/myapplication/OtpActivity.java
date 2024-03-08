@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,11 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class OtpActivity extends AppCompatActivity {
     private EditText otpEt1,otpEt2,otpEt3,otpEt4;
     private TextView resendBtn;
     private  boolean resendEnabled =false;
-    private  int resendTime =60;
+    private  int resendTime =90;
     private int selectedETPosition =0;
 
     @Override

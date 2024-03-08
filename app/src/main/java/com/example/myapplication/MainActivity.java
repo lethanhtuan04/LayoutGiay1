@@ -1,11 +1,9 @@
 package com.example.myapplication;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,29 +11,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.myapplication.adapter.ProductAdapter;
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.fragment.CategoryFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.ProfileFragment;
-import com.example.myapplication.model.Product;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
     public String DB_NAME = "AppShoes";
     public String DB_SUFFIX_PATH = "/databases/";
-    public static SQLiteDatabase database = null;
-    ListView listView;
-    List<Product> list;
-    ProductAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         addControls();
         processCopy();
-//
 //        //mặc đinh khi run app sẽ hiển thị trang HomeFragment
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
 //        // Khởi tạo và cấu hình BottomNavigationView
