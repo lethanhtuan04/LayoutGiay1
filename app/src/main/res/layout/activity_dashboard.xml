@@ -130,6 +130,7 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/btnDiscount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -137,11 +138,11 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:src="@drawable/ic_discount"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="10dp"
-                        android:padding="16dp"
-                         />
+                        android:padding="5dp" />
 
                     <View
                         android:layout_width="match_parent"

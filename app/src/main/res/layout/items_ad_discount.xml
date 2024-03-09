@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:id="@+id/txt_row_show_idDiscount"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="283dp"
+        android:text="Id Discount"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txt_row_show_productIdDiscount"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="-4dp"
+        android:text="ID_Pro"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txt_row_show_valueDiscount"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="157dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="104dp"
+        android:text="Value Discount"
+        android:textSize="20dp" />
+</RelativeLayout>

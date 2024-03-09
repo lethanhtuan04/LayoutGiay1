@@ -2,19 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="Admin_Proflie">
-        <State />
-      </entry>
-      <entry key="HomeActivity">
-        <State />
-      </entry>
-      <entry key="LoginActivity">
-        <State />
-      </entry>
-      <entry key="MainActivity">
-        <State />
-      </entry>
-      <entry key="SearchViewActivity">
+      <entry key="DashboardActivity">
         <State />
       </entry>
       <entry key="app">

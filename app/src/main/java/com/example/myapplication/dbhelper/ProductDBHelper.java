@@ -29,24 +29,9 @@ public class ProductDBHelper extends SQLiteOpenHelper {
 
     }
 
-//    private Product cursorToProduct(Cursor cursor) {
-//        return new Product(
-//                cursor.getInt(0),//id
-//                cursor.getInt(1),//type
-//                cursor.getString(2),//name
-//                cursor.getDouble(3),//price
-//                cursor.getString(4),//image
-//                cursor.getString(5),//img1
-//                cursor.getString(6),//img2
-//                cursor.getString(7),//img3
-//                cursor.getString(8),//img4
-//                cursor.getString(9),//detail
-//                cursor.getFloat(10),//star
-//                cursor.getString(11));//status
-//
-//    }
 private Product cursorToProduct(Cursor cursor) {
-    byte[] imageByteArray = cursor.getBlob(4); // Lấy dữ liệu từ trường "image"
+    byte[] imageByteArray = cursor.getBlob(4);
+    // Lấy dữ liệu từ trường "image"
     Bitmap imageBitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length); // Chuyển đổi mảng byte thành đối tượng Bitmap
 
     return new Product(
@@ -86,6 +71,41 @@ private Product cursorToProduct(Cursor cursor) {
         return products;
     }
 
+//    public ArrayList<Product> getDiscountProductByName(String name, String discountValue) {
+//        ArrayList<Product> products = new ArrayList<>();
+//        SQLiteDatabase db = getReadableDatabase();
+//        Cursor cursor = null;
+//        if (!discountValue.equals("-1")) {
+//            cursor = db.rawQuery(
+//                    "SELECT * " +
+//                            "FROM Product INNER JOIN Discount ON Product.id = Discount.productId " +
+//                            "WHERE Discount.status = 'OK' AND Discount.value = '" + discountValue +"' AND Product.name LIKE ?",
+//                    new String[]{"%" + name + "%"});
+//        }
+//        else {
+//            cursor = db.rawQuery(
+//                    "SELECT * " +
+//                            "FROM Product INNER JOIN Discount ON Product.id = Discount.productId " +
+//                            "WHERE Discount.status = 'OK' AND Discount.value > '" + discountValue + "' AND Product.name LIKE ?",
+//                    new String[]{"%" + name + "%"});
+//        }
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()) {
+//            Product product = cursorToProduct(cursor);
+//            Discount discount = new Discount(
+//                    cursor.getInt(9),
+//                    cursor.getInt(10),
+//                    cursor.getFloat(11),
+//                    cursor.getString(12)
+//            );
+//            product.setDiscount(discount);
+//            product.addProductImage(productImageDbHelper.getAllImageByProduct(product.getId()));
+//            products.add(product);
+//            cursor.moveToNext();
+//        }
+//        cursor.close();
+//        return products;
+//    }
 
     // Thêm một sản phẩm mới vào cơ sở dữ liệu với hình ảnh dưới dạng BLOB
 //    public void addProductWithImage(Product product) {

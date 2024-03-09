@@ -21,7 +21,7 @@ public class    Account {
     }
 
     public Account(String username, String password, String email) {
-        this(-1, username, password, 2, email, null);
+        this(-1, username, password, 2, email, "null");
     }
 
     public Integer getId() {

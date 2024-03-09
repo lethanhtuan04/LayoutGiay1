@@ -1,16 +1,22 @@
 package com.example.myapplication.model;
 
-public class Discount {
+import java.io.Serializable;
+
+public class Discount implements Serializable {
     private Integer id;
     private Integer productId;
-    private Float value;
+    private int value;
     private String status;
 
-    public Discount(Integer id, Integer productId,  Float value, String status) {
+    public Discount(Integer id, Integer productId, int value, String status) {
         this.id = id;
         this.productId = productId;
         this.value = value;
         this.status = status;
+    }
+
+    public Discount(Integer id, Integer productId, int value) {
+        this(id, productId, value, "null");
     }
 
     public Integer getId() {
@@ -29,11 +35,11 @@ public class Discount {
         this.productId = productId;
     }
 
-    public Float getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(Float value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

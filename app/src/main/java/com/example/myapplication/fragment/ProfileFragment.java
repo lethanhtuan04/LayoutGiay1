@@ -77,7 +77,6 @@ public class ProfileFragment extends Fragment {
         btnaccountSettings = view.findViewById(R.id.btnaccountSettings);
 
 
-
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +95,4 @@ public class ProfileFragment extends Fragment {
         });
         return view;
     }
-
-
 }

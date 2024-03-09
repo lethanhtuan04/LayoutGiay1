@@ -70,7 +70,6 @@ public class Product implements Serializable {
     }
 
 
-
     //    public Product(Integer storeId, Integer type, String name) {
     //        this(-1, storeId, type, name, 0.0, defaultImage, null, 0.0f, null);
     //    }
@@ -154,6 +153,13 @@ public class Product implements Serializable {
     public Discount getDiscount() {
         return discount;
     }
+
+    public double afterDiscount() {
+
+        double kq = getPrice() - (getPrice() * getDiscount().getValue()) / 100;
+        return kq;
+    }
+
 
     public void setDiscount(Discount discount) {
         this.discount = discount;

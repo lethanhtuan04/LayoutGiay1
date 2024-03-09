@@ -1,6 +1,7 @@
 package com.example.myapplication.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
@@ -31,6 +33,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+    private Context mContext;
 
     ViewFlipper viewFlipper;
     RecyclerView recyclerView;
@@ -69,6 +72,11 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -82,20 +90,23 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerView = view.findViewById(R.id.vRecyclerView);
-        // Khởi tạo DBHelper và lấy tất cả sản phẩm từ cơ sở dữ liệu
-        productDBHelper = new ProductDBHelper(requireContext());
-        productList = productDBHelper.getAllProducts();
-//        // Khởi tạo Adapter và gắn sản phẩm vào RecyclerView
-        productRecyclerViewAdapter = new ProductRecyclerViewAdapter(productList, requireContext());
-        recyclerView.setAdapter(productRecyclerViewAdapter);
-// Sử dụng GridLayoutManager với 2 cột và không cuộn
-        recyclerView.setHasFixedSize(true);
-        GridLayoutManager layoutManager;
-        layoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setFocusable(true);
-        recyclerView.setNestedScrollingEnabled(false);
+        if (mContext != null) {
+            recyclerView = view.findViewById(R.id.vRecyclerView);
+            productDBHelper = new ProductDBHelper(mContext);
+            productList = productDBHelper.getAllProducts();
+            productRecyclerViewAdapter = new ProductRecyclerViewAdapter(productList, mContext);
+            recyclerView.setAdapter(productRecyclerViewAdapter);
+            recyclerView.setHasFixedSize(true);
+            GridLayoutManager layoutManager = new GridLayoutManager(mContext, 2);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setNestedScrollingEnabled(false);
+            recyclerView.setFocusable(false);
+
+        }else {
+            Toast.makeText(getActivity(), "Loi roi ba oi", Toast.LENGTH_SHORT).show();
+        }
+
+
         viewFlipper = view.findViewById(R.id.viewlipper);
         ActionViewFlipper();
         return view;

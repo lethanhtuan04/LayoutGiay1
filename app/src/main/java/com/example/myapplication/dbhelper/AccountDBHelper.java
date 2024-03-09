@@ -63,40 +63,39 @@ public class AccountDBHelper extends SQLiteOpenHelper {
 //        return account;
 //    }
 
-    public Account login(String email, String password) {
-        Account account = null;
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery(
-                "SELECT * FROM Account" + " WHERE email = ? AND password = ?",
-                new String[]{email, password});
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            account = cursorToAccount(cursor);
-        }
-        cursor.close();
-        return account;
-    }
-
-    public Account getAccountByRowId(long rowID) {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery(
-                "SELECT * FROM Account" + " WHERE rowid = ?",
-                new String[]{String.valueOf(rowID)});
-        Account account = null;
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            account = cursorToAccount(cursor);
-        }
-        cursor.close();
-        return account;
-    }
+//    public Account login(String email, String password) {
+//        Account account = null;
+//        SQLiteDatabase db = getReadableDatabase();
+//        Cursor cursor = db.rawQuery(
+//                "SELECT * FROM Account" + " WHERE email = ? AND password = ?",
+//                new String[]{email, password});
+//        if (cursor.getCount() > 0) {
+//            cursor.moveToFirst();
+//            account = cursorToAccount(cursor);
+//        }
+//        cursor.close();
+//        return account;
+//    }
+//
+//    public Account getAccountByRowId(long rowID) {
+//        SQLiteDatabase db = getReadableDatabase();
+//        Cursor cursor = db.rawQuery(
+//                "SELECT * FROM Account" + " WHERE rowid = ?",
+//                new String[]{String.valueOf(rowID)});
+//        Account account = null;
+//        if (cursor.getCount() > 0) {
+//            cursor.moveToFirst();
+//            account = cursorToAccount(cursor);
+//        }
+//        cursor.close();
+//        return account;
+//    }
 
     public Account getAccountByEmail(String email) {
         Account account = null;
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM Account" + " WHERE email = ?",
-                new String[]{email});
+                "SELECT * FROM Account" + " WHERE email = ?", new String[]{email});
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             account = cursorToAccount(cursor);
