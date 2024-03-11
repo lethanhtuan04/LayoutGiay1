@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.MainActivity;
-import com.example.myapplication.OtpActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.dbhelper.AccountDBHelper;
 import com.example.myapplication.fragment.HomeFragment;
@@ -58,12 +57,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //moi them
-                final String getEdtUserTxt= edtuser.getText().toString();
-                final String getEdtEmailTxt= edtemail.getText().toString();
-                Intent intent =new Intent(RegisterActivity.this, OtpActivity.class);
-                intent.putExtra("edtuser",getEdtUserTxt );
-                intent.putExtra("edtemail",getEdtEmailTxt);
-                startActivity(intent);//
+                //final String getEdtUserTxt= edtuser.getText().toString();
+                //Intent intent =new Intent(RegisterActivity.this, OtpActivity.class);
+               // intent.putExtra("edtuser",getEdtUserTxt );
+                //startActivity(intent);
 
                 String user = edtuser.getText().toString().trim();
                 String email = edtemail.getText().toString().trim();

@@ -2,11 +2,30 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="DashboardActivity">
+      <entry key="OtpActivity">
+        <State />
+      </entry>
+      <entry key="SearchViewActivity">
+        <State />
+      </entry>
+      <entry key="TestActivity">
         <State />
       </entry>
       <entry key="app">
-        <State />
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\ACER\.android\avd\Pixel_6_Pro_API_30.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-03-11T10:54:31.589179Z" />
+        </State>
       </entry>
     </value>
   </component>
