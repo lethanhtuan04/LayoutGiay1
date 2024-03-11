@@ -19,9 +19,7 @@
         <activity
             android:name=".activity.admin.AdminDiscountActivity"
             android:exported="false" />
-        <activity
-            android:name=".OtpActivity"
-            android:exported="false" />
+
         <activity
             android:name=".TestActivity"
             android:exported="false" />
@@ -37,6 +35,9 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".ForgotPassActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.DetailProActivity"
             android:exported="false" />

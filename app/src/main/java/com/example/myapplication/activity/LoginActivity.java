@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.myapplication.ForgotPassActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.activity.admin.DashboardActivity;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     AppCompatButton btnSignIn;
     ImageView PassIC, btnHome;
     EditText edtPass, edtemail;
+    TextView fogotpass;
     AccountDBHelper accountDBHelper;
 
     @Override
@@ -51,7 +53,12 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });
-
+        fogotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ForgotPassActivity.class));
+            }
+        });
     }
 
     private void setSignIn() {
@@ -145,6 +152,6 @@ public class LoginActivity extends AppCompatActivity {
         edtemail = findViewById(R.id.edtUserName);
         txtSignUp = findViewById(R.id.txtSignUp);
         viewError = findViewById(R.id.mError);
-
+        fogotpass = findViewById(R.id.openforgotpass);
     }
 }
