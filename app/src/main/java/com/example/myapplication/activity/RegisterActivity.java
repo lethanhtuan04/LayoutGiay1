@@ -20,7 +20,7 @@ import com.example.myapplication.fragment.HomeFragment;
 public class RegisterActivity extends AppCompatActivity {
     TextView txtSignIn, mError;
     AppCompatButton btnSignUp;
-    ImageView ic_pass, ic_cfpass,btnHome;
+    ImageView ic_pass, ic_cfpass, btnHome;
     EditText edtpass, edtcfpass, edtuser, edtemail;
     private boolean PassShowing = false;
     private boolean CFPassShowing = false;
@@ -57,10 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //moi them
-                //final String getEdtUserTxt= edtuser.getText().toString();
-                //Intent intent =new Intent(RegisterActivity.this, OtpActivity.class);
-               // intent.putExtra("edtuser",getEdtUserTxt );
-                //startActivity(intent);
+//                final String getEdtUserTxt = edtuser.getText().toString();
+//                final String getEdtEmailTxt = edtemail.getText().toString();
+
+             //   Intent intent = new Intent(RegisterActivity.this, OtpActivity.class);
+//                intent.putExtra("edtuser", getEdtUserTxt);
+//                intent.putExtra("edtemail", getEdtEmailTxt);
+//                startActivity(intent);//
 
                 String user = edtuser.getText().toString().trim();
                 String email = edtemail.getText().toString().trim();
@@ -99,14 +102,14 @@ public class RegisterActivity extends AppCompatActivity {
                     //Xác nhận mật khẩu trùng nhau
                     if (cf_pass.equals(pass)) //so sánh chuỗi
                     {
-                        btnSignUp.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(RegisterActivity.this, HomeFragment.class));
-
-                            }
-                        });
-//                        registerAccount(user, email, pass);
+//                        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                startActivity(new Intent(RegisterActivity.this, HomeFragment.class));
+//
+//                            }
+//                        });
+                        registerAccount(user, email, pass);
 
                     } else {
 
@@ -125,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (result != -1) {
             Toast.makeText(this, "Đăng ký tài khoản thành công", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(RegisterActivity.this, MainActivity.class));// Khi đăng ký thành công sẽ về trang chủ
+            startActivity(new Intent(RegisterActivity.this, HomeFragment.class));// Khi đăng ký thành công sẽ về trang chủ
         } else {
             Toast.makeText(this, "Lỗi khi đăng ký tài khoản", Toast.LENGTH_SHORT).show();
         }
@@ -175,7 +178,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         edtpass = findViewById(R.id.edtPass);
         edtcfpass = findViewById(R.id.edtCFPass);
-btnHome=findViewById(R.id.btnSUtoHome);
+        btnHome = findViewById(R.id.btnSUtoHome);
         edtuser = findViewById(R.id.edtUserName);
         edtemail = findViewById(R.id.edtEmail);
         btnSignUp = findViewById(R.id.btnSignUp);

@@ -84,20 +84,20 @@
                     <ImageView
                         android:layout_width="85dp"
                         android:layout_height="70dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="9dp"
 
                         android:background="@drawable/round_images" />
 
                     <ImageView
                         android:layout_width="85dp"
                         android:layout_height="70dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="9dp"
                         android:background="@drawable/round_images" />
 
                     <ImageView
                         android:layout_width="85dp"
                         android:layout_height="70dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="9dp"
                         android:background="@drawable/round_images" />
 
                     <ImageView
@@ -124,22 +124,37 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:orientation="vertical"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/listpicture">
 
-                        <TextView
-                            android:id="@+id/txtPrice"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:inputType="number"
-                            android:text="₫ 950.000"
-                            android:textColor="@color/main_blue"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txtPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:inputType="number"
+                                android:text="950.000 đ"
+                                android:textColor="@color/main_blue"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txtGiakhicoDiscount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:text="950.000 đ"
+                                android:textColor="#73000000"
+                                android:textSize="15sp" />
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/txtName"
@@ -211,10 +226,17 @@
                         app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
-                        android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="Giới thiệu "
+                        android:textSize="22dp" />
+
+                    <TextView
+                        android:id="@+id/txtDetailPro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:justificationMode="inter_word"
                         android:text="Liên tục ra mắt các bản phát hành mới… Air Force 1 là khẳng định của việc những đôi giày không bao giờ có tuổi với vẻ ngoài thay đổi với các bản phối màu riêng thích hợp với mọi sở thích của khách hàng."
                         android:textColor="@color/black"
@@ -222,8 +244,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/view3"
-                        />
+                        app:layout_constraintTop_toBottomOf="@+id/view3" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -247,10 +268,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="3dp"
-        android:elevation="5dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:background="@color/white"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -260,8 +281,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="3dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="3dp"
             android:background="@drawable/bg_btn_edit"
             android:backgroundTint="@color/main_blue"

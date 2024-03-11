@@ -90,11 +90,11 @@ public class AdminDiscountActivity extends AppCompatActivity {
         });
     }
 
-    private boolean validate(String id, String productId, String value) {
-        if (id.equals("")) {
-            txtAdIdDiscount.setError("Không được bỏ trống");
-            return false;
-        }
+    private boolean validate( String productId, String value) {
+//        if (id.equals("")) {
+//            txtAdIdDiscount.setError("Không được bỏ trống");
+//            return false;
+//        }
         if (productId.equals("")) {
             txtAdIdProductDiscount.setError("Không được bỏ trống");
             return false;
@@ -107,7 +107,7 @@ public class AdminDiscountActivity extends AppCompatActivity {
     }
 
     private void insertData() {
-        String id = txtAdIdDiscount.getText().toString();
+        //String id = txtAdIdDiscount.getText().toString();
         String productId = txtAdIdProductDiscount.getText().toString();
         String status = txtAdStatusDiscount.getText().toString();
         String value = txtAdValueDiscount.getText().toString();
@@ -119,11 +119,11 @@ public class AdminDiscountActivity extends AppCompatActivity {
                 return;
             }
 
-            if (!validate(id, productId, value)) {
+            if (!validate( productId, value)) {
                 Toast.makeText(AdminDiscountActivity.this, "Nhập thông tin sai", Toast.LENGTH_SHORT).show();
                 return;
             } else {
-                Discount discount = new Discount(parseInt(id), parseInt(productId), parseInt(value), status);
+                Discount discount = new Discount(parseInt(productId), parseInt(value), status);
                 DiscountDBHelper discountDbHelper = new DiscountDBHelper(this);
                 long rowId = discountDbHelper.insert(discount);
                 if (rowId > 0) {
@@ -151,7 +151,7 @@ public class AdminDiscountActivity extends AppCompatActivity {
                 txtAdValueDiscount.setError("Lỗi");
                 return;
             }
-            if (!validate(id, productId, value)) {
+            if (!validate( productId, value)) {
                 Toast.makeText(AdminDiscountActivity.this, "Nhập thông tin sai", Toast.LENGTH_SHORT).show();
                 return;
             }

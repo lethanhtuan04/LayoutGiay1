@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.myapplication.activity.LoginActivity;
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.fragment.CategoryFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.ProfileFragment;
+import com.example.myapplication.utilities.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
@@ -23,7 +26,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
-
+    SessionManager sessionManager;
     BottomNavigationView bottomNav;
     public String DB_NAME = "AppShoes";
     public String DB_SUFFIX_PATH = "/databases/";
@@ -53,13 +56,34 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
                 if (item.getItemId() == R.id.mnCart) {
-                    fm = new CartFragment();
-                    loadFragment(fm);
+                    sessionManager = new SessionManager(getApplicationContext());
+                    if (!sessionManager.isLoggedIn()) {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    } else {
+//                        // Nếu đã đăng nhập, lấy thông tin session và hiển thị
+//                        HashMap<String, String> userDetails = sessionManager.getUserDetails();
+//                        String username = userDetails.get(SessionManager.KEY_USERNAME);
+//                        // Hiển thị thông tin username và email
+
+                        fm = new CartFragment();
+                        loadFragment(fm);
+                        return  true;
+                    }
                     return true;
                 }
                 if (item.getItemId() == R.id.mnProfile) {
-                    fm = new ProfileFragment();
-                    loadFragment(fm);
+                    sessionManager = new SessionManager(getApplicationContext());
+                    if (!sessionManager.isLoggedIn()) {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    } else {
+//                        // Nếu đã đăng nhập, lấy thông tin session và hiển thị
+//                        HashMap<String, String> userDetails = sessionManager.getUserDetails();
+//                        String username = userDetails.get(SessionManager.KEY_USERNAME);
+//                        // Hiển thị thông tin username và email
+                        fm = new ProfileFragment();
+                        loadFragment(fm);
+                        return  true;
+                    }
                     return true;
                 }
 

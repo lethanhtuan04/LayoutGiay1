@@ -40,12 +40,12 @@ public class AccountDBHelper extends SQLiteOpenHelper {
     }
 
     public long registerUser(String username, String email, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("username", username);
         values.put("email", email);
         values.put("password", password);
-
+        values.put("roleID", "2");
         long newRowId = db.insert("Account", null, values);
         db.close();
         return newRowId;

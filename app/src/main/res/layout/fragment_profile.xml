@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.ProfileFragment">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#12FFFFFF"
@@ -21,11 +20,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/main_blue"
-                android:elevation="40dp"
+                android:background="@color/white"
+                android:elevation="10dp"
                 android:padding="45dp">
 
                 <ImageView
+                    android:layout_marginRight="20dp"
                     android:id="@+id/image_human"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -33,29 +33,29 @@
                     android:src="@drawable/ic_human" />
 
                 <TextView
-                    android:id="@+id/fullname"
+                    android:id="@+id/txtusernamepro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_marginBottom="5dp"
                     android:layout_toEndOf="@id/image_human"
                     android:includeFontPadding="false"
                     android:text="Admin"
-                    android:textColor="#ffffff"
+                    android:textColor="#CC000000"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/gmail"
+                    android:id="@+id/txtemailpro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/fullname"
+                    android:layout_below="@id/txtusernamepro"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/image_human"
                     android:includeFontPadding="false"
                     android:text="Admin@gmail.com"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textColor="#66000000"
+                    android:textSize="20sp" />
             </RelativeLayout>
 
 

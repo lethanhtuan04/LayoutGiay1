@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import com.example.myapplication.activity.AccountSettingsActivity;
 import com.example.myapplication.activity.LoginActivity;
 import com.example.myapplication.utilities.SessionManager;
 
+import java.util.HashMap;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProfileFragment#newInstance} factory method to
@@ -22,6 +25,7 @@ import com.example.myapplication.utilities.SessionManager;
  */
 public class ProfileFragment extends Fragment {
     SessionManager sessionManager;
+    TextView txtusername, txtemail;
     AppCompatButton btnaccountSettings, btnlogout;
 
 
@@ -70,9 +74,20 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         // Khởi tạo SessionManager
         sessionManager = new SessionManager(requireActivity().getApplicationContext());
+
+        txtusername = view.findViewById(R.id.txtusernamepro);
+        txtemail = view.findViewById(R.id.txtemailpro);
+
+        HashMap<String, String> userDetails = sessionManager.getUserDetails();
+        String username = userDetails.get(SessionManager.KEY_USERNAME);
+        String email = userDetails.get(SessionManager.KEY_EMAIL);
+        txtusername.setText(username);
+        txtemail.setText(email);
+
         btnlogout = view.findViewById(R.id.btnlogout);
         btnaccountSettings = view.findViewById(R.id.btnaccountSettings);
 
@@ -86,6 +101,9 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
+
+
+
         btnaccountSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

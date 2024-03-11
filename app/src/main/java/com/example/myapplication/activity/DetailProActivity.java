@@ -14,17 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
+import com.example.myapplication.dbhelper.DiscountDBHelper;
+import com.example.myapplication.model.Discount;
 import com.example.myapplication.model.Product;
-import com.example.myapplication.utilities.SessionManager;
 
-import java.util.HashMap;
+import java.text.DecimalFormat;
 
 public class DetailProActivity extends AppCompatActivity {
-    SessionManager sessionManager;
     ImageView btnBack, btnDetailtoCart, imgMain;
-    TextView txtPrice, txtName;
+    TextView txtPrice, txtName, txtGiakhicoDiscount, txtDetailPro;
     AppCompatButton btnAddtoCart;
-    TextView test;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,17 +40,8 @@ public class DetailProActivity extends AppCompatActivity {
         btnAddtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sessionManager = new SessionManager(getApplicationContext());
-                if (!sessionManager.isLoggedIn()) {
-                    startActivity(new Intent(DetailProActivity.this, LoginActivity.class));
-                } else {
-                    // Nếu đã đăng nhập, lấy thông tin session và hiển thị
-                    HashMap<String, String> userDetails = sessionManager.getUserDetails();
-                    String username = userDetails.get(SessionManager.KEY_USERNAME);
-                    // Hiển thị thông tin username và email
-                    test.setText(username);
 
-                }
+
             }
         });
     }
@@ -71,17 +61,33 @@ public class DetailProActivity extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         txtPrice = findViewById(R.id.txtPrice);
         imgMain = findViewById(R.id.imgMain);
+        txtDetailPro = findViewById(R.id.txtDetailPro);
         btnAddtoCart = findViewById(R.id.btnAddtoCart);
-        test=findViewById(R.id.testt);
+        txtGiakhicoDiscount = findViewById(R.id.txtGiakhicoDiscount);
     }
 
+    @SuppressLint("SetTextI18n")
     private void viewDetailPro() {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
         Intent intent = getIntent();
-        Product product = (Product) getIntent().getSerializableExtra("product");
+        Product product = (Product) intent.getSerializableExtra("product");
         // Hiển thị thông tin sản phẩm (ví dụ: tên sản phẩm và hình ảnh)
         if (product != null) {
+            DiscountDBHelper discountDBHelper = new DiscountDBHelper(this);
+            Discount discount = discountDBHelper.getDiscountByProductID(product.getId());
+            if (discount != null) {
+                double priceDiscount = product.getPrice() - product.getPrice() * discount.getValue() / 100;
+                String giasaokhigiam = decimalFormat.format(priceDiscount);
+                txtPrice.setText(giasaokhigiam + "đ");
+                String price = decimalFormat.format(product.getPrice());
+                txtGiakhicoDiscount.setText(price + "đ");
+            } else {
+                String price = decimalFormat.format(product.getPrice());
+                txtPrice.setText(price + "đ");
+                txtGiakhicoDiscount.setVisibility(View.GONE);
+            }
+           txtDetailPro.setText(product.getDetail());
             txtName.setText(product.getName());
-            txtPrice.setText(product.getPrice() + "");
             // Hiển thị hình ảnh từ mảng byte (BLOB)
             byte[] imageByteArray = product.getImage();
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);

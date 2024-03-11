@@ -153,13 +153,14 @@ public class Product implements Serializable {
     public Discount getDiscount() {
         return discount;
     }
-
-    public double afterDiscount() {
-
-        double kq = getPrice() - (getPrice() * getDiscount().getValue()) / 100;
-        return kq;
-    }
-
+//    public double afterDiscount() {
+//        if (discount != null && discount.getValue() > 0) {
+//            double discountValue = (double) discount.getValue() / 100; // Chuyển đổi phần trăm giảm giá thành số thập phân
+//            return getPrice() * (1 - discountValue); // Tính giá sau khi áp dụng discount
+//        } else {
+//            return getPrice(); // Nếu không có discount, giá không thay đổi
+//        }
+//    }
 
     public void setDiscount(Discount discount) {
         this.discount = discount;
