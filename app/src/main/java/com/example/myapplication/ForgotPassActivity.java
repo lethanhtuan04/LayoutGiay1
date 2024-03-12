@@ -1,16 +1,15 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,12 +59,16 @@ public class ForgotPassActivity extends AppCompatActivity {
 
     }
 
+    private boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
     private void validateData() {
         String email = edt_email.getText().toString();
-        if(email.isEmpty()){
-            edt_email.setError("Required");
-        }else{
+        if (isValidEmail(email)) {
             forgetPass(email);
+        } else {
+            edt_email.setError("Invalid email address");
         }
     }
 
