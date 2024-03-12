@@ -15,6 +15,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.activity.AccountSettingsActivity;
 import com.example.myapplication.activity.LoginActivity;
 import com.example.myapplication.utilities.SessionManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 
@@ -95,13 +96,12 @@ public class ProfileFragment extends Fragment {
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Gọi logoutUser() từ SessionManager để đăng xuất
+                FirebaseAuth.getInstance().signOut();
                 sessionManager.logoutUser();
                 // Chuyển đến LoginActivity sau khi đăng xuất
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
-
 
 
         btnaccountSettings.setOnClickListener(new View.OnClickListener() {

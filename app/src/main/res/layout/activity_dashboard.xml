@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:onClick="logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -275,11 +276,12 @@
                         android:textColor="@color/black"
                         android:textSize="50px"
                         android:textStyle="bold" />
+
                 </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
-
-
 
         </GridLayout>
     </ScrollView>
+
 </LinearLayout>

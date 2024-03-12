@@ -153,6 +153,7 @@ public class Product implements Serializable {
     public Discount getDiscount() {
         return discount;
     }
+
 //    public double afterDiscount() {
 //        if (discount != null && discount.getValue() > 0) {
 //            double discountValue = (double) discount.getValue() / 100; // Chuyển đổi phần trăm giảm giá thành số thập phân
@@ -166,4 +167,9 @@ public class Product implements Serializable {
         this.discount = discount;
     }
 
+    public boolean isDiscounted() {
+        if (getId() == getDiscount().getProductId())
+            return true;
+        return false;
+    }
 }

@@ -32,10 +32,9 @@ public class AccountDBHelper extends SQLiteOpenHelper {
         return new Account(
                 cursor.getInt(0), //id
                 cursor.getString(1),//username
-                cursor.getString(2),//pass
-                cursor.getInt(3),//roleid
-                cursor.getString(4),//email
-                cursor.getString(5)
+                cursor.getInt(2),//roleid
+                cursor.getString(3),//email
+                cursor.getString(4)
         );
     }
 
@@ -44,7 +43,6 @@ public class AccountDBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("username", username);
         values.put("email", email);
-        values.put("password", password);
         values.put("roleID", "2");
         long newRowId = db.insert("Account", null, values);
         db.close();
@@ -103,8 +101,6 @@ public class AccountDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return account;
     }
-
-
 }
 
 

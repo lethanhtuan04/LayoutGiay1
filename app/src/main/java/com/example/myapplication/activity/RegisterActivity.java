@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -16,8 +17,14 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.dbhelper.AccountDBHelper;
 import com.example.myapplication.fragment.HomeFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     TextView txtSignIn, mError;
     AppCompatButton btnSignUp;
     ImageView ic_pass, ic_cfpass, btnHome;
@@ -31,7 +38,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        mAuth = FirebaseAuth.getInstance();
         addControls();
+        onStart();
         addShowPass();
         addSignUp();
         txtSignIn.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +60,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            currentUser.reload();
+        }
+    }
+
 
     private void addSignUp() {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                final String getEdtUserTxt = edtuser.getText().toString();
 //                final String getEdtEmailTxt = edtemail.getText().toString();
 
-             //   Intent intent = new Intent(RegisterActivity.this, OtpActivity.class);
+                //   Intent intent = new Intent(RegisterActivity.this, OtpActivity.class);
 //                intent.putExtra("edtuser", getEdtUserTxt);
 //                intent.putExtra("edtemail", getEdtEmailTxt);
 //                startActivity(intent);//
@@ -102,14 +121,20 @@ public class RegisterActivity extends AppCompatActivity {
                     //Xác nhận mật khẩu trùng nhau
                     if (cf_pass.equals(pass)) //so sánh chuỗi
                     {
-//                        btnSignUp.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                startActivity(new Intent(RegisterActivity.this, HomeFragment.class));
-//
-//                            }
-//                        });
                         registerAccount(user, email, pass);
+                        mAuth.createUserWithEmailAndPassword(email, pass)
+                                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            startActivity(new Intent(RegisterActivity.this, HomeFragment.class));
+                                        } else {
+                                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
 
                     } else {
 
@@ -128,7 +153,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (result != -1) {
             Toast.makeText(this, "Đăng ký tài khoản thành công", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(RegisterActivity.this, HomeFragment.class));// Khi đăng ký thành công sẽ về trang chủ
         } else {
             Toast.makeText(this, "Lỗi khi đăng ký tài khoản", Toast.LENGTH_SHORT).show();
         }

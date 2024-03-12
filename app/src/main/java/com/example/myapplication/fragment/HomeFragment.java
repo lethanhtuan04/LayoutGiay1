@@ -16,10 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.HorizontalProductAdapter;
 import com.example.myapplication.adapter.ProductRecyclerViewAdapter;
 import com.example.myapplication.dbhelper.ProductDBHelper;
 import com.example.myapplication.model.Product;
@@ -76,6 +78,7 @@ public class HomeFragment extends Fragment {
         super.onAttach(context);
         mContext = context;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,33 +102,25 @@ public class HomeFragment extends Fragment {
             recyclerView.setHasFixedSize(true);
             GridLayoutManager layoutManager = new GridLayoutManager(mContext, 2);
             recyclerView.setLayoutManager(layoutManager);
-            recyclerView.setNestedScrollingEnabled(false);
-            recyclerView.setFocusable(false);
+//            recyclerView.setFocusable(false);
+//            recyclerView.setNestedScrollingEnabled(false);
 
-        }else {
+
+            RecyclerView rcvHot = view.findViewById(R.id.rcvHot);
+            rcvHot.setHasFixedSize(true);
+            LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            rcvHot.setLayoutManager(horizontalLayoutManager);
+            List<Product> discountedProducts = productDBHelper.getDiscountProducts();
+
+            HorizontalProductAdapter horizontalProductAdapter = new HorizontalProductAdapter(discountedProducts, mContext);
+                   rcvHot.setAdapter(horizontalProductAdapter);
+        } else {
             Toast.makeText(getActivity(), "Loi roi ba oi", Toast.LENGTH_SHORT).show();
         }
-
-
         viewFlipper = view.findViewById(R.id.viewlipper);
         ActionViewFlipper();
         return view;
     }
-
-
-//    private void setProductItem(@NotNull View view, ProductDBHelper productDbHelper) {
-//        ProductTypeDBHelper productTypeDbHelper = new ProductTypeDBHelper(this.getContext());
-//        List<ProductType> productTypes = productTypeDbHelper.getAllProductTypes();
-//        ProductTypeAdapter productTypeAdapter = new ProductTypeAdapter(getContext(), productTypes);
-//        GridView gv_product = view.findViewById(R.id.vGridView);
-//        gv_product.setOnItemClickListener((parent, view1, position, id) -> {
-//            Intent intent = new Intent(this.getContext(), DetailProActivity.class);
-//            intent.putExtra("id", productTypeAdapter.getItemId(position));
-//            startActivity(intent);
-//        });
-//        gv_product.setAdapter(productTypeAdapter);
-//    }
-
 
     private void ActionViewFlipper() {
         List<String> mangquangcao = new ArrayList<>();

@@ -8,7 +8,6 @@ public class SessionDBHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_SESSION = "session";
     private static final String KEY_ID = "id";
-    private static final String KEY_ROLEID = "roleid";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_EMAIL = "email";
 
@@ -21,7 +20,6 @@ public class SessionDBHelper extends SQLiteOpenHelper {
         String createTableQuery = "CREATE TABLE " + TABLE_SESSION + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_USERNAME + " TEXT,"
-                + KEY_ROLEID + " INTEGER,"
                 + KEY_EMAIL + " TEXT" + ")";
         db.execSQL(createTableQuery);
     }

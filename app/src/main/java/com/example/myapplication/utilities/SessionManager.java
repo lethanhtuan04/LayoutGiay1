@@ -11,7 +11,6 @@ public class SessionManager {
     Context context;
     private static final String PREF_NAME = "SessionPref";
     private static final String IS_LOGGED_IN = "isLoggedIn";
-    private static final String KEY_ROLEID = "roleid";
      public static final String KEY_USERNAME = "username";
      public static final String KEY_EMAIL = "email";
 
@@ -21,9 +20,8 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createLoginSession(String username, String email,int roleid) {
+    public void createLoginSession(String username, String email) {
         editor.putBoolean(IS_LOGGED_IN, true);
-        editor.putInt(KEY_ROLEID, roleid);
         editor.putString(KEY_USERNAME, username);
         editor.putString(KEY_EMAIL, email);
         editor.commit();

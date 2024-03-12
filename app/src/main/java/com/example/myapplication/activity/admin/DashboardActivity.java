@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -32,5 +33,9 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void addControls() {
         btnDiscount = findViewById(R.id.btnDiscount);
+    }
+
+    public void logout(View view) {
+        startActivity(new Intent(DashboardActivity.this, MainActivity.class));
     }
 }

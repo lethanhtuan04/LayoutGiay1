@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -18,9 +20,15 @@ import com.example.myapplication.activity.admin.DashboardActivity;
 import com.example.myapplication.dbhelper.AccountDBHelper;
 import com.example.myapplication.model.Account;
 import com.example.myapplication.utilities.SessionManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     SessionManager sessionManager;
+    private FirebaseAuth mAuth;
 
     boolean passShowing = false;
     TextView txtSignUp, viewError;
@@ -33,11 +41,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
+        mAuth = FirebaseAuth.getInstance();
         addControlos();
         addShowPass();
+        accountDBHelper = new AccountDBHelper(LoginActivity.this);
         addSignIn();
-        setSignIn();
         //bắt đầu chạy trang register
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +71,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void setSignIn() {
-        accountDBHelper = new AccountDBHelper(LoginActivity.this);
-
-    }
 
     private void addSignIn() {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -95,9 +101,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setLogin() {
         sessionManager = new SessionManager(getApplicationContext());
-        String username;
-        int roleid;
-
         String email = edtemail.getText().toString().trim();
         String password = edtPass.getText().toString().trim();
         if (email.equals("admin") && password.equals("admin")) {
@@ -105,21 +108,34 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(adminActivity);
             return;
         }
-        Account account = accountDBHelper.getAccountByEmail(email);
-        if (email.equals(account.getEmail()) && password.equals(account.getPassword())) {
-            //nếu tìm được acc thì thêm acc vào session
-            username = account.getUsername().trim();
-            roleid = account.getRoleID();
-            //nếu tìm được acc thì thêm acc vào session
-            sessionManager.createLoginSession(username, email, roleid);
-            Intent mainActivity = new Intent(this, MainActivity.class);
-            startActivity(mainActivity);
-        } else {
-            viewError.setText("Wrong account or password");
-            edtemail.setText("");
-            edtPass.setText("");
-        }
+        //    Account account = accountDBHelper.getAccountByEmail(email);
+        //    if (account != null && email.equals(account.getEmail()) && password.equals(account.getPassword())) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                String userEmail = user.getEmail();
+                          //      Toast.makeText(LoginActivity.this, userEmail, Toast.LENGTH_LONG).show();
 
+                                Account account = accountDBHelper.getAccountByEmail(userEmail);
+                              //  Toast.makeText(LoginActivity.this, account.getUsername(), Toast.LENGTH_LONG).show();
+
+                                sessionManager.createLoginSession(account.getUsername(), email);
+                                Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(mainActivity);
+                            }
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            viewError.setText("Wrong account or password");
+                            edtemail.setText("");
+                            edtPass.setText("");
+                        }
+                    }
+                });
     }
 
 
@@ -146,7 +162,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void addControlos() {
         btnHome = findViewById(R.id.btnSItoHome);
+
         btnSignIn = findViewById(R.id.btnSignIn);
+
         PassIC = findViewById(R.id.passIC);
         edtPass = findViewById(R.id.edtPassword);
         edtemail = findViewById(R.id.edtUserName);
