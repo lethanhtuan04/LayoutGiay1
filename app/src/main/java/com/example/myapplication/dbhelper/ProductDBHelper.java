@@ -91,6 +91,12 @@ public class ProductDBHelper extends SQLiteOpenHelper {
         }
         return products;
     }
+//    public Product getProductById(Integer id) {
+//        ArrayList<Product> products = getProductByField(Product, id);
+//        if (products.size() > 0)
+//            return products.get(0);
+//        return null;
+//    }
 
     public Product getProductById(Integer id) {
         ArrayList<Product> products = getProductByField("id", id);

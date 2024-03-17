@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.activity.admin.DashboardActivity;
+//import com.example.myapplication.dbhelper.AccountDBHelper;
 import com.example.myapplication.dbhelper.AccountDBHelper;
 import com.example.myapplication.model.Account;
 import com.example.myapplication.utilities.SessionManager;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         addControlos();
         addShowPass();
-        accountDBHelper = new AccountDBHelper(LoginActivity.this);
+        AccountDBHelper AccountDBHelper = new AccountDBHelper(LoginActivity.this);
         addSignIn();
         //bắt đầu chạy trang register
         txtSignUp.setOnClickListener(new View.OnClickListener() {

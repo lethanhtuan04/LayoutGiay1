@@ -58,11 +58,12 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:src="@drawable/ic_useradmin"
                         android:id="@+id/btnUser"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="10dp"
-                        android:padding="10dp"
+
                          />
 
                     <View
@@ -91,7 +92,6 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
-                    android:id="@+id/btnProductAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -99,11 +99,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/ic_product"
+                        android:src="@drawable/ic_product"
+                        android:id="@+id/btnProduct"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="10dp"
-                        android:padding="17dp"
+                        android:padding="5dp"
                          />
 
                     <View
@@ -140,7 +141,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:src="@drawable/ic_discount"
+                        android:src="@drawable/ic_discountadmin"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="10dp"
@@ -172,7 +173,6 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
-                    android:id="@+id/btnProductType"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -180,10 +180,11 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:src="@drawable/ic_categoryad"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="10dp"
-                        android:padding="15dp"
+                        android:padding="5dp"
                         />
 
                     <View
@@ -196,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Product Type"
+                        android:text="Category"
                         android:textColor="@color/black"
                         android:textSize="50px"
                         android:textStyle="bold" />
@@ -212,6 +213,7 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -219,10 +221,11 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:src="@drawable/ic_revenue"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="10dp"
-                        android:padding="16dp"
+                        android:padding="5dp"
                         />
 
                     <View
@@ -235,7 +238,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:layout_marginTop="10dp"
-                        android:text="Product Img"
+                        android:text="Revenue"
                         android:textColor="@color/black"
                         android:textSize="50px"
                         android:textStyle="bold" />
@@ -258,10 +261,11 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:src="@drawable/ic_paymentad"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="10dp"
-                        android:padding="19dp"
+                        android:padding="5dp"
                         />
 
                     <View

@@ -1,7 +1,6 @@
 package com.example.myapplication.dbhelper;
 
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,7 +13,6 @@ import com.example.myapplication.model.User;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
 
 
 import java.util.ArrayList;
@@ -54,7 +52,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     public User getUser(@NotNull Integer id) {
         User user = null;
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM User"  + " WHERE id = ?", new String[]{id.toString()});
+        Cursor cursor = db.rawQuery("SELECT * FROM User" + " WHERE id = ?", new String[]{id.toString()});
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             user = cursorToUser(cursor);
@@ -66,6 +64,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     @NotNull
     private ContentValues createContentValues(@NotNull User user) {
         ContentValues values = new ContentValues();
+        values.put("id", user.getId());
         values.put("fullname", user.getFullname());
         values.put("accountId", user.getAccountId());
         values.put("sex", user.getSex());
@@ -96,7 +95,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     public User getUserByAccountId(Integer accountId) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM User"  + " WHERE accountId = ?",
+                "SELECT * FROM User" + " WHERE accountId = ?",
                 new String[]{String.valueOf(accountId)});
         User user = null;
         if (cursor.getCount() > 0) {
@@ -110,7 +109,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     public ArrayList<User> getAllUser() {
         ArrayList<User> users = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM User"  , null);
+        Cursor cursor = db.rawQuery("SELECT * FROM User", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             users.add(

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.admin.ShowAdDiscountActivity">
-
+    tools:context=".activity.admin.ShowAdUserActivity">
     <LinearLayout
         android:id="@+id/topNavbar"
         android:layout_width="match_parent"
@@ -15,34 +14,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btnBackToDashboard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnUsertoDB"
+            android:layout_width="25dp"
+            android:layout_height="32dp"
             android:layout_marginVertical="10dp"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/ic_back" />
+            android:background="@drawable/ic_arrowbackad" />
 
         <TextView
-            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:layout_marginVertical="10dp"
-            android:layout_weight="1"
+            android:layout_marginRight="20dp"
+            android:layout_weight="20"
             android:ems="10"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Danh sách Discount"
+            android:text="Show Admin User"
             android:textColor="#333"
-
+            android:textColorHint="#ffffff"
             android:textSize="18sp"
             android:textStyle="bold" />
-        <ImageView
-            android:id="@+id/btnAdddiscount"
-            android:layout_gravity="center_vertical"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/ic_add"/>
     </LinearLayout>
 
     <LinearLayout
@@ -77,21 +69,7 @@
             android:ems="10"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Value"
-            android:textColor="#333"
-            android:textColorHint="#ffffff"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_marginVertical="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="20"
-            android:ems="10"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="ID_Pro"
+            android:text="Name"
             android:textColor="#333"
             android:textColorHint="#ffffff"
             android:textSize="18sp"
@@ -100,9 +78,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="10dp"
-        android:fillViewport="true">
+        android:scrollbarSize="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,9 +88,10 @@
             android:orientation="vertical">
 
             <ListView
-                android:id="@+id/listview"
+                android:id="@+id/listviewUser"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
+
                 android:layout_alignParentTop="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -121,5 +100,6 @@
 
         </LinearLayout>
     </ScrollView>
+
 
 </LinearLayout>

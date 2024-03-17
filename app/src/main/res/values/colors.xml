@@ -8,4 +8,6 @@
     <color name="grey">#E0DCDC</color>
     <color name="Lightgray">#0D000000</color>
     <color name="darkgrey">#A19A9A</color>
+    <color name="background_item">#5CDAB353</color>
+    <color name="theme_color">#FFA000</color>
 </resources>
