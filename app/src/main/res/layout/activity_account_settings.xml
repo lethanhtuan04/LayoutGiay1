@@ -93,6 +93,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -121,6 +122,43 @@
             android:textColor="#A9A9A9  "/>
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="#A9A9A9"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_email"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="Số điện thoại"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginLeft="8dp"/>
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="sdt"
+            android:layout_marginLeft="67dp"
+            android:textSize="18sp"
+            android:textColor="#A9A9A9  "/>
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -129,6 +167,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         android:background="#A9A9A9" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -159,10 +198,11 @@
     </LinearLayout>
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="70dp"
         android:gravity="center"
         android:orientation="vertical">
         <TextView
@@ -178,6 +218,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="-10dp"/>
         <TextView
+            android:id="@+id/intochangePass"
             android:layout_marginTop="10dp"
             android:layout_width="240dp"
             android:layout_height="50dp"
