@@ -55,7 +55,7 @@ public class HorizontalProductAdapter extends RecyclerView.Adapter<HorizontalPro
             holder.bind(product);
             new GetDiscountTask(holder, product).execute(product.getId());
             // Hiển thị hình ảnh từ mảng byte (BLOB)
-            byte[] imageByteArray = product.getImage();
+            byte[] imageByteArray = product.getImage1();
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
             holder.hinh.setImageBitmap(bitmap);
             holder.itemView.setOnClickListener(new View.OnClickListener() {

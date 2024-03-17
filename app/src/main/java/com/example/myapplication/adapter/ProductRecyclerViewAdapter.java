@@ -25,18 +25,15 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder> {
-    List<Product> productList;
-    Context context;
-
-    DiscountDBHelper discountDbHelper;
+    private List<Product> productList;
+    private Context context;
+    private DiscountDBHelper discountDbHelper;
 
     public ProductRecyclerViewAdapter(List<Product> productList, Context context) {
         this.productList = productList;
         this.context = context;
         discountDbHelper = new DiscountDBHelper(context);
-
     }
-
 
     @NonNull
     @Override
@@ -45,25 +42,18 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         return new ViewHolder(view);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Product product1 = productList.get(position);
-        holder.bind(product1);
-        // Sử dụng AsyncTask để lấy discount
-        new GetDiscountTask(holder, product1).execute(product1.getId());
-        // Hiển thị hình ảnh từ mảng byte (BLOB)
-        holder.txtTenSp.setText(product1.getName());
-        byte[] imageByteArray = product1.getImage();
+        Product product = productList.get(position);
+        holder.bind(product);
+        new GetDiscountTask(holder, product).execute(product.getId());
+        byte[] imageByteArray = product.getImage1();
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
         holder.hinh.setImageBitmap(bitmap);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailProActivity.class);
-                intent.putExtra("product", product1);
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailProActivity.class);
+            intent.putExtra("product", product);
+            context.startActivity(intent);
         });
     }
 
@@ -78,42 +68,30 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
         @Override
         protected Discount doInBackground(Integer... productIds) {
-            // Thực hiện truy vấn cơ sở dữ liệu ở đây
             int productId = productIds[0];
             return discountDbHelper.getDiscountByProductID(productId);
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(Discount discount) {
             DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
             if (discount != null) {
-                // Xử lý khi discount không null
                 double priceDiscount = product.getPrice() - product.getPrice() * discount.getValue() / 100;
                 String formattedPrice = decimalFormat.format(priceDiscount);
                 viewHolder.txtGiaKhiDiscount.setText(formattedPrice + "đ");
                 viewHolder.updateDiscount(discount);
             } else {
-                // Xử lý khi discount là null
-                // Điều này có thể bao gồm hiển thị giá sản phẩm mà không có giảm giá, hoặc các hành động khác tùy thuộc vào yêu cầu của ứng dụng của bạn.
-                // Ví dụ:
-                String Price = decimalFormat.format(product.getPrice());
-                viewHolder.txtGiaKhiDiscount.setText(String.valueOf(product.getPrice()));
-                viewHolder.lbDiscount.setVisibility(View.GONE);
-                viewHolder.txtGiaKhiDiscount.setVisibility(View.GONE);
-                viewHolder.txtGiaSP.setVisibility(View.VISIBLE);
-                viewHolder.txtGiaSP.setText(String.valueOf(Price) + "đ");
-                viewHolder.hasDiscount = false;
+                viewHolder.hideDiscount();
             }
         }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView hinh;
-        Product product;
-        public TextView txtTenSp, txtGiaSP, lbDiscount, txtGiaKhiDiscount;
-        boolean hasDiscount = false; // Biến kiểm tra xem có giảm giá hay không
-        double originalPrice; // Giá gốc của sản phẩm
+        private Product product;
+        private TextView txtTenSp, txtGiaSP, lbDiscount, txtGiaKhiDiscount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -124,36 +102,31 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             hinh = itemView.findViewById(R.id.hinhSP);
         }
 
-        public void updateDiscount(Discount discount) {
-            DecimalFormat decimalFormat = new DecimalFormat("#,###");
-
-            // Kiểm tra xem product có null không
-            if (product != null) {
-                if (discount != null && discount.getId() != null) {
-                    lbDiscount.setVisibility(View.VISIBLE);
-                    lbDiscount.setText(discount.getValue() + "%");
-                    txtGiaSP.setVisibility(View.VISIBLE);
-                    double priceDiscount = product.getPrice() - (product.getPrice() * ((double) discount.getValue()) / 100);
-                    String formattedPrice = decimalFormat.format(priceDiscount);
-                    String Price = decimalFormat.format(originalPrice);
-                    txtGiaKhiDiscount.setVisibility(View.VISIBLE);
-                    txtGiaKhiDiscount.setText(String.valueOf(Price) + "đ");
-                    txtGiaSP.setText(String.valueOf(formattedPrice) + "đ");
-                    hasDiscount = true; // Đánh dấu là có giảm giá
-                } else {
-                    lbDiscount.setVisibility(View.GONE);
-                    txtGiaKhiDiscount.setVisibility(View.GONE);
-                    txtGiaSP.setVisibility(View.VISIBLE);
-                    String Price = decimalFormat.format(originalPrice);
-                    txtGiaSP.setText(String.valueOf(Price) + "đ");
-                    hasDiscount = false; // Đánh dấu là không có giảm giá
-                }
-            }
+        public void bind(Product product) {
+            this.product = product;
+            txtTenSp.setText(product.getName());
         }
 
-        public void bind(Product product) {
-            this.product = product; // Gán product từ onBindViewHolder
-            this.originalPrice = product.getPrice(); // Lưu giá gốc của sản phẩm
+        @SuppressLint("SetTextI18n")
+        public void updateDiscount(Discount discount) {
+            lbDiscount.setVisibility(View.VISIBLE);
+            lbDiscount.setText(discount.getValue() + "%");
+            txtGiaSP.setVisibility(View.VISIBLE);
+            txtGiaKhiDiscount.setVisibility(View.VISIBLE);
+            double priceDiscount = product.getPrice() - (product.getPrice() * ((double) discount.getValue()) / 100);
+            String formattedPrice = new DecimalFormat("#,###").format(priceDiscount);
+            String originalPrice = new DecimalFormat("#,###").format(product.getPrice());
+            txtGiaKhiDiscount.setText(originalPrice + "đ");
+            txtGiaSP.setText(formattedPrice + "đ");
+        }
+
+        @SuppressLint("SetTextI18n")
+        public void hideDiscount() {
+            lbDiscount.setVisibility(View.GONE);
+            txtGiaKhiDiscount.setVisibility(View.GONE);
+            txtGiaSP.setVisibility(View.VISIBLE);
+            String originalPrice = new DecimalFormat("#,###").format(product.getPrice());
+            txtGiaSP.setText(originalPrice + "đ");
         }
     }
 

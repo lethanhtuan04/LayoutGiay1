@@ -1,30 +1,20 @@
 package com.example.myapplication.activity.admin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.adapter.DiscountAdapter;
-import com.example.myapplication.adapter.ProductAdapter;
-import com.example.myapplication.dbhelper.DiscountDBHelper;
+import com.example.myapplication.adapter.AdminProductAdapter;
 import com.example.myapplication.dbhelper.ProductDBHelper;
-import com.example.myapplication.model.Discount;
 import com.example.myapplication.model.Product;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 public class ShowAdProductActivity extends AppCompatActivity {
@@ -41,7 +31,7 @@ public class ShowAdProductActivity extends AppCompatActivity {
         ProductDBHelper productDBHelper = new ProductDBHelper(this);
         List<Product> products = productDBHelper.getAllProducts();
 
-        ProductAdapter adapter = new ProductAdapter(this, R.layout.items_ad_product, products);
+        AdminProductAdapter adapter = new AdminProductAdapter(this, R.layout.items_ad_product, products);
         listView = findViewById(R.id.listviewproduct);
         listView.setAdapter(adapter);
 

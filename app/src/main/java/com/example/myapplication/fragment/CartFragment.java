@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,11 +25,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CartFragment extends Fragment implements CartAdapter.CartUpdateListener {
-    CartDBHelper cartDBHelper;
-    RecyclerView recyclerView;
-    SessionManager sessionManager;
-    TextView tongPhu, tongChinh, tongThue, phiVan, txttotal;
-    HashMap<String, String> userDetails;
+    private CartDBHelper cartDBHelper;
+    private RecyclerView recyclerView;
+    ConstraintLayout coSP;
+    LinearLayout khongSP;
+    private SessionManager sessionManager;
+    private TextView tongPhu, tongChinh, tongThue, phiVan, txtTotal;
+    private HashMap<String, String> userDetails;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -62,14 +66,9 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
+        initializeViews(view);
+        setupRecyclerView();
 
-        tongPhu = view.findViewById(R.id.txtTotalFee);
-        tongChinh = view.findViewById(R.id.txtTotal);
-        tongThue = view.findViewById(R.id.txtTax);
-        txttotal = view.findViewById(R.id.txttotal);
-
-        phiVan = view.findViewById(R.id.txtDelivery);
-        recyclerView = view.findViewById(R.id.list_item_pro_cart);
         sessionManager = new SessionManager(getContext().getApplicationContext());
         userDetails = sessionManager.getUserDetails();
 
@@ -77,73 +76,77 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
             String id = userDetails.get(sessionManager.KEY_IDUSER);
 
             if (id != null) {
-                CartDBHelper cartDBHelper = new CartDBHelper(getContext().getApplicationContext());
+                cartDBHelper = new CartDBHelper(getContext().getApplicationContext());
                 List<Cart> carts = cartDBHelper.getAllCarts(Integer.valueOf(id));
                 CartAdapter adapter = new CartAdapter(getContext(), carts, recyclerView);
-                DiscountDBHelper discountDBHelper = new DiscountDBHelper(getContext().getApplicationContext());
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                DecimalFormat decimalFormat = new DecimalFormat("#,###");
-                // Gọi hàm tính toán tổng giỏ hàng
-                double percentTax = 0.02;
-                double delivery = 20000;
-                double discount = discountDBHelper.calculateDiscount(carts); // Tính tổng giảm giá
-                double subTotal = cartDBHelper.getTotalPhu(Integer.valueOf(id)); // Tính tổng phụ
-                double subTotal_end = subTotal - discount;
-                double total = subTotal_end + delivery + (subTotal_end * percentTax);
-
-                // Format các giá trị
-                String fmTax = decimalFormat.format(subTotal_end * percentTax);
-                String fmdelivery = decimalFormat.format(delivery);
-                String fmTotal = decimalFormat.format(total);
-                String fmSubTotal_end = decimalFormat.format(subTotal_end);
-
-
-                tongChinh.setText(fmTotal + " đ");
-                tongPhu.setText(fmSubTotal_end + " đ");
-                tongThue.setText(fmTax + " đ");
-                phiVan.setText(fmdelivery + " đ");
-                txttotal.setText(fmTotal + "đ");
-
-                CartAdapter adapter1 = new CartAdapter(getContext(), carts, recyclerView);
-                adapter1.setCartUpdateListener(this); // Gán đối tượng lắng nghe sự kiện từ Fragment
-                recyclerView.setAdapter(adapter1);
+                setupCartInformation(carts, id);
+                setupCartAdapter(adapter);
             }
         }
         return view;
     }
 
+    private void initializeViews(View view) {
+        tongPhu = view.findViewById(R.id.txtTotalFee);
+        tongChinh = view.findViewById(R.id.txtTotal);
+        tongThue = view.findViewById(R.id.txtTax);
+        txtTotal = view.findViewById(R.id.txttotal);
+        phiVan = view.findViewById(R.id.txtDelivery);
+        recyclerView = view.findViewById(R.id.list_item_pro_cart);
+        coSP = view.findViewById(R.id.viewCoSP);
+        khongSP = view.findViewById(R.id.viewKhongCoSanPham);
+
+
+    }
+
+    private void setupRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    private void setupCartAdapter(CartAdapter adapter) {
+        recyclerView.setAdapter(adapter);
+        adapter.setCartUpdateListener(this);
+    }
+
     @SuppressLint("SetTextI18n")
+    private void setupCartInformation(List<Cart> carts, String id) {
+        double percentTax = 0.02;
+        double delivery = 20000;
+        double discount = new DiscountDBHelper(getContext().getApplicationContext()).calculateDiscount(carts);
+        double subTotal = cartDBHelper.getTotalPhu(Integer.valueOf(id));
+        double subTotalEnd = subTotal - discount;
+        double total = subTotalEnd + delivery + (subTotalEnd * percentTax);
+
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String fmTax = decimalFormat.format(subTotalEnd * percentTax);
+        String fmdelivery = decimalFormat.format(delivery);
+        String fmTotal = decimalFormat.format(total);
+        String fmSubTotalEnd = decimalFormat.format(subTotalEnd);
+
+        tongChinh.setText(fmTotal + " đ");
+        tongPhu.setText(fmSubTotalEnd + " đ");
+        tongThue.setText(fmTax + " đ");
+        phiVan.setText(carts == null ? "0 đ" : fmdelivery + " đ");
+        txtTotal.setText(fmTotal + "đ");
+
+        if (carts != null && !carts.isEmpty()) {
+            coSP.setVisibility(View.VISIBLE); // Hiển thị layout có sản phẩm
+            khongSP.setVisibility(View.GONE); // Ẩn layout không có sản phẩm
+        } else {
+            coSP.setVisibility(View.GONE); // Ẩn layout có sản phẩm
+            khongSP.setVisibility(View.VISIBLE); // Hiển thị layout không có sản phẩm
+        }
+    }
+
+    @Override
     public void onCartUpdated() {
         if (userDetails != null) {
             String id = userDetails.get(sessionManager.KEY_IDUSER);
 
             if (id != null) {
-                CartDBHelper cartDBHelper = new CartDBHelper(getContext().getApplicationContext());
                 List<Cart> carts = cartDBHelper.getAllCarts(Integer.valueOf(id));
-                DiscountDBHelper discountDBHelper = new DiscountDBHelper(getContext().getApplicationContext());
 
-                // Tính toán lại các giá trị
-                double percentTax = 0.02;
-                double delivery = 20000;
-                double discount = discountDBHelper.calculateDiscount(carts); // Tính tổng giảm giá
-                double subTotal = cartDBHelper.getTotalPhu(Integer.valueOf(id)); // Tính tổng phụ
-                double subTotal_end = subTotal - discount;
-                double total = subTotal_end + delivery + (subTotal_end * percentTax);
-
-                // Format các giá trị
-                DecimalFormat decimalFormat = new DecimalFormat("#,###");
-                String fmTax = decimalFormat.format(subTotal_end * percentTax);
-                String fmdelivery = decimalFormat.format(delivery);
-                String fmTotal = decimalFormat.format(total);
-                String fmSubTotal_end = decimalFormat.format(subTotal_end);
-
-                // Cập nhật giá trị mới cho các TextView
-                tongChinh.setText(fmTotal + " đ");
-                tongPhu.setText(fmSubTotal_end + " đ");
-                tongThue.setText(fmTax + " đ");
-                phiVan.setText(fmdelivery + " đ");
-                txttotal.setText(fmTotal + "đ");
+                setupCartInformation(carts, id);
             }
         }
     }

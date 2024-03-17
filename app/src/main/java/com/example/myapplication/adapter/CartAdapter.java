@@ -2,6 +2,8 @@ package com.example.myapplication.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.dbhelper.CartDBHelper;
 import com.example.myapplication.dbhelper.DiscountDBHelper;
@@ -29,13 +30,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     static RecyclerView recyclerView;
     private CartUpdateListener cartUpdateListener;
 
-    //    public CartAdapter(Context context, List<Cart> carts) {
-//        this.context = context;
-//        this.carts = carts;
-//    }
     public interface CartUpdateListener {
         void onCartUpdated();
     }
+
     public CartAdapter(Context context, List<Cart> carts, RecyclerView recyclerView) {
         this.context = context;
         this.carts = carts;
@@ -59,56 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         Cart cart = carts.get(position);
         DiscountDBHelper discountDBHelper = new DiscountDBHelper(context.getApplicationContext());
         Discount discount = discountDBHelper.getDiscountByProductID(cart.getProduct().getId());
-        holder.tangSL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentQuantity = cart.getQuantity();
-                currentQuantity++;
-                cart.setQuantity(currentQuantity);
-
-                // Cập nhật giá mới cho sản phẩm
-
-                setUpdateData(cart);
-                holder.cartQuantity.setText(String.valueOf(currentQuantity));
-
-                // Cập nhật giá sau khi tăng số lượng
-
-                // Gọi phương thức để thông báo sự thay đổi đến CartFragment
-                if (cartUpdateListener != null) {
-                    cartUpdateListener.onCartUpdated();
-                }
-
-                // Cập nhật lại giao diện RecyclerView
-                notifyDataSetChanged();
-            }
-        });
-
-        holder.giamSL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentQuantity = cart.getQuantity();
-                if (currentQuantity > 1) {
-                    currentQuantity--;
-                    cart.setQuantity(currentQuantity);
-
-                    // Cập nhật giá mới cho sản phẩm
-
-
-                    setUpdateData(cart);
-                    holder.cartQuantity.setText(String.valueOf(currentQuantity));
-
-                    // Cập nhật giá sau khi giảm số lượng
-
-                    // Gọi phương thức để thông báo sự thay đổi đến CartFragment
-                    if (cartUpdateListener != null) {
-                        cartUpdateListener.onCartUpdated();
-                    }
-
-                    // Cập nhật lại giao diện RecyclerView
-                    notifyDataSetChanged();
-                }
-            }
-        });
+        setChangeNumber(holder, cart);
 
         if (discount != null) {
             DecimalFormat decimalFormat = new DecimalFormat("#,###");
@@ -119,38 +68,107 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             holder.cartPrice.setText(disPrice + "đ");
             holder.giakhiDis.setText(price);
 
-            Glide.with(context)
-                    .load(cart.getProduct().getImage())
-                    .into(holder.cartImage);
+            byte[] imageByteArray = cart.getProduct().getImage1();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
+            holder.cartImage.setImageBitmap(bitmap);
+
+
             holder.lbDis.setText(discount.getValue() + "%");
             holder.cartTitle.setText(cart.getProduct().getName());
-
             holder.cartQuantity.setText(String.valueOf(cart.getQuantity()));
         } else {
             DecimalFormat decimalFormat = new DecimalFormat("#,###");
             String price = decimalFormat.format(cart.getProduct().getPrice());
-            holder.cartPrice.setText(price);
+            holder.cartPrice.setText(price + " đ");
             holder.lbDis.setVisibility(View.GONE);
             holder.giakhiDis.setVisibility(View.GONE);
-            Glide.with(context)
-                    .load(cart.getProduct().getImage())
-                    .into(holder.cartImage);
+
+            byte[] imageByteArray = cart.getProduct().getImage1();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
+            holder.cartImage.setImageBitmap(bitmap);
+
             holder.cartTitle.setText(cart.getProduct().getName());
             holder.cartQuantity.setText(String.valueOf(cart.getQuantity()));
 
         }
 
-        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Xử lý sự kiện xóa ở đây
-            }
-        });
+        btnDeleteItems(holder);
 
+
+        updateToFragment();
+    }
+
+    // phương thức để thông báo sự thay đổi đến CartFragment
+    private void updateToFragment() {
         if (cartUpdateListener != null) {
             cartUpdateListener.onCartUpdated();
         }
+    }
 
+    //nút bấm xóa items
+    private void btnDeleteItems(CartViewHolder holder) {
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    // Xóa dữ liệu từ cơ sở dữ liệu SQLite
+                    setDeleteData(carts.get(position).getId());
+                    // Xóa mục khỏi danh sách hiển thị trên RecyclerView
+                    removeItem(position);
+                    // Cập nhật giá sau khi xóa mục
+                    // Gọi phương thức để thông báo sự thay đổi đến CartFragment
+                    if (cartUpdateListener != null) {
+                        cartUpdateListener.onCartUpdated();
+                    }
+                }
+            }
+        });
+    }
+
+    public void removeItem(int position) {
+        carts.remove(position);
+        notifyItemRemoved(position);
+        setDeleteData(position);
+        notifyItemRangeChanged(position, carts.size());
+    }
+
+    private void setChangeNumber(CartViewHolder holder, Cart cart) {
+        holder.tangSL.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onClick(View v) {
+                int currentQuantity = cart.getQuantity();
+                currentQuantity++;
+                cart.setQuantity(currentQuantity);
+                // Cập nhật giá mới cho sản phẩm
+                setUpdateData(cart);
+                holder.cartQuantity.setText(String.valueOf(currentQuantity));
+                // Cập nhật giá sau khi tăng số lượng
+                // Gọi phương thức để thông báo sự thay đổi đến CartFragment
+                updateToFragment();
+                // Cập nhật lại giao diện RecyclerView
+                onCartUpdated();
+            }
+        });
+        holder.giamSL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQuantity = cart.getQuantity();
+                if (currentQuantity > 1) {
+                    currentQuantity--;
+                    cart.setQuantity(currentQuantity);
+                    // Cập nhật giá mới cho sản phẩm
+                    setUpdateData(cart);
+                    holder.cartQuantity.setText(String.valueOf(currentQuantity));
+                    // Cập nhật giá sau khi giảm số lượng
+                    // Gọi phương thức để thông báo sự thay đổi đến CartFragment
+                    updateToFragment();
+                    // Cập nhật lại giao diện RecyclerView
+                    onCartUpdated();
+                }
+            }
+        });
     }
 
     public void setUpdateData(Cart cart) {
@@ -160,6 +178,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         }
     }
 
+    public void setDeleteData(Integer id) {
+        CartDBHelper cartDBHelper = new CartDBHelper(context.getApplicationContext());
+        cartDBHelper.delete(id);
+    }
 
 
     @Override
@@ -167,6 +189,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return carts.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onCartUpdated() {
         notifyDataSetChanged();
@@ -191,9 +214,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             lbDis = itemView.findViewById(R.id.lbDiscountCart);
             giakhiDis = itemView.findViewById(R.id.txtgiaDiscount);
             btnDelete = itemView.findViewById(R.id.btnDelete);
-
         }
-
     }
-
 }

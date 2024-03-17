@@ -12,14 +12,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.adapter.ProductAdapter;
-import com.example.myapplication.adapter.ProductTypeAdapter;
-import com.example.myapplication.dbhelper.ProductDBHelper;
+import com.example.myapplication.adapter.AdminProductTypeAdapter;
 import com.example.myapplication.dbhelper.ProductTypeDBHelper;
-import com.example.myapplication.model.Product;
 import com.example.myapplication.model.ProductType;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class ShowAdProductTypeActivity extends AppCompatActivity {
@@ -53,7 +49,7 @@ public class ShowAdProductTypeActivity extends AppCompatActivity {
         ProductTypeDBHelper productTypeDBHelper=new ProductTypeDBHelper(this);
         List<ProductType> productTypes=productTypeDBHelper.getAllProductsType();
 
-        ProductTypeAdapter adapter=new ProductTypeAdapter(this,R.layout.items_ad_product_type,productTypes);
+        AdminProductTypeAdapter adapter=new AdminProductTypeAdapter(this,R.layout.items_ad_product_type,productTypes);
         listviewProType = findViewById(R.id.listviewProType);
         listviewProType.setAdapter(adapter);
 

@@ -17,6 +17,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.myapplication.R;
 import com.example.myapplication.dbhelper.CartDBHelper;
 import com.example.myapplication.dbhelper.DiscountDBHelper;
+import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.NotificationFragment;
 import com.example.myapplication.model.Cart;
 import com.example.myapplication.model.Discount;
 import com.example.myapplication.model.Product;
@@ -27,10 +29,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DetailProActivity extends AppCompatActivity {
-    ImageView btnBack, btnDetailtoCart, imgMain;
+    ImageView btnBack, btnDetailtoCart, btnBell, imgMain;
     TextView txtPrice, txtName, txtGiakhicoDiscount, txtDetailPro;
     AppCompatButton btnAddtoCart;
     HashMap<String, String> userDetails;
+    ImageView img1, img2, img3, img4;
     SessionManager sessionManager;
 
     @SuppressLint("MissingInflatedId")
@@ -42,8 +45,14 @@ public class DetailProActivity extends AppCompatActivity {
         userDetails = sessionManager.getUserDetails();
         addControls();
         viewDetailPro();
+        addEvent();
+    }
+
+    private void addEvent() {
         setBtnBack();
         AddtoCart();
+        setGoCart();
+        setBtnBell();
     }
 
     private void AddtoCart() {
@@ -79,7 +88,6 @@ public class DetailProActivity extends AppCompatActivity {
         boolean isExist = false;
         CartDBHelper cartDBHelper = new CartDBHelper(DetailProActivity.this);
         ArrayList<Cart> cartItems = cartDBHelper.getAllCarts(Integer.parseInt(userDetails.get(sessionManager.KEY_IDUSER)));
-
         for (Cart cart : cartItems) {
             if (cart.getProductId() == product.getId()) {
                 isExist = true;
@@ -90,6 +98,24 @@ public class DetailProActivity extends AppCompatActivity {
         return isExist;
     }
 
+    private void setGoCart() {
+        btnDetailtoCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailProActivity.this, CartFragment.class));
+            }
+        });
+    }
+
+    private void setBtnBell() {
+        btnBell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailProActivity.this, NotificationFragment.class));
+
+            }
+        });
+    }
 
     private void setBtnBack() {
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -100,15 +126,62 @@ public class DetailProActivity extends AppCompatActivity {
         });
     }
 
+    private void choseImage(Product product) {
+        img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                byte[] imageByteArray = product.getImage1();
+                displaySelectedImage(imageByteArray);
+            }
+        });
+
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                byte[] imageByteArray = product.getImage2();
+                displaySelectedImage(imageByteArray);
+            }
+        });
+
+        img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                byte[] imageByteArray = product.getImage3();
+                displaySelectedImage(imageByteArray);
+            }
+        });
+
+        img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                byte[] imageByteArray = product.getImage4();
+                displaySelectedImage(imageByteArray);
+            }
+        });
+    }
+
+    private void displaySelectedImage(byte[] imgage) {
+        // Lấy hình ảnh từ ImageView đã chọn
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imgage, 0, imgage.length);
+        imgMain.setImageBitmap(bitmap);
+    }
+
     private void addControls() {
         btnBack = findViewById(R.id.btnBackPro);
         btnDetailtoCart = findViewById(R.id.btnDetailtoCart);
+        btnBell = findViewById(R.id.btnBell);
+        btnAddtoCart = findViewById(R.id.btnAddtoCart);
+
         txtName = findViewById(R.id.txtName);
         txtPrice = findViewById(R.id.txtPrice);
-        imgMain = findViewById(R.id.imgMain);
         txtDetailPro = findViewById(R.id.txtDetailPro);
-        btnAddtoCart = findViewById(R.id.btnAddtoCart);
         txtGiakhicoDiscount = findViewById(R.id.txtGiakhicoDiscount);
+
+        imgMain = findViewById(R.id.imgMain);
+        img1 = findViewById(R.id.img1);
+        img2 = findViewById(R.id.img2);
+        img3 = findViewById(R.id.img3);
+        img4 = findViewById(R.id.img4);
     }
 
     @SuppressLint("SetTextI18n")
@@ -136,9 +209,27 @@ public class DetailProActivity extends AppCompatActivity {
             txtDetailPro.setText(product.getDetail());
             txtName.setText(product.getName());
             // Hiển thị hình ảnh từ mảng byte (BLOB)
-            byte[] imageByteArray = product.getImage();
+            byte[] imageByteArray = product.getImage1();
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
             imgMain.setImageBitmap(bitmap);
+
+            byte[] imageByteArray1 = product.getImage1();
+            Bitmap bitmap1 = BitmapFactory.decodeByteArray(imageByteArray1, 0, imageByteArray1.length);
+            img1.setImageBitmap(bitmap1);
+
+            byte[] imageByteArray2 = product.getImage2();
+            Bitmap bitmap2 = BitmapFactory.decodeByteArray(imageByteArray2, 0, imageByteArray2.length);
+            img2.setImageBitmap(bitmap2);
+
+            byte[] imageByteArray3 = product.getImage3();
+            Bitmap bitmap3 = BitmapFactory.decodeByteArray(imageByteArray3, 0, imageByteArray3.length);
+            img3.setImageBitmap(bitmap3);
+
+            byte[] imageByteArray4 = product.getImage4();
+            Bitmap bitmap4 = BitmapFactory.decodeByteArray(imageByteArray4, 0, imageByteArray4.length);
+            img4.setImageBitmap(bitmap4);
+
+            choseImage(product);
         }
     }
 }

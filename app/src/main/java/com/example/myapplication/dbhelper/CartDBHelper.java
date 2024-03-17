@@ -82,24 +82,26 @@ public class CartDBHelper extends SQLiteOpenHelper {
     private ArrayList<Cart> getCart(Cursor cursor) {
         ArrayList<Cart> carts = new ArrayList<>();
         cursor.moveToFirst();
-        byte[] imageByteArray = cursor.getBlob(9);
-
         while (!cursor.isAfterLast()) {
             Cart cart = cursorToCart(cursor);
-            Product product = new Product(
 
+            byte[] imageByteArray1 = cursor.getBlob(9); // img1
+            byte[] imageByteArray2 = cursor.getBlob(10); // img2
+            byte[] imageByteArray3 = cursor.getBlob(11); // img3
+            byte[] imageByteArray4 = cursor.getBlob(12);//img4
+            // Lấy dữ liệu từ trường "image"
+            Product product = new Product(
                     cursor.getInt(5), // id
                     cursor.getInt(6), // type
                     cursor.getString(7), // name
                     cursor.getDouble(8), // price
-                    imageByteArray, // Truyền đối tượng Bitmap vào constructor của Product thay vì chuỗi
-                    cursor.getString(10), // img1
-                    cursor.getString(11), // img2
-                    cursor.getString(12), // img3
-                    cursor.getString(13), // img4
-                    cursor.getString(14), // detail
-                    cursor.getFloat(15), // star
-                    cursor.getString(16) // status
+                    imageByteArray1,//img1
+                    imageByteArray2,//img2
+                    imageByteArray3,//img3
+                    imageByteArray4,// img4
+                    cursor.getString(13), // detail
+                    cursor.getFloat(14), // star
+                    cursor.getString(15) // status
             );
             cart.setProduct(product);
             carts.add(cart);

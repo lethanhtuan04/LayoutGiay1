@@ -55,8 +55,7 @@
                         android:id="@+id/cartImage"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/ic_shopping_cart"
-                        android:scaleType="matrix" />
+                        android:background="@drawable/ic_shopping_cart" />
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

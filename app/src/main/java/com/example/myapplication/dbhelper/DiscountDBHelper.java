@@ -22,7 +22,6 @@ public class DiscountDBHelper extends SQLiteOpenHelper {
         super(context, DBHelper.DATABASE_NAME, null, DBHelper.DATABASE_VERSION);
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
     }
