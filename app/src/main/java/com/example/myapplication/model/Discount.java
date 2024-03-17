@@ -15,9 +15,8 @@ public class Discount implements Serializable {
         this.status = status;
     }
 
-//    public Discount(Integer id, Integer productId, int value) {
-//        this(id, productId, value, "null");
-//    }
+
+
     public Discount( Integer productId,Integer value,String status) {
         this.productId = productId;
         this.value = value;

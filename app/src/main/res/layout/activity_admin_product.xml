@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".activity.admin.AdminProductActivity">
+
     <LinearLayout
         android:id="@+id/topNavbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/main_blue"
-        >
+        android:background="@color/main_blue">
 
         <ImageButton
             android:id="@+id/btnBack"
@@ -90,7 +91,7 @@
                 app:layout_constraintStart_toStartOf="@+id/edtLoaiSP"
                 app:layout_constraintTop_toBottomOf="@+id/edtLoaiSP" />
             <EditText
-                android:id="@+id/edtMotaSP"
+                android:id="@+id/edtMoTaSP"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
@@ -109,12 +110,12 @@
                 android:layout_marginTop="8dp"
                 android:hint="Hình ảnh sản phẩm"
                 android:padding="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/edtMotaSP"
-                app:layout_constraintStart_toStartOf="@+id/edtMotaSP"
-                app:layout_constraintTop_toBottomOf="@+id/edtMotaSP" />
+                app:layout_constraintEnd_toEndOf="@+id/edtMoTaSP"
+                app:layout_constraintStart_toStartOf="@+id/edtMoTaSP"
+                app:layout_constraintTop_toBottomOf="@+id/edtMoTaSP" />
 
             <Button
-                android:id="@+id/btnThemSP"
+                android:id="@+id/btnThemSP1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -137,16 +138,16 @@
                 app:layout_constraintEnd_toEndOf="@+id/edtThemSP"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/edtThemSP"
-                app:layout_constraintTop_toBottomOf="@+id/btnThemSP"
+                app:layout_constraintTop_toBottomOf="@+id/btnThemSP1"
                 tools:ignore="UnknownId" />
 
             <Button
-                android:id="@+id/btnQlaiTC"
+                android:id="@+id/btnXoaSP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/main_blue"
-                android:text="QUAY LẠI TRANG CHỦ"
+                android:text="Xóa"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/btnSuaSP"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -161,7 +162,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.953"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtMotaSP"
+                app:layout_constraintTop_toBottomOf="@+id/edtMoTaSP"
                 app:srcCompat="@drawable/ic_imgad" />
 
 
@@ -169,4 +170,5 @@
 
 
     </ScrollView>
+
 </LinearLayout>

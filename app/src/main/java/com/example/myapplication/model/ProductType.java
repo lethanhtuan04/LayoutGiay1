@@ -7,10 +7,10 @@ public class ProductType {
     private String image;
     private String status;
 
-    public ProductType(Integer id, String name, String image, String status) {
+    public ProductType(Integer id, String name, String status) {
         this.id = id;
         this.name = name;
-        this.image = image;
+//        this.image = image;
         this.status = status;
     }
 
@@ -30,13 +30,14 @@ public class ProductType {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
-    }
+//    public String getImage() {
+//        return image;
+//    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+
+//    public void setImage(String image) {
+//        this.image = image;
+//    }
 
     public String getStatus() {
         return status;

@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
     ViewFlipper viewFlipper;
     RecyclerView recyclerView;
     ProductRecyclerViewAdapter productRecyclerViewAdapter;
-    List<Product> productList;
+    ArrayList<Product> productList;
     ProductDBHelper productDBHelper;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment {
         if (mContext != null) {
             recyclerView = view.findViewById(R.id.vRecyclerView);
             productDBHelper = new ProductDBHelper(mContext);
-            productList = productDBHelper.getAllProducts();
+            productList=productDBHelper.getAllProducts();
             productRecyclerViewAdapter = new ProductRecyclerViewAdapter(productList, mContext);
             recyclerView.setAdapter(productRecyclerViewAdapter);
             recyclerView.setHasFixedSize(true);

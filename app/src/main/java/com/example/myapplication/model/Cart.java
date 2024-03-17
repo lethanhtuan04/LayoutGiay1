@@ -73,11 +73,11 @@ public class Cart {
         this.product = product;
     }
 
-    public Double getTotalPrice() {
-        if (this.getProduct() == null)
-            return 0.0;
-        return quantity * this.getProduct().getPrice();
-    }
+//    public Double getTotalPrice() {
+//        if (this.getProduct() == null)
+//            return 0.0;
+//        return quantity * this.getProduct().getPrice();
+//    }
 
     public void setCartOrdered() {
         this.setStatus(CART_ORDERED);
