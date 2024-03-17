@@ -8,7 +8,9 @@ public class SessionDBHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_SESSION = "session";
     private static final String KEY_ID = "id";
+
     private static final String KEY_USERNAME = "username";
+    private static final String KEY_IDUSER = "iduser"; // Sửa từ int thành String
     private static final String KEY_EMAIL = "email";
 
     public SessionDBHelper(Context context) {
@@ -19,7 +21,9 @@ public class SessionDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTableQuery = "CREATE TABLE " + TABLE_SESSION + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
+
                 + KEY_USERNAME + " TEXT,"
+                + KEY_IDUSER + " TEXT," // Sửa từ int thành String
                 + KEY_EMAIL + " TEXT" + ")";
         db.execSQL(createTableQuery);
     }

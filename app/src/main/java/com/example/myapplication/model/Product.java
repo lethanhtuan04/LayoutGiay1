@@ -154,14 +154,17 @@ public class Product implements Serializable {
         return discount;
     }
 
-//    public double afterDiscount() {
+//    public double neucoDiscount(Integer pro_id) {
+//        DiscountDBHelper discountDBHelper = new DiscountDBHelper(this);
+//        Discount discount = discountDBHelper.getDiscountByProductID(pro_id);
 //        if (discount != null && discount.getValue() > 0) {
-//            double discountValue = (double) discount.getValue() / 100; // Chuyển đổi phần trăm giảm giá thành số thập phân
-//            return getPrice() * (1 - discountValue); // Tính giá sau khi áp dụng discount
+//            double priceDiscount = getPrice() - getPrice() * discount.getValue() / 100;
+//            return priceDiscount;
 //        } else {
-//            return getPrice(); // Nếu không có discount, giá không thay đổi
+//            return 0;
 //        }
 //    }
+
 
     public void setDiscount(Discount discount) {
         this.discount = discount;

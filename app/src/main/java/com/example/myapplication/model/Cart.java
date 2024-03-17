@@ -20,8 +20,8 @@ public class Cart {
         this.setStatus(status);
     }
 
-    public Cart(Integer userId, Integer productId, Integer quantity) {
-        this(-1, userId, productId, quantity, CART_UNPAID);
+    public Cart(Integer userId, Integer productId ) {
+                this(-1, userId, productId, 1, CART_UNPAID);
     }
 
     public Integer getId() {

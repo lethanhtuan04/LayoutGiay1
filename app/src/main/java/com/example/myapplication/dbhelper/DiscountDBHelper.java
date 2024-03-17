@@ -8,18 +8,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.myapplication.model.Cart;
 import com.example.myapplication.model.Discount;
+import com.example.myapplication.model.Product;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DiscountDBHelper extends SQLiteOpenHelper {
     public DiscountDBHelper(@Nullable Context context) {
         super(context, DBHelper.DATABASE_NAME, null, DBHelper.DATABASE_VERSION);
     }
-
-
 
 
     @Override
@@ -90,7 +91,6 @@ public class DiscountDBHelper extends SQLiteOpenHelper {
     }
 
 
-
     public Discount getDiscountById(Integer id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM Discount WHERE id = ?", new String[]{String.valueOf(id)});
@@ -113,6 +113,33 @@ public class DiscountDBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return discount;
+    }
+
+    public static double calculateDiscountedPrice(Product product, Discount discount) {
+        double discountedPrice = product.getPrice();
+
+        if (discount != null) {
+            discountedPrice -= product.getPrice() * discount.getValue() / 100;
+        }
+
+        return discountedPrice;
+    }
+
+    public double calculateDiscount(List<Cart> carts) {
+        double totalDiscount = 0;
+
+        for (Cart cart : carts) {
+            // Tính giảm giá cho mỗi sản phẩm trong giỏ hàng
+            Product product = cart.getProduct();
+            Discount discount = getDiscountByProductID(product.getId()); // Phương thức này trả về đối tượng Discount cho sản phẩm
+            // Nếu sản phẩm có giảm giá, cộng vào tổng giảm giá
+            if (discount != null) {
+                double discountedPrice = product.getPrice() * discount.getValue() / 100;
+                totalDiscount += discountedPrice * cart.getQuantity();
+            }
+        }
+
+        return totalDiscount;
     }
 
 }

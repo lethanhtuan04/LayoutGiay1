@@ -72,31 +72,31 @@ public class ProductDBHelper extends SQLiteOpenHelper {
         return products;
     }
 
-//    public Product getProductById(Integer id) {
-//        ArrayList<Product> products = getProductByField("id", id);
-//        if (products.size() > 0)
-//            return products.get(0);
-//        return null;
-//    }
+    public Product getProductById(Integer id) {
+        ArrayList<Product> products = getProductByField("id", id);
+        if (products.size() > 0)
+            return products.get(0);
+        return null;
+    }
 
-//    private ArrayList<Product> getProductByField(String field, Object value) {
-//        ArrayList<Product> products = new ArrayList<>();
-//        SQLiteDatabase db = getReadableDatabase();
-//        Cursor cursor = null;
-//        if (value instanceof String)
-//            cursor = getCursorWithStringValue(db, field, value.toString());
-//        else
-//            cursor = getCursorWithNumberValue(db, field, value.toString());
-//
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            Product product = cursorToProduct(cursor);
-//            products.add(product);
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        return products;
-//    }
+    private ArrayList<Product> getProductByField(String field, Object value) {
+        ArrayList<Product> products = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = null;
+        if (value instanceof String)
+            cursor = getCursorWithStringValue(db, field, value.toString());
+        else
+            cursor = getCursorWithNumberValue(db, field, value.toString());
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Product product = cursorToProduct(cursor);
+            products.add(product);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return products;
+    }
 
     private Cursor getCursorWithStringValue(SQLiteDatabase db, String field, String value) {
         Cursor cursor = db.rawQuery("SELECT * FROM Product" + " WHERE " + field + " LIKE ?", new String[]{"%" + value + "%"});

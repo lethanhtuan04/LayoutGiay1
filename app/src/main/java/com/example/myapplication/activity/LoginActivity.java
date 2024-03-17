@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Account account = accountDBHelper.getAccountByEmail(userEmail);
                               //  Toast.makeText(LoginActivity.this, account.getUsername(), Toast.LENGTH_LONG).show();
 
-                                sessionManager.createLoginSession(account.getUsername(), email);
+                                sessionManager.createLoginSession(account.getUsername(),account.getId(), email);
                                 Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(mainActivity);
                             }

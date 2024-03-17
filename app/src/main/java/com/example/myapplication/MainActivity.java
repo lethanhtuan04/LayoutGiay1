@@ -60,11 +60,6 @@ public class MainActivity extends AppCompatActivity {
                     if (!sessionManager.isLoggedIn()) {
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     } else {
-//                        // Nếu đã đăng nhập, lấy thông tin session và hiển thị
-//                        HashMap<String, String> userDetails = sessionManager.getUserDetails();
-//                        String username = userDetails.get(SessionManager.KEY_USERNAME);
-//                        // Hiển thị thông tin username và email
-
                         fm = new CartFragment();
                         loadFragment(fm);
                         return  true;
@@ -76,10 +71,6 @@ public class MainActivity extends AppCompatActivity {
                     if (!sessionManager.isLoggedIn()) {
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     } else {
-//                        // Nếu đã đăng nhập, lấy thông tin session và hiển thị
-//                        HashMap<String, String> userDetails = sessionManager.getUserDetails();
-//                        String username = userDetails.get(SessionManager.KEY_USERNAME);
-//                        // Hiển thị thông tin username và email
                         fm = new ProfileFragment();
                         loadFragment(fm);
                         return  true;

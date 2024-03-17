@@ -90,19 +90,18 @@ public class HorizontalProductAdapter extends RecyclerView.Adapter<HorizontalPro
             return discountDbHelper.getDiscountByProductID(productId);
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(Discount discount) {
             DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
             if (discount != null) {
-                // Xử lý khi discount không null
                 double priceDiscount = product.getPrice() - product.getPrice() * discount.getValue() / 100;
                 String formattedPrice = decimalFormat.format(priceDiscount);
                 viewHolder.txtGiaKhiDiscount.setText(formattedPrice + "đ");
                 viewHolder.updateDiscount(discount);
             } else {
-                // Xử lý khi discount là null
-                // Điều này có thể bao gồm hiển thị giá sản phẩm mà không có giảm giá, hoặc các hành động khác tùy thuộc vào yêu cầu của ứng dụng của bạn.
+
                 String Price = decimalFormat.format(product.getPrice());
                 viewHolder.txtGiaKhiDiscount.setText(String.valueOf(product.getPrice()));
                 viewHolder.lbDiscount.setVisibility(View.GONE);

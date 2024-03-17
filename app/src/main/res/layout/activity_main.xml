@@ -16,12 +16,12 @@
         android:layout_height="0dp"
         android:layout_below="@+id/topNavbar"
         android:layout_weight="10"
-        android:background="#12000000"
+        android:background="#fff"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintTop_toBottomOf="@+id/topNavbar" />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:elevation="10dp"
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="53dp"
