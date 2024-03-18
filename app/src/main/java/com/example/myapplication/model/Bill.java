@@ -1,9 +1,6 @@
 package com.example.myapplication.model;
 
 
-import com.example.myapplication.utilities.AppUtilities;
-
-
 public class Bill {
     public static final String BILL_UNPAID = "Unpaid";
     public static final String BILL_PAID = "Paid";
@@ -14,25 +11,23 @@ public class Bill {
     private String address;
     private String date;
     private String status;
-    private Float discount;
     private Float price;
     private Cart cart;
 
-    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address, String date, Float discount, Float price, String status) {
+    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address,  Float price,String date, String status) {
         this.setId(id);
         this.setUserId(userId);
         this.setCartId(cartId);
         this.setPhone(phone);
         this.setAddress(address);
         this.setDate(date);
-        this.setDiscount(discount);
         this.setPrice(price);
         this.setStatus(status);
     }
 
-    public Bill(Integer userId, Integer cartId, String phone, String address, Float discount, Float price) {
-        this(-1, userId, cartId, phone, address, AppUtilities.getDateTimeNow(), discount, price, BILL_UNPAID);
-    }
+//    public Bill(Integer userId, Integer cartId, String phone, String address,  Float price) {
+//        this(-1, userId, cartId, phone, address, AppUtilities.getDateTimeNow(),  price, BILL_UNPAID);
+//    }
 
 //    public Bill(Integer userId, Integer cartId, String address, Float discount, Float price) {
 //        this(-1, userId, cartId, user.getPhone(), address, AppUtilities.getDateTimeNow(), discount, price, BILL_UNPAID);
@@ -45,13 +40,6 @@ public class Bill {
 //        this(-1, userId, cartId, user.getPhone(), user.getAddress(), AppUtilities.getDateTimeNow(), discount, price, BILL_UNPAID);
 //    }
 
-    public Float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Float discount) {
-        this.discount = discount;
-    }
 
     public Float getPrice() {
         return price;
@@ -135,7 +123,6 @@ public class Bill {
                 ", address='" + address + '\'' +
                 ", date='" + date + '\'' +
                 ", status='" + status + '\'' +
-                ", discount=" + discount +
                 ", price=" + price +
                 ", cart=" + cart +
                 '}';

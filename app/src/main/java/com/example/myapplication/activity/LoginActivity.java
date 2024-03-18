@@ -170,6 +170,7 @@ public class LoginActivity extends AppCompatActivity {
         edtemail = findViewById(R.id.edtUserName);
         txtSignUp = findViewById(R.id.txtSignUp);
         viewError = findViewById(R.id.mError);
+
         fogotpass = findViewById(R.id.openforgotpass);
     }
 }

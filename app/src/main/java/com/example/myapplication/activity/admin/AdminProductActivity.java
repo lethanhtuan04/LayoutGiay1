@@ -120,7 +120,6 @@ public class AdminProductActivity extends AppCompatActivity {
                 // Convert Uri to Bitmap
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
-                // Set the Bitmap to your ImageView
                 hinhSP.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -149,6 +148,7 @@ public class AdminProductActivity extends AppCompatActivity {
 
                 Product product = new Product(parseInt(id), name, parseInt(type), parseInt(price), imageBytes, detail);
                 ProductDBHelper productDbHelper = new ProductDBHelper(this);
+
                 long rowId = productDbHelper.insert(product);
                 if (rowId > 0) {
                     Toast.makeText(this, " Thành công !", Toast.LENGTH_SHORT).show();

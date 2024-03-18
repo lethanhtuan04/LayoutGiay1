@@ -130,8 +130,23 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateList(List<Product> newProductList) {
+        productList.clear();
+        productList.addAll(newProductList);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return productList.size();
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateData(List<Product> newData) {
+        productList.clear();
+        productList.addAll(newData);
+        notifyDataSetChanged();
     }
 }

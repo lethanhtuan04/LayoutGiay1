@@ -39,7 +39,7 @@ public class Product implements Serializable {
         this.name = name;
         this.price = price;
         this.image1 = image1;
-        this.image2 = null;
+        this.image2 = image2;
         this.image3 = null;
         this.image4 = null;
         this.detail = detail;

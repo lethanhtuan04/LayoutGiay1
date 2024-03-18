@@ -26,7 +26,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edt_email"
+        app:layout_constraintStart_toStartOf="@+id/edtoldPass"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -45,7 +45,7 @@ gồm cả chữ số, chữ cái và ký tự đặc biệt."
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/edt_email"
+        android:id="@+id/edtoldPass"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="15dp"
@@ -81,10 +81,10 @@ gồm cả chữ số, chữ cái và ký tự đặc biệt."
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="@+id/edt_email"
+        app:layout_constraintEnd_toEndOf="@+id/edtoldPass"
         app:layout_constraintHorizontal_bias="0.528"
-        app:layout_constraintStart_toStartOf="@+id/edt_email"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
+        app:layout_constraintStart_toStartOf="@+id/edtoldPass"
+        app:layout_constraintTop_toBottomOf="@+id/edtoldPass" />
 
     <EditText
         android:id="@+id/edtcfnewPass"
@@ -117,7 +117,7 @@ gồm cả chữ số, chữ cái và ký tự đặc biệt."
         app:layout_constraintTop_toBottomOf="@+id/edtcfnewPass" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnChange"
+        android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="15dp"

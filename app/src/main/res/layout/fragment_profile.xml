@@ -1,164 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ProfileFragment">
+    android:orientation="vertical"
+    tools:context=".fragment.CartFragment">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#12FFFFFF"
-        android:orientation="vertical">
+        android:layout_height="390dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="275dp"
+            android:background="@drawable/gradientbackgroup"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:elevation="5dp"
-                android:padding="45dp">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ic_human" />
 
-                <ImageView
-                    android:layout_marginRight="20dp"
-                    android:id="@+id/image_human"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_human" />
+            <TextView
+                android:id="@+id/txtusernamepro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Admin"
+                android:textColor="#fff"
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/txtusernamepro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_toEndOf="@id/image_human"
-                    android:includeFontPadding="false"
-                    android:text="Admin"
-                    android:textColor="#CC000000"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtemailpro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Admin@gmail.com"
+                android:textColor="#fff"
+                android:textSize="17dp" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtemailpro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txtusernamepro"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/image_human"
-                    android:includeFontPadding="false"
-                    android:text="Admin@gmail.com"
-                    android:textColor="#66000000"
-                    android:textSize="20sp" />
-            </RelativeLayout>
-
-
-
+        <android.support.v7.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="225dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="158dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:padding="4dp">
+                android:weightSum="2">
 
                 <LinearLayout
-                    android:layout_width="186dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        style="@android:style/Widget.Button"
-                        android:id="@+id/btnaccountSettings"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/shadow_radius_0"
-                        android:drawableStart="@drawable/ic_setting"
-                        android:elevation="20dp"
-                        android:paddingStart="15dp"
-                        android:text="Account Setting"
-                        android:textAlignment="center"
-                        android:textSize="18dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sản phẩm"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        style="@android:style/Widget.Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/shadow_radius_0"
-                        android:drawableStart="@drawable/ic_notification"
-                        android:elevation="20dp"
-                        android:paddingStart="15dp"
-                        android:text="Notification"
-                        android:textAlignment="center"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+                        android:textColor="@color/startblue"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="186dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        style="@android:style/Widget.Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/shadow_radius_0"
-                        android:drawableStart="@drawable/ic_delivery"
-                        android:elevation="20dp"
-                        android:paddingStart="15dp"
-                        android:text="Delivery"
-                        android:textAlignment="center"
-                        android:textSize="18dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Followers"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        style="@android:style/Widget.Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/shadow_radius_0"
-                        android:drawableStart="@drawable/ic_review"
-                        android:elevation="20dp"
-                        android:paddingStart="15dp"
-                        android:text="History"
-                        android:textAlignment="center"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+                        android:textColor="@color/startblue"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnlogout"
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="165dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/btnaccountSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_settings_24" />
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="19dp"
-                android:background="@drawable/shadow_radius_0"
-                android:elevation="20dp"
-                android:text="Đăng xuất"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="Cài đăt trang cá nhân"
+                android:textSize="20sp" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_lichsu" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="Lịch sử mua hàng"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_xetai" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="Vận chuyển"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_noti" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="Thông báo"
+                android:textSize="20sp" />
         </LinearLayout>
 
 
-    </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
 
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_suppost" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="Hỗ trợ"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnlogout"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:background="@color/startblue"
+            android:elevation="20dp"
+            android:text="Đăng xuất"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </FrameLayout>

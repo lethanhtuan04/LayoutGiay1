@@ -18,7 +18,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.dbhelper.CartDBHelper;
 import com.example.myapplication.dbhelper.DiscountDBHelper;
 import com.example.myapplication.fragment.CartFragment;
-import com.example.myapplication.fragment.NotificationFragment;
 import com.example.myapplication.model.Cart;
 import com.example.myapplication.model.Discount;
 import com.example.myapplication.model.Product;
@@ -111,7 +110,7 @@ public class DetailProActivity extends AppCompatActivity {
         btnBell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailProActivity.this, NotificationFragment.class));
+                startActivity(new Intent(DetailProActivity.this, NotificationActivity.class));
 
             }
         });

@@ -92,7 +92,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
 
     private void addControls() {
-        edtOldPass = findViewById(R.id.edtoldPass);
+        edtOldPass = findViewById(R.id.edt_email);
         edtnewPass = findViewById(R.id.edtnewpass);
         edtcfnewPass = findViewById(R.id.edtcfnewPass);
         btnChange = findViewById(R.id.btnChange);

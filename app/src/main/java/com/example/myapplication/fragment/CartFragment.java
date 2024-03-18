@@ -95,8 +95,6 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
         recyclerView = view.findViewById(R.id.list_item_pro_cart);
         coSP = view.findViewById(R.id.viewCoSP);
         khongSP = view.findViewById(R.id.viewKhongCoSanPham);
-
-
     }
 
     private void setupRecyclerView() {
@@ -126,7 +124,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
         tongChinh.setText(fmTotal + " đ");
         tongPhu.setText(fmSubTotalEnd + " đ");
         tongThue.setText(fmTax + " đ");
-        phiVan.setText(carts == null ? "0 đ" : fmdelivery + " đ");
+        phiVan.setText(fmdelivery + " đ");
         txtTotal.setText(fmTotal + "đ");
 
         if (carts != null && !carts.isEmpty()) {

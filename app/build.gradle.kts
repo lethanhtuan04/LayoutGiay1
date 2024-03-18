@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-        id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -20,7 +20,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -47,12 +50,12 @@ dependencies {
     //glider
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    implementation ("com.mikhaellopez:circularimageview:4.3.1")
+    implementation("com.mikhaellopez:circularimageview:4.3.1")
 
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database:20.3.1")
     implementation("com.google.firebase:firebase-database")
-
-
+    //noinspection GradleCompatible
+    implementation("com.android.support:cardview-v7:25.3.1")
 }

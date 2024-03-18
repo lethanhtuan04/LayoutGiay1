@@ -26,8 +26,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/searchView"
+            <TextView
+                android:id="@+id/searchView1"
                 android:layout_width="340dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -44,6 +44,7 @@
                 android:textSize="20dp" />
 
             <ImageView
+                android:id="@+id/btnNotifromHome"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -69,6 +70,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -291,18 +293,37 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <TextView
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:paddingLeft="25dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="7dp"
-                            android:text="Gợi ý"
-                            android:textColor="@color/black"
-                            android:textSize="22dp"
-                            android:textStyle="bold" />
+                            android:orientation="horizontal">
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="25dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="7dp"
+                                android:text="Gợi ý"
+                                android:textColor="@color/black"
+                                android:textSize="22dp"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/btnSeeAll"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="25dp"
+                                android:text="Tất cả"
+                                android:textColor="@color/main_blue"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                         <!-- RecyclerView sẽ hiển thị ở đây -->
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/vRecyclerView"

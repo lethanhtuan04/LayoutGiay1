@@ -4,24 +4,20 @@ public class    Account {
     private Integer id;
     private String username;
     private String email;
-    private String password;
     private Integer roleID;
     private String status;
 
-    public Account() {
-    }
 
-    public Account(Integer id, String username, String password, Integer roleID, String email, String status) {
+    public Account(Integer id, String username,  Integer roleID, String email, String status) {
         this.setId(id);
         this.setUsername(username);
         this.setEmail(email);
-        this.setPassword(password);
         this.setRoleID(roleID);
         this.setStatus(status);
     }
 
     public Account(String username, String password, String email) {
-        this(-1, username, password, 2, email, "null");
+        this(-1, username, 2, email, "null");
     }
 
     public Integer getId() {
@@ -49,14 +45,6 @@ public class    Account {
             this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-
-        this.password = password;
-    }
 
     public Integer getRoleID() {
         return roleID;
