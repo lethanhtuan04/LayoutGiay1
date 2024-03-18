@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         addControlos();
         addShowPass();
-        AccountDBHelper AccountDBHelper = new AccountDBHelper(LoginActivity.this);
+        accountDBHelper = new AccountDBHelper(LoginActivity.this);
         addSignIn();
         //bắt đầu chạy trang register
         txtSignUp.setOnClickListener(new View.OnClickListener() {
@@ -118,12 +118,12 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             if (user != null) {
                                 String userEmail = user.getEmail();
-                          //      Toast.makeText(LoginActivity.this, userEmail, Toast.LENGTH_LONG).show();
+                                //      Toast.makeText(LoginActivity.this, userEmail, Toast.LENGTH_LONG).show();
 
                                 Account account = accountDBHelper.getAccountByEmail(userEmail);
-                              //  Toast.makeText(LoginActivity.this, account.getUsername(), Toast.LENGTH_LONG).show();
+                                //  Toast.makeText(LoginActivity.this, account.getUsername(), Toast.LENGTH_LONG).show();
 
-                                sessionManager.createLoginSession(account.getUsername(),account.getId(), email);
+                                sessionManager.createLoginSession(account.getUsername(), account.getId(), email);
                                 Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(mainActivity);
                             }
