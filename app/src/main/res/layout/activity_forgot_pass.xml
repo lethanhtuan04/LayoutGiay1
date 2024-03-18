@@ -7,16 +7,22 @@
     android:orientation="vertical"
     tools:context=".activity.ForgotPassActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Forgot Password"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:orientation="vertical"
+      android:background="@color/main_blue">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:text="Forgot Password"
+          android:padding="5dp"
+          android:textAllCaps="true"
+          android:textColor="#fff"
+          android:textSize="20sp"
+          android:textStyle="bold" />
+  </LinearLayout>
 
     <EditText
         android:id="@+id/edt_email"
@@ -25,7 +31,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="#FFFFFFFF"
+        android:background="@drawable/grey_backgroud"
+        android:drawableStart="@drawable/ic_email"
         android:hint="Email"
         android:paddingStart="10dp"
         android:textColor="@color/main_blue" />
@@ -35,7 +42,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/main_blue"
         android:text="Done"
         android:textStyle="bold" />
 </LinearLayout>
