@@ -2,10 +2,26 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AdminProductActivity">
+      <entry key="MainActivity">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="RFCTB1292KW" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-03-17T07:43:06.310525400Z" />
+        </State>
+      </entry>
+      <entry key="ShowAdBillHistoryActivity">
         <State />
       </entry>
-      <entry key="RegisterActivity">
+      <entry key="ShowAdUserActivity">
         <State />
       </entry>
       <entry key="app">

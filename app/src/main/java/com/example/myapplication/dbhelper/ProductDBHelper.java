@@ -13,6 +13,7 @@ import com.example.myapplication.model.Discount;
 import com.example.myapplication.model.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDBHelper extends SQLiteOpenHelper {
     public ProductDBHelper(@Nullable Context context) {
@@ -91,12 +92,6 @@ public class ProductDBHelper extends SQLiteOpenHelper {
         }
         return products;
     }
-//    public Product getProductById(Integer id) {
-//        ArrayList<Product> products = getProductByField(Product, id);
-//        if (products.size() > 0)
-//            return products.get(0);
-//        return null;
-//    }
 
     public Product getProductById(Integer id) {
         ArrayList<Product> products = getProductByField("id", id);
@@ -154,6 +149,28 @@ public class ProductDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return products;
     }
+
+    public List<Product> searchProductsByName(String query) {
+        List<Product> searchResults = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM Product WHERE name LIKE ?",
+                new String[]{"%" + query + "%"});
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    do {
+                        Product product = cursorToProduct(cursor);
+                        searchResults.add(product);
+                    } while (cursor.moveToNext());
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        return searchResults;
+    }
+
 
     public long insert(Product product) {
         SQLiteDatabase db = getWritableDatabase();
