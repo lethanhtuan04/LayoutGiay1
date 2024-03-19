@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CartAdapter;
+import com.example.myapplication.dbhelper.BillDBHelper;
 import com.example.myapplication.dbhelper.CartDBHelper;
 import com.example.myapplication.dbhelper.DiscountDBHelper;
+import com.example.myapplication.model.Bill;
 import com.example.myapplication.model.Cart;
 import com.example.myapplication.utilities.SessionManager;
 
@@ -26,8 +30,10 @@ import java.util.List;
 
 public class CartFragment extends Fragment implements CartAdapter.CartUpdateListener {
     private CartDBHelper cartDBHelper;
+    AppCompatButton btnOrder;
     private RecyclerView recyclerView;
     ConstraintLayout coSP;
+    EditText edtname, edtphone, edtaddress;
     LinearLayout khongSP;
     private SessionManager sessionManager;
     private TextView tongPhu, tongChinh, tongThue, phiVan, txtTotal;
@@ -66,24 +72,60 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        initializeViews(view);
-        setupRecyclerView();
-
         sessionManager = new SessionManager(getContext().getApplicationContext());
         userDetails = sessionManager.getUserDetails();
-
+        initializeViews(view);
+        setupRecyclerView();
         if (userDetails != null) {
-            String id = userDetails.get(sessionManager.KEY_IDUSER);
-
-            if (id != null) {
+            String userid = userDetails.get(sessionManager.KEY_IDUSER);
+            if (userid != null) {
                 cartDBHelper = new CartDBHelper(getContext().getApplicationContext());
-                List<Cart> carts = cartDBHelper.getAllCarts(Integer.valueOf(id));
+                List<Cart> carts = cartDBHelper.getAllCarts(Integer.valueOf(userid));
                 CartAdapter adapter = new CartAdapter(getContext(), carts, recyclerView);
-                setupCartInformation(carts, id);
+                setupCartInformation(carts, userid);
                 setupCartAdapter(adapter);
             }
         }
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setupOrder();
+            }
+        });
+        setupOrder();
         return view;
+    }
+
+    private void setupOrder() {
+        String name = edtname.getText().toString().trim();
+        String phone = edtphone.getText().toString().trim();
+        String address = edtaddress.getText().toString().trim();
+        String price = txtTotal.getText().toString().trim();
+
+        String userid = userDetails.get(sessionManager.KEY_IDUSER);
+        cartDBHelper = new CartDBHelper(getContext());
+        List<Cart> listCart = cartDBHelper.getAllCarts(Integer.valueOf(userid));
+
+        if (listCart != null && !listCart.isEmpty()) {
+            for (Cart cart : listCart) {
+                int cartId = cart.getId(); // Lấy id của giỏ hàng
+                // Tạo một hóa đơn với thông tin từ giỏ hàng và các thông tin khác
+                Bill bill = new Bill(Integer.parseInt(userid), cartId, phone, address, Integer.parseInt(price));
+
+                // Sau đó, bạn có thể thực hiện thêm hóa đơn vào cơ sở dữ liệu
+                BillDBHelper billDbHelper = new BillDBHelper(getContext());
+                long result = billDbHelper.insert(bill);
+
+                // Kiểm tra kết quả và xử lý tương ứng
+                if (result > 0) {
+                    // Xử lý khi đặt hàng thành công
+                } else {
+                    // Xử lý khi đặt hàng không thành công
+                }
+            }
+        } else {
+            // Xử lý khi danh sách giỏ hàng trống
+        }
     }
 
     private void initializeViews(View view) {
@@ -92,9 +134,16 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
         tongThue = view.findViewById(R.id.txtTax);
         txtTotal = view.findViewById(R.id.txttotal);
         phiVan = view.findViewById(R.id.txtDelivery);
+
         recyclerView = view.findViewById(R.id.list_item_pro_cart);
         coSP = view.findViewById(R.id.viewCoSP);
         khongSP = view.findViewById(R.id.viewKhongCoSanPham);
+
+        btnOrder = view.findViewById(R.id.btnOrder);
+        edtname = view.findViewById(R.id.edtName);
+        edtphone = view.findViewById(R.id.edtPhone);
+        edtaddress = view.findViewById(R.id.edtLocation);
+
     }
 
     private void setupRecyclerView() {

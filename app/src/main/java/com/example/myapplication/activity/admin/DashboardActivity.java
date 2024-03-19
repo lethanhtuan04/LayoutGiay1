@@ -1,6 +1,5 @@
 package com.example.myapplication.activity.admin;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +21,6 @@ public class DashboardActivity extends AppCompatActivity {
         addControls();
         Event();
     }
-
 
     private void Event() {
         btnDiscount.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +49,7 @@ public class DashboardActivity extends AppCompatActivity {
     private void addControls() {
         btnProductAdmin = findViewById(R.id.btnProductAdmin);
         btnDiscount = findViewById(R.id.btnDiscount);
-        btnProductType=findViewById(R.id.btnProductType);
+        btnProductType = findViewById(R.id.btnProductType);
     }
 
     public void logout(View view) {

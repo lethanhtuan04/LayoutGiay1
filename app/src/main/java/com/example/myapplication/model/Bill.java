@@ -11,10 +11,10 @@ public class Bill {
     private String address;
     private String date;
     private String status;
-    private Float price;
+    private int price;
     private Cart cart;
 
-    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address,  Float price,String date, String status) {
+    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address,  int price,String date, String status) {
         this.setId(id);
         this.setUserId(userId);
         this.setCartId(cartId);
@@ -25,9 +25,12 @@ public class Bill {
         this.setStatus(status);
     }
 
-//    public Bill(Integer userId, Integer cartId, String phone, String address,  Float price) {
-//        this(-1, userId, cartId, phone, address, AppUtilities.getDateTimeNow(),  price, BILL_UNPAID);
+//    public Bill(Integer userId, Integer cartId, String phone, String address,  int price) {
+//        this(-1, userId, cartId, phone, address, AppUtilities.getDateTimeNow(),price, BILL_UNPAID);
 //    }
+
+
+
 
 //    public Bill(Integer userId, Integer cartId, String address, Float discount, Float price) {
 //        this(-1, userId, cartId, user.getPhone(), address, AppUtilities.getDateTimeNow(), discount, price, BILL_UNPAID);
@@ -41,11 +44,11 @@ public class Bill {
 //    }
 
 
-    public Float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
