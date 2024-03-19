@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     public String DB_NAME = "AppShoes";
     public String DB_SUFFIX_PATH = "/databases/";
+    public static final String NOTIFICATION_ACTION = "Notification Action";
 
 
     @Override
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         fm = new CartFragment();
                         loadFragment(fm);
-                        return  true;
+                        return true;
                     }
                     return true;
                 }
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         fm = new ProfileFragment();
                         loadFragment(fm);
-                        return  true;
+                        return true;
                     }
                     return true;
                 }

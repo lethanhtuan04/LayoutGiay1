@@ -21,7 +21,7 @@ public class Cart {
     }
 
     public Cart(Integer userId, Integer productId ) {
-                this(-1, userId, productId, 1, CART_UNPAID);
+                this(-1, userId, productId, 1, "wait");
     }
 
     public Integer getId() {

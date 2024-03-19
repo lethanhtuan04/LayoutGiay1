@@ -124,6 +124,18 @@ public class DiscountDBHelper extends SQLiteOpenHelper {
         return discountedPrice;
     }
 
+    public double discountForEachPro(Cart cart) {
+        double totalDiscount = 0;
+        Product product = cart.getProduct();
+        Discount discount = getDiscountByProductID(product.getId()); // Phương thức này trả về đối tượng Discount cho sản phẩm
+        // Nếu sản phẩm có giảm giá, cộng vào tổng giảm giá
+        if (discount != null) {
+            double discountedPrice = product.getPrice() * discount.getValue() / 100;
+            totalDiscount += discountedPrice * cart.getQuantity();
+        }
+        return totalDiscount;
+    }
+
     public double calculateDiscount(List<Cart> carts) {
         double totalDiscount = 0;
 

@@ -130,13 +130,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:text="Cài đăt trang cá nhân"
                 android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/historyBill"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
@@ -151,13 +152,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:text="Lịch sử mua hàng"
                 android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/deliveryStatus"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
@@ -172,13 +175,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:text="Vận chuyển"
                 android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnNotiProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
@@ -193,7 +197,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:text="Thông báo"
                 android:textSize="20sp" />
@@ -215,7 +219,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:text="Hỗ trợ"
                 android:textSize="20sp" />

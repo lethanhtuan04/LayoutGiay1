@@ -62,6 +62,13 @@ public class CartDBHelper extends SQLiteOpenHelper {
         return db.update("Cart", values, "id" + " = ?", new String[]{String.valueOf(cart.getId())});
     }
 
+    public int updateOrderStatus(int cartId) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", "Ordered");
+        return db.update("Cart", values, "id" + " = ?", new String[]{String.valueOf(cartId)});
+    }
+
     public int delete(Integer cartId) {
         SQLiteDatabase db = getWritableDatabase();
         return db.delete("Cart", "id" + " = ?", new String[]{String.valueOf(cartId)});
@@ -119,7 +126,7 @@ public class CartDBHelper extends SQLiteOpenHelper {
         return getCart(cursor);
     }
 
-    private ArrayList<Cart> getCartByStatus(Integer userId, String status) {
+    public ArrayList<Cart> getAllCartByStatus(Integer userId, String status) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
                 "SELECT * FROM Cart INNER JOIN Product ON Cart.productId = Product.id WHERE Cart.userId = ? AND Cart.status LIKE ?",
@@ -127,9 +134,6 @@ public class CartDBHelper extends SQLiteOpenHelper {
         return getCart(cursor);
     }
 
-    public ArrayList<Cart> getUnpaidCart(Integer userId) {
-        return getCartByStatus(userId, Cart.CART_UNPAID);
-    }
 
     public Integer getCartIdByRowId(long rowId) {
         return getCartByRowId(rowId).getId();
@@ -160,9 +164,10 @@ public class CartDBHelper extends SQLiteOpenHelper {
     }
 
     public double getTotalPhu(Integer userId) {
-        ArrayList<Cart> carts = getAllCarts(userId);
+        ArrayList<Cart> carts = getAllCartByStatus(userId, "wait");
         return calculateSubtotal(carts);
     }
+
 
 }
 

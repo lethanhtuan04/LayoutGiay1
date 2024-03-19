@@ -82,7 +82,6 @@ public class AllProductActivity extends AppCompatActivity {
         productRecyclerViewAdapter = new ProductRecyclerViewAdapter(productList, this);
         recyclerView.setAdapter(productRecyclerViewAdapter);
     }
-    // Cập nhật danh sách sản phẩm
 
 
     private void chooseSearch() {

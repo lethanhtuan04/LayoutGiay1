@@ -108,8 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(adminActivity);
             return;
         }
-        //    Account account = accountDBHelper.getAccountByEmail(email);
-        //    if (account != null && email.equals(account.getEmail()) && password.equals(account.getPassword())) {
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -119,10 +118,8 @@ public class LoginActivity extends AppCompatActivity {
                             if (user != null) {
                                 String userEmail = user.getEmail();
                                 //      Toast.makeText(LoginActivity.this, userEmail, Toast.LENGTH_LONG).show();
-
                                 Account account = accountDBHelper.getAccountByEmail(userEmail);
-                                //  Toast.makeText(LoginActivity.this, account.getUsername(), Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(LoginActivity.this, account.getUsername(), Toast.LENGTH_LONG).show();
                                 sessionManager.createLoginSession(account.getUsername(), account.getId(), email);
                                 Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(mainActivity);

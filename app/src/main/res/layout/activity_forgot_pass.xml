@@ -7,32 +7,49 @@
     android:orientation="vertical"
     tools:context=".activity.ForgotPassActivity">
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="40dp"
-      android:orientation="vertical"
-      android:background="@color/main_blue">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:text="Forgot Password"
-          android:padding="5dp"
-          android:textAllCaps="true"
-          android:textColor="#fff"
-          android:textSize="20sp"
-          android:textStyle="bold" />
-  </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/main_blue"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+<ImageView
+    android:id="@+id/btnBack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:src="@drawable/ic_back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:layout_marginStart="50dp"
+
+            android:text="Forgot Password"
+            android:textAllCaps="true"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="Hãy nhập email đã đăng ký tài khỏan này của bạn để tôi gửi mã về cho nhé!"
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/edt_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/grey_backgroud"
         android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="20dp"
         android:hint="Email"
         android:paddingStart="10dp"
         android:textColor="@color/main_blue" />
@@ -43,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@color/main_blue"
+        android:backgroundTint="@color/main_blue"
         android:text="Done"
         android:textStyle="bold" />
 </LinearLayout>

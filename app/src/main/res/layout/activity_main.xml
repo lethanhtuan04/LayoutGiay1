@@ -25,7 +25,9 @@
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="53dp"
+        android:layout_alignParentBottom="true"
         android:background="@color/white"
+        android:layout_above="@id/frame_container"
         app:itemIconSize="26dp"
         app:itemIconTint="@color/color_bottom_menu"
         app:labelVisibilityMode="unlabeled"
@@ -33,4 +35,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu" />
+    <View
+        android:id="@+id/keyboardPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/bottomNav"
+        android:visibility="gone" />
 </LinearLayout>

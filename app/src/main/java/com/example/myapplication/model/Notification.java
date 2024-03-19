@@ -1,18 +1,16 @@
 package com.example.myapplication.model;
 
 public class Notification {
-//    public static final String NOTIFY_CART = "Cart";
-//    public static final String NOTIFY_SALE = "Sale";
-//    public static final String NOTIFY_GUIDE = "Guide";
-//    public static final String NOTIFY_ACCOUNT = "Read";
+
     public static final String NOTIFY_UNREAD = "Unread";
     public static final String NOTIFY_READ = "Read";
-    public static final String NOTIFY_ORDER_PRODUCT = "Bạn đã đặt thành công đơn hàng cho sản phẩm ";
+    public static final String NOTIFY_ORDER_PRODUCT = "Đặt hàng thành công ";
     private Integer id;
     private Integer userId;
     private String type;
     private String message;
     private String status;
+    private byte[] image;
 
     public Integer getId() {
         return id;
@@ -22,16 +20,25 @@ public class Notification {
         this.id = id;
     }
 
-    public Notification(Integer id, Integer userId, String type, String message, String status) {
+    public Notification(Integer id, Integer userId, String type, String message, String status, byte[] image) {
         this.id = id;
         this.userId = userId;
         this.type = type;
         this.message = message;
         this.status = status;
+        this.image = image;
     }
 
-    public Notification(Integer userId, String type, String message) {
-        this(-1, userId, type, message, NOTIFY_UNREAD);
+    public Notification(Integer userId, String type, String message, byte[] image) {
+        this(-1, userId, type, message, NOTIFY_UNREAD, image);
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getType() {

@@ -14,7 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
 import com.example.myapplication.activity.AccountSettingsActivity;
+import com.example.myapplication.activity.HistoryUserActivity;
 import com.example.myapplication.activity.LoginActivity;
+import com.example.myapplication.activity.NotificationActivity;
+import com.example.myapplication.activity.StatusBillActivity;
 import com.example.myapplication.utilities.SessionManager;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -28,8 +31,9 @@ import java.util.HashMap;
 public class ProfileFragment extends Fragment {
     SessionManager sessionManager;
     TextView txtusername, txtemail;
+
     AppCompatButton btnlogout;
-    LinearLayout btnaccountSettings;
+    LinearLayout btnaccountSettings, deliveryStatus, btnNotiProfile, historyBill;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -84,6 +88,9 @@ public class ProfileFragment extends Fragment {
 
         txtusername = view.findViewById(R.id.txtusernamepro);
         txtemail = view.findViewById(R.id.txtemailpro);
+        btnNotiProfile = view.findViewById(R.id.btnNotiProfile);
+        historyBill = view.findViewById(R.id.historyBill);
+
 
         HashMap<String, String> userDetails = sessionManager.getUserDetails();
         String username = userDetails.get(SessionManager.KEY_USERNAME);
@@ -94,6 +101,25 @@ public class ProfileFragment extends Fragment {
         btnlogout = view.findViewById(R.id.btnlogout);
         btnaccountSettings = view.findViewById(R.id.btnaccountSettings);
 
+        deliveryStatus = view.findViewById(R.id.deliveryStatus);
+        deliveryStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), StatusBillActivity.class));
+            }
+        });
+        historyBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), HistoryUserActivity.class));
+            }
+        });
+        btnNotiProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), NotificationActivity.class));
+            }
+        });
 
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override

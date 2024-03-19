@@ -1,9 +1,13 @@
 package com.example.myapplication.model;
 
+import com.example.myapplication.utilities.AppUtilities;
 
 public class Bill {
-    public static final String BILL_UNPAID = "Unpaid";
-    public static final String BILL_PAID = "Paid";
+    public static final String BILL_WAIT = "Wait";
+    public static final String BILL_SHIPPING = "Shipping";
+    public static final String BILL_RECEIVED = "Received";
+    public static final String BILL_CANCELED = "Canceled";
+
     private Integer id;
     private Integer userId;
     private Integer cartId;
@@ -14,22 +18,26 @@ public class Bill {
     private int price;
     private Cart cart;
 
-    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address,  int price,String date, String status) {
-        this.setId(id);
-        this.setUserId(userId);
-        this.setCartId(cartId);
-        this.setPhone(phone);
-        this.setAddress(address);
-        this.setDate(date);
-        this.setPrice(price);
-        this.setStatus(status);
+    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address, int price, String date, String status) {
+        this.id = id;
+        this.userId = userId;
+        this.cartId = cartId;
+        this.phone = phone;
+        this.address = address;
+        this.date = date;
+        this.status = status;
+        this.price = price;
     }
 
-//    public Bill(Integer userId, Integer cartId, String phone, String address,  int price) {
-//        this(-1, userId, cartId, phone, address, AppUtilities.getDateTimeNow(),price, BILL_UNPAID);
-//    }
-
-
+    public Bill(Integer userId, Integer cartId, String phone, String address, int price) {
+        this.userId = userId;
+        this.cartId = cartId;
+        this.phone = phone;
+        this.address = address;
+        this.price = price;
+        this.date = AppUtilities.getDateTimeNow();
+        this.status = BILL_WAIT;
+    }
 
 
 //    public Bill(Integer userId, Integer cartId, String address, Float discount, Float price) {

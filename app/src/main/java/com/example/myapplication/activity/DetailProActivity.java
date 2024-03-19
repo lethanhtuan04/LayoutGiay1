@@ -86,7 +86,7 @@ public class DetailProActivity extends AppCompatActivity {
     private boolean isProductInCart(Product product) {
         boolean isExist = false;
         CartDBHelper cartDBHelper = new CartDBHelper(DetailProActivity.this);
-        ArrayList<Cart> cartItems = cartDBHelper.getAllCarts(Integer.parseInt(userDetails.get(sessionManager.KEY_IDUSER)));
+        ArrayList<Cart> cartItems = cartDBHelper.getAllCartByStatus(Integer.parseInt(userDetails.get(sessionManager.KEY_IDUSER)), "wait");
         for (Cart cart : cartItems) {
             if (cart.getProductId() == product.getId()) {
                 isExist = true;

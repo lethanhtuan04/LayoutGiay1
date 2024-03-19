@@ -57,6 +57,7 @@ public class AdminProductAdapter extends ArrayAdapter<Product> {
 
         holder.id.setText("ID: " + String.valueOf(arrayListProduct.get(position).getId()));
         holder.name.setText(arrayListProduct.get(position).getName());
+
         byte[] imageByteArray = arrayListProduct.get(position).getImage1();
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
         holder.img.setImageBitmap(bitmap);

@@ -68,15 +68,20 @@
                 android:layout_weight="10"
                 android:orientation="vertical">
 
-                <TextView
-                    android:textColor="#73000000"
-                    android:id="@+id/btnDelete"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="215dp"
-                    android:text="Xóa"
-                    android:textSize="14sp"
-                   />
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/btnDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="20dp"
+                        android:text="Xóa"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:textColor="#73000000"
+                        android:textSize="14sp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/cartProductName"

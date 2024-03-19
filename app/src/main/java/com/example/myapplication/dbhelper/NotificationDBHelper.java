@@ -14,12 +14,7 @@ import java.util.ArrayList;
 
 public class NotificationDBHelper extends SQLiteOpenHelper {
 
-//        private static final String TABLE_NAME = "Notification";
-//        private static final String NOTIFY_ID = "id";
-//        private static final String NOTIFY_USER_ID = "userId";
-//        private static final String NOTIFY_TYPE = "type";
-//        private static final String NOTIFY_MESSAGE = "message";
-//        private static final String NOTIFY_STATUS = "status";
+
 
     public NotificationDBHelper(@Nullable Context context) {
         super(context, DBHelper.DATABASE_NAME, null, DBHelper.DATABASE_VERSION);
@@ -39,7 +34,9 @@ public class NotificationDBHelper extends SQLiteOpenHelper {
                 cursor.getInt(1),
                 cursor.getString(2),
                 cursor.getString(3),
-                cursor.getString(4)
+                cursor.getString(4),
+                cursor.getBlob(5)
+
         );
     }
 
@@ -72,6 +69,8 @@ public class NotificationDBHelper extends SQLiteOpenHelper {
         contentValues.put("type", notification.getType());
         contentValues.put("message", notification.getMessage());
         contentValues.put("status", notification.getStatus());
+        contentValues.put("image", notification.getImage());
+
         return contentValues;
     }
 

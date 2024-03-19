@@ -1,17 +1,21 @@
 package com.example.myapplication.adapter;
 
+
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.dbhelper.NotificationDBHelper;
 import com.example.myapplication.model.Notification;
 
 import java.util.List;
@@ -19,19 +23,12 @@ import java.util.List;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
 
-    //private static final HashMap<String, Integer> mapNotify_Image;
+
     private static final String NOTIFY_CART = "Cart";
     private static final String NOTIFY_SALE = "Sale";
     private static final String NOTIFY_GUIDE = "Guide";
     private static final String NOTIFY_ACCOUNT = "Account";
 
-    static {
-//        mapNotify_Image = new HashMap<>();
-//        mapNotify_Image.put(NOTIFY_CART, R.drawable.shopping_cart);
-//        mapNotify_Image.put(NOTIFY_SALE, R.drawable.land_sales);
-//        mapNotify_Image.put(NOTIFY_GUIDE, R.drawable.guide);
-//        mapNotify_Image.put(NOTIFY_ACCOUNT, R.drawable.person);
-    }
 
     private List<Notification> notifications;
 
@@ -57,23 +54,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return viewHolder;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Notification notification = notifications.get(position);
-      //  holder.notificationImg.setImageResource(mapNotify_Image.get(notification.getType()).intValue());
-        holder.txtNotification.setText(notification.getMessage());
-        holder.dismissNotification.setOnClickListener(view -> {
-            notification.setStatusRead();
-            NotificationDBHelper notificationDbHelper = new NotificationDBHelper(holder.dismissNotification.getContext());
-            int result = notificationDbHelper.update(notification);
-            if (result > 0) {
-                notifications.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, notifications.size());
-            }
 
+        byte[] imageByteArray = notifications.get(position).getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
+        holder.img.setImageBitmap(bitmap);
+        holder.message.setText(notification.getMessage());
+        holder.type_noti.setText(notification.getType());
 
-        });
     }
 
     @Override
@@ -83,16 +74,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView notificationImg;
-        TextView txtNotification;
-        ImageView dismissNotification;
+
+        ImageView img;
+        TextView message, type_noti;
+        LinearLayout linearLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//
-//            notificationImg = itemView.findViewById(R.id.notify_img);
-//            txtNotification = itemView.findViewById(R.id.notify_detail);
-//            dismissNotification = itemView.findViewById(R.id.dismissNotification);
+            img = itemView.findViewById(R.id.img);
+            message = itemView.findViewById(R.id.notimessage);
+            type_noti = itemView.findViewById(R.id.type_noti);
+            linearLayout = itemView.findViewById(R.id.statusLayout);
         }
     }
 }
