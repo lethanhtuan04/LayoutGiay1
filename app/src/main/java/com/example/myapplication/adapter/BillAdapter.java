@@ -53,7 +53,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.productName.setText(product.getName());
         holder.productPrice.setText(product.getPrice().toString() + "đ");
         holder.billQuantity.setText(cart.getQuantity().toString());
-        holder.billTotalPrice.setText(bill.getPrice().toString());
+      //  holder.billTotalPrice.setText(bill.getPrice().toString());
         holder.billDeliveryAddress.setText(bill.getAddress());
         holder.billTime.setText(bill.getDate());
         String status = bill.getStatus();

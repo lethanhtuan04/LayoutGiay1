@@ -91,7 +91,8 @@ public class AppUtilities {
     public static String getDateTimeNow() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        return dtf.format(now);
+        String date = dtf.format(now);
+        return date;
     }
 
     public static LocalDateTime stringToTime(String str) {
@@ -172,8 +173,8 @@ public class AppUtilities {
 
     public static void setChoosePhoto(View view) {
         Activity activity = (Activity) view.getContext();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(activity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (activity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                 String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
                 activity.requestPermissions(permissions, PERMISSION_CODE);
             } else {

@@ -1,5 +1,6 @@
 package com.example.myapplication.model;
 
+import com.example.myapplication.utilities.AppUtilities;
 
 public class Bill {
     public static final String BILL_UNPAID = "Unpaid";
@@ -14,7 +15,7 @@ public class Bill {
     private int price;
     private Cart cart;
 
-    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address,  int price,String date, String status) {
+    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address, int price, String date, String status) {
         this.setId(id);
         this.setUserId(userId);
         this.setCartId(cartId);
@@ -25,11 +26,9 @@ public class Bill {
         this.setStatus(status);
     }
 
-//    public Bill(Integer userId, Integer cartId, String phone, String address,  int price) {
-//        this(-1, userId, cartId, phone, address, AppUtilities.getDateTimeNow(),price, BILL_UNPAID);
-//    }
-
-
+    public Bill(Integer userId, Integer cartId, String phone, String address, int price) {
+        this(-1, userId, cartId, phone, address, price, AppUtilities.getDateTimeNow(), BILL_UNPAID);
+    }
 
 
 //    public Bill(Integer userId, Integer cartId, String address, Float discount, Float price) {
