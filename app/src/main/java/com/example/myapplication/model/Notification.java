@@ -6,7 +6,7 @@ public class Notification {
     public static final String NOTIFY_READ = "Read";
     public static final String NOTIFY_ORDER_PRODUCT = "Đặt hàng thành công ";
     private Integer id;
-    private Integer userId;
+    private Integer accId;
     private String type;
     private String message;
     private String status;
@@ -20,17 +20,17 @@ public class Notification {
         this.id = id;
     }
 
-    public Notification(Integer id, Integer userId, String type, String message, String status, byte[] image) {
+    public Notification(Integer id, Integer accId, String type, String message, String status, byte[] image) {
         this.id = id;
-        this.userId = userId;
+        this.accId = accId;
         this.type = type;
         this.message = message;
         this.status = status;
         this.image = image;
     }
 
-    public Notification(Integer userId, String type, String message, byte[] image) {
-        this(-1, userId, type, message, NOTIFY_UNREAD, image);
+    public Notification(Integer accId, String type, String message, byte[] image) {
+        this(-1, accId, type, message, NOTIFY_UNREAD, image);
     }
 
     public byte[] getImage() {
@@ -49,12 +49,12 @@ public class Notification {
         this.type = type;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getAccId() {
+        return accId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setAccId(Integer userId) {
+        this.accId = userId;
     }
 
     public String getMessage() {

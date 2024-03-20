@@ -17,6 +17,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.myapplication.R;
 import com.example.myapplication.dbhelper.CartDBHelper;
 import com.example.myapplication.dbhelper.DiscountDBHelper;
+import com.example.myapplication.dbhelper.ProductDBHelper;
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.model.Cart;
 import com.example.myapplication.model.Discount;
@@ -34,6 +35,8 @@ public class DetailProActivity extends AppCompatActivity {
     HashMap<String, String> userDetails;
     ImageView img1, img2, img3, img4;
     SessionManager sessionManager;
+    ProductDBHelper productDBHelper;
+    Product product;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,13 +57,18 @@ public class DetailProActivity extends AppCompatActivity {
         setBtnBell();
     }
 
+
     private void AddtoCart() {
         btnAddtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (sessionManager.isLoggedIn()) {
-                    Product product = (Product) getIntent().getSerializableExtra("product");
                     String id = userDetails.get(sessionManager.KEY_IDUSER);
+
+                    int productid = (int) getIntent().getSerializableExtra("id");
+                    productDBHelper = new ProductDBHelper(getApplicationContext());
+                    product = productDBHelper.getProductById(productid);
+
                     // Thêm sản phẩm vào giỏ hàng ở đây
                     if (isProductInCart(product)) {
                         Toast.makeText(DetailProActivity.this, "Sản phẩm đã tồn tại trong giỏ hàng!", Toast.LENGTH_SHORT).show();
@@ -101,7 +109,12 @@ public class DetailProActivity extends AppCompatActivity {
         btnDetailtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailProActivity.this, CartFragment.class));
+                sessionManager = new SessionManager(DetailProActivity.this);
+                if (sessionManager.isLoggedIn())
+                    startActivity(new Intent(DetailProActivity.this, CartFragment.class));
+                else
+                    startActivity(new Intent(DetailProActivity.this, LoginActivity.class));
+
             }
         });
     }
@@ -110,7 +123,11 @@ public class DetailProActivity extends AppCompatActivity {
         btnBell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailProActivity.this, NotificationActivity.class));
+                sessionManager = new SessionManager(DetailProActivity.this);
+                if (sessionManager.isLoggedIn())
+                    startActivity(new Intent(DetailProActivity.this, NotificationActivity.class));
+                else
+                    startActivity(new Intent(DetailProActivity.this, LoginActivity.class));
 
             }
         });
@@ -183,18 +200,19 @@ public class DetailProActivity extends AppCompatActivity {
         img4 = findViewById(R.id.img4);
     }
 
-    @SuppressLint("SetTextI18n")
     private void viewDetailPro() {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         Intent intent = getIntent();
-        Product product = (Product) intent.getSerializableExtra("product");
+        int productid = (int) intent.getSerializableExtra("id");
+        productDBHelper = new ProductDBHelper(getApplicationContext());
+        product = productDBHelper.getProductById(productid);
+
 
         if (product != null) {
             DiscountDBHelper discountDBHelper = new DiscountDBHelper(this);
             Discount discount = discountDBHelper.getDiscountByProductID(product.getId());
 
             if (discount != null) {
-
                 double discountedPrice = DiscountDBHelper.calculateDiscountedPrice(product, discount);
                 String giasaokhigiam = decimalFormat.format(discountedPrice);
                 txtPrice.setText(giasaokhigiam + "đ");
@@ -207,30 +225,25 @@ public class DetailProActivity extends AppCompatActivity {
             }
             txtDetailPro.setText(product.getDetail());
             txtName.setText(product.getName());
+
             // Hiển thị hình ảnh từ mảng byte (BLOB)
-            byte[] imageByteArray = product.getImage1();
-            Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
-            imgMain.setImageBitmap(bitmap);
-
-            byte[] imageByteArray1 = product.getImage1();
-            Bitmap bitmap1 = BitmapFactory.decodeByteArray(imageByteArray1, 0, imageByteArray1.length);
-            img1.setImageBitmap(bitmap1);
-
-            byte[] imageByteArray2 = product.getImage2();
-            Bitmap bitmap2 = BitmapFactory.decodeByteArray(imageByteArray2, 0, imageByteArray2.length);
-            img2.setImageBitmap(bitmap2);
-
-            byte[] imageByteArray3 = product.getImage3();
-            Bitmap bitmap3 = BitmapFactory.decodeByteArray(imageByteArray3, 0, imageByteArray3.length);
-            img3.setImageBitmap(bitmap3);
-
-            byte[] imageByteArray4 = product.getImage4();
-            Bitmap bitmap4 = BitmapFactory.decodeByteArray(imageByteArray4, 0, imageByteArray4.length);
-            img4.setImageBitmap(bitmap4);
+            displaySelectedImage(product.getImage1(), imgMain);
+            displaySelectedImage(product.getImage1(), img1);
+            displaySelectedImage(product.getImage2(), img2);
+            displaySelectedImage(product.getImage3(), img3);
+            displaySelectedImage(product.getImage4(), img4);
 
             choseImage(product);
         }
     }
+
+    private void displaySelectedImage(byte[] imgage, ImageView imageView) {
+        if (imgage != null && imgage.length > 0) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imgage, 0, imgage.length);
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
 }
 
 

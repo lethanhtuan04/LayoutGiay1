@@ -22,12 +22,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.activity.AllProductActivity;
+import com.example.myapplication.activity.LoginActivity;
 import com.example.myapplication.activity.NotificationActivity;
 import com.example.myapplication.activity.SearchViewActivity;
 import com.example.myapplication.adapter.HorizontalProductAdapter;
 import com.example.myapplication.adapter.ProductRecyclerViewAdapter;
 import com.example.myapplication.dbhelper.ProductDBHelper;
 import com.example.myapplication.model.Product;
+import com.example.myapplication.utilities.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProductRecyclerViewAdapter productRecyclerViewAdapter;
     private ArrayList<Product> productList;
+    SessionManager sessionManager;
     private ImageView btnNotifromHome;
     private ProductDBHelper productDBHelper;
     private static final String ARG_PARAM1 = "param1";
@@ -99,7 +102,12 @@ public class HomeFragment extends Fragment {
         btnNotifromHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), NotificationActivity.class));
+                sessionManager = new SessionManager(mContext);
+                if (sessionManager.isLoggedIn())
+                    startActivity(new Intent(mContext, NotificationActivity.class));
+                else
+                    startActivity(new Intent(mContext, LoginActivity.class));
+
             }
         });
     }

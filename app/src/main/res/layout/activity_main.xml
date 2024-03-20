@@ -31,9 +31,6 @@
         app:itemIconSize="26dp"
         app:itemIconTint="@color/color_bottom_menu"
         app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu" />
     <View
         android:id="@+id/keyboardPlaceholder"

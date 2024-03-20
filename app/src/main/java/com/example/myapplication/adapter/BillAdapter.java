@@ -2,6 +2,8 @@ package com.example.myapplication.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,36 +13,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.example.myapplication.R;
+import com.example.myapplication.dbhelper.BillDBHelper;
 import com.example.myapplication.dbhelper.ProductDBHelper;
 import com.example.myapplication.model.Bill;
 import com.example.myapplication.model.Cart;
 import com.example.myapplication.model.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
     private ArrayList<Bill> bills;
-    private View view;
     private Context context;
-
-public class BillAdapter extends ArrayAdapter<Bill> {
-    Activity context;
-    List<Bill> bills;
     int layoutResource;
+    private View view;
 
-    public BillAdapter(Activity context, int resource, List<Bill> objects) {
-        super(context, resource, objects);
+    public BillAdapter(Context context, ArrayList<Bill> objects) {
+        super();
         this.context = context;
         this.bills = objects;
-        this.layoutResource = resource;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        // this.view = inflater.inflate(R.layout.bill_item, parent, false);
+        this.view = inflater.inflate(R.layout.items_bill_status, parent, false);
         return new ViewHolder(view);
     }
 
@@ -53,21 +52,43 @@ public class BillAdapter extends ArrayAdapter<Bill> {
         ProductDBHelper productDbHelper = new ProductDBHelper(context);
         Product product = productDbHelper.getProductById(productId);
 
-        Glide.with(context)
-                .load(product.getImage1())
-                .into(holder.productImage);
+//        Glide.with(context)
+//                .load(product.getImage1())
+//                .into(holder.productImage);
 
-        holder.productName.setText(product.getName());
-        holder.productPrice.setText(product.getPrice().toString() + "đ");
-        holder.billQuantity.setText(cart.getQuantity().toString());
-      //  holder.billTotalPrice.setText(bill.getPrice().toString());
-        holder.billDeliveryAddress.setText(bill.getAddress());
-        holder.billTime.setText(bill.getDate());
+        holder.txtTenSP.setText(product.getName());
+        holder.txtGia.setText(bill.getPrice() + "đ");
+
+        byte[] imageByteArray = product.getImage1();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
+        holder.img.setImageBitmap(bitmap);
+
+
         String status = bill.getStatus();
-        if (status.equals(Bill.BILL_UNPAID))
-            holder.billStatus.setText("Chưa thanh toán");
-        else if (status.equals(Bill.BILL_PAID))
-            holder.billStatus.setText("Đã thanh toán");
+        if (status.equals(Bill.BILL_WAIT)) {
+            holder.txtStatus.setText("Đang chuẩn bị");
+            holder.btnCancel.setVisibility(View.VISIBLE);
+            holder.btnCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BillDBHelper billDBHelper = new BillDBHelper(context.getApplicationContext());
+                    billDBHelper.updateCancelBillStatus(bill.getId());
+                    // Update RecyclerView after canceling the bill
+                    updateBillList(bills);
+                }
+            });
+        } else if (status.equals(Bill.BILL_SHIPPING))
+            holder.txtStatus.setText("Đang giao");
+        else if (status.equals(Bill.BILL_RECEIVED))
+            holder.txtStatus.setText("Đã nhận");
+        else if (status.equals(Bill.BILL_CANCELED))
+            holder.txtStatus.setText("Đã hủy");
+    }
+
+    public void updateBillList(List<Bill> updatedBillList) {
+        this.bills.clear();
+        this.bills.addAll(updatedBillList);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -92,23 +113,22 @@ public class BillAdapter extends ArrayAdapter<Bill> {
         TextView billDeliveryAddress;
         TextView billStatus;
         TextView billTime;
-        TextView billDiscount;
 
-        TextView billid = row.findViewById(R.id.txtbillId);
-        billid.setText(bills.get(position).getId().toString());
-        TextView cartid = row.findViewById(R.id.txtcartId);
-        cartid.setText(bills.get(position).getCartId().toString());
-        TextView userid = row.findViewById(R.id.txtuserId);
-        cartid.setText(bills.get(position).getUserId().toString());
-        TextView phone = row.findViewById(R.id.txtphoneBill);
-        cartid.setText(bills.get(position).getPhone().toString());
-        TextView address = row.findViewById(R.id.txtaddressBill);
-        cartid.setText(bills.get(position).getAddress().toString());
+        ImageView img;
+        TextView txtTenSP, txtGia, txtStatus, btnCancel;
+
+
 //        TextView price = row.findViewById(R.id.txtpriceBill);
 //        cartid.setText(bills.get(position).getPrice().toString());
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            img = itemView.findViewById(R.id.img);
+            txtStatus = itemView.findViewById(R.id.txtStatus);
+            txtGia = itemView.findViewById(R.id.txtPrice);
+            txtTenSP = itemView.findViewById(R.id.txtNameProBill);
+            btnCancel = itemView.findViewById(R.id.bntHuyDon);
+
 
 //                productImage = itemView.findViewById(R.id.billProductImage);
 //                productName = itemView.findViewById(R.id.billProductName);
@@ -121,16 +141,5 @@ public class BillAdapter extends ArrayAdapter<Bill> {
 //                billDiscount = itemView.findViewById(R.id.billDiscount);
         }
     }
-//        @NonNull
-//        public View View (int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//            LayoutInflater layoutInflater = this.context.getLayoutInflater();
-//            View row = layoutInflater.inflate(this.layoutResource, null);
-//
-//            TextView userId = row.findViewById(R.id.txt_iduser);
-//            userId.setText(users.get(position).getId().toString());
-//            TextView userName = row.findViewById(R.id.txt_nameuser);
-//            userName.setText(users.get(position).getFullname());
-//            return row;
-//        }
 }
 

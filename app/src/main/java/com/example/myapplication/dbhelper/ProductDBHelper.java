@@ -93,6 +93,37 @@ public class ProductDBHelper extends SQLiteOpenHelper {
         return products;
     }
 
+    public ArrayList<Product> getProductsByType(int type) {
+        ArrayList<Product> products = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        if (db == null) {
+            // Xử lý trường hợp không thể mở được cơ sở dữ liệu
+            return products;
+        }
+
+        Cursor cursor = null;
+        try {
+            String[] selectionArgs = { String.valueOf(type) };
+            cursor = db.rawQuery("SELECT * FROM Product WHERE type = ?", selectionArgs);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    Product product = cursorToProduct(cursor);
+                    products.add(product);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            // Xử lý bất kỳ ngoại lệ nào có thể xảy ra trong quá trình thao tác cơ sở dữ liệu
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return products;
+    }
+
+
     public Product getProductById(Integer id) {
         ArrayList<Product> products = getProductByField("id", id);
         if (products.size() > 0)

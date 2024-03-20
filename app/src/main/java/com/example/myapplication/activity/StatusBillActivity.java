@@ -69,7 +69,7 @@ public class StatusBillActivity extends AppCompatActivity {
 
         if (bills != null && !bills.isEmpty()) {
             // Nếu danh sách hóa đơn không rỗng, hiển thị lên RecyclerView
-            BillAdapter adapter = new BillAdapter(bills, this);
+            BillAdapter adapter = new BillAdapter( this,bills);
             recyclerView.setAdapter(adapter);
         } else {
             // Nếu không có hóa đơn nào, hiển thị thông báo

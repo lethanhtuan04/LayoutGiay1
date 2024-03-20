@@ -41,8 +41,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-android:textSize="20dp"
                     android:text="Gia"
+                    android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -64,18 +64,18 @@ android:textSize="20dp"
 
                 <TextView
                     android:id="@+id/bntHuyDon"
-                    android:paddingVertical="2dp"
-                    android:paddingHorizontal="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
+                    android:background="@drawable/solid"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="2dp"
                     android:text="Hủy đơn"
                     android:textSize="16dp"
-                    android:background="@drawable/solid"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="invisible"
                     app:layout_constraintVertical_bias="0.657" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

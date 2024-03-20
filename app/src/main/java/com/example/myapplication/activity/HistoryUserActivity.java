@@ -32,7 +32,7 @@ public class HistoryUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_user);
         rvHistoryBill = findViewById(R.id.rvHistoryBill);
-        btnBack= findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +69,7 @@ public class HistoryUserActivity extends AppCompatActivity {
 
         if (bills != null && !bills.isEmpty()) {
             // Nếu danh sách hóa đơn không rỗng, hiển thị lên RecyclerView
-            BillAdapter adapter = new BillAdapter(bills, this);
+            BillAdapter adapter = new BillAdapter(this, bills);
             rvHistoryBill.setAdapter(adapter);
         } else {
             // Nếu không có hóa đơn nào, hiển thị thông báo

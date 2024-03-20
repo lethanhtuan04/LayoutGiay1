@@ -1,35 +1,55 @@
 package com.example.myapplication.model;
 
 
+import com.example.myapplication.utilities.AppUtilities;
+
 public class Bill {
-    public static final String BILL_UNPAID = "Unpaid";
-    public static final String BILL_PAID = "Paid";
+    public static final String BILL_WAIT = "wait";
+    public static final String BILL_SHIPPING = "Shipping";
+    public static final String BILL_RECEIVED = "Received";
+    public static final String BILL_CANCELED = "Canceled";
     private Integer id;
-    private Integer userId;
+    private Integer accId;
     private Integer cartId;
     private String phone;
     private String address;
+    private int price;
     private String date;
     private String status;
-    private int price;
+
     private Cart cart;
 
-    public Bill(Integer id, Integer userId, Integer cartId, String phone, String address,  int price,String date, String status) {
-        this.setId(id);
-        this.setUserId(userId);
-        this.setCartId(cartId);
-        this.setPhone(phone);
-        this.setAddress(address);
-        this.setDate(date);
-        this.setPrice(price);
-        this.setStatus(status);
+    public Bill(Integer id, Integer accId, Integer cartId, String phone, String address, int price, String date, String status) {
+        this.id = id;
+        this.accId = accId;
+        this.cartId = cartId;
+        this.phone = phone;
+        this.address = address;
+        this.price = price;
+        this.date = date;
+        this.status = status;
     }
 
-//    public Bill(Integer userId, Integer cartId, String phone, String address,  int price) {
+    public Bill(Integer accId, Integer cartId, String phone, String address, int price) {
+        this.accId = accId;
+        this.cartId = cartId;
+        this.phone = phone;
+        this.address = address;
+        this.price = price;
+        this.date = AppUtilities.getDateTimeNow();
+        this.status = BILL_WAIT;
+    }
+
+    public Integer getAccId() {
+        return accId;
+    }
+
+    public void setAccId(Integer accId) {
+        this.accId = accId;
+    }
+    //    public Bill(Integer userId, Integer cartId, String phone, String address,  int price) {
 //        this(-1, userId, cartId, phone, address, AppUtilities.getDateTimeNow(),price, BILL_UNPAID);
 //    }
-
-
 
 
 //    public Bill(Integer userId, Integer cartId, String address, Float discount, Float price) {
@@ -60,13 +80,6 @@ public class Bill {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public Integer getCartId() {
         return cartId;
@@ -120,7 +133,7 @@ public class Bill {
     public String toString() {
         return "Bill{" +
                 "id=" + id +
-                ", userId=" + userId +
+                ", userId=" + accId +
                 ", cartId=" + cartId +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +

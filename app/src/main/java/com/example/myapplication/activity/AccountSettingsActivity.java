@@ -15,6 +15,8 @@ import com.example.myapplication.fragment.ProfileFragment;
 public class AccountSettingsActivity extends AppCompatActivity {
     TextView btnintoChangePass;
     ImageView btnBack;
+    ImageView avatar;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,7 +24,10 @@ public class AccountSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
         addControls();
+
         btnBack = findViewById(R.id.btnBack);
+        avatar = findViewById(R.id.avatar);
+
         btnintoChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

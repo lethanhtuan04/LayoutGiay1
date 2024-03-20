@@ -40,12 +40,12 @@ public class NotificationDBHelper extends SQLiteOpenHelper {
         );
     }
 
-    public ArrayList<Notification> getAllNotifications(Integer userId) {
+    public ArrayList<Notification> getAllNotifications(Integer accId) {
         ArrayList<Notification> notifications = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM Notification" + " WHERE userId = ? AND " + "status" + " = ?",
-                new String[]{userId.toString(), Notification.NOTIFY_UNREAD});
+                "SELECT * FROM Notification" + " WHERE accId = ? AND " + "status" + " = ?",
+                new String[]{accId.toString(), Notification.NOTIFY_UNREAD});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             notifications.add(cursorToNotification(cursor));
@@ -65,7 +65,7 @@ public class NotificationDBHelper extends SQLiteOpenHelper {
 
     private ContentValues createContentValues(Notification notification) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("userID", notification.getUserId());
+        contentValues.put("accID", notification.getAccId());
         contentValues.put("type", notification.getType());
         contentValues.put("message", notification.getMessage());
         contentValues.put("status", notification.getStatus());

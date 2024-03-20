@@ -52,7 +52,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.hinh.setImageBitmap(bitmap);
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailProActivity.class);
-            intent.putExtra("product", product);
+            intent.putExtra("id", product.getId());
             context.startActivity(intent);
         });
     }

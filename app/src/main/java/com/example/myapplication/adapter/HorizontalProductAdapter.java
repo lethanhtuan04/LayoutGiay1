@@ -62,7 +62,7 @@ public class HorizontalProductAdapter extends RecyclerView.Adapter<HorizontalPro
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DetailProActivity.class);
-                    intent.putExtra("product", product);
+                    intent.putExtra("id", product.getId());
                     context.startActivity(intent);
                 }
             });

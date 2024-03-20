@@ -6,22 +6,22 @@ public class Cart {
     public static final String CART_ORDERED = "Ordered"; //
 
     private Integer id;
-    private Integer userId;
+    private Integer accId;
     private Integer productId;
     private Integer quantity;
     private String status;
     private Product product;
 
-    public Cart(Integer id, Integer userId, Integer productId, Integer quantity, String status) {
+    public Cart(Integer id, Integer accId, Integer productId, Integer quantity, String status) {
         this.setId(id);
-        this.setUserId(userId);
+        this.setAccId(accId);
         this.setProductId(productId);
         this.setQuantity(quantity);
         this.setStatus(status);
     }
 
-    public Cart(Integer userId, Integer productId ) {
-                this(-1, userId, productId, 1, "wait");
+    public Cart(Integer accId, Integer productId ) {
+                this(-1, accId, productId, 1, "wait");
     }
 
     public Integer getId() {
@@ -32,12 +32,12 @@ public class Cart {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getAccId() {
+        return accId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setAccId(Integer accId) {
+        this.accId = accId;
     }
 
     public Integer getProductId() {

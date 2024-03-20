@@ -19,6 +19,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapter.ProductRecyclerViewAdapter;
 import com.example.myapplication.dbhelper.ProductDBHelper;
 import com.example.myapplication.model.Product;
+import com.example.myapplication.utilities.SessionManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +35,7 @@ public class SearchViewActivity extends AppCompatActivity {
 
     ProductRecyclerViewAdapter productRecyclerViewAdapter;
     ProductDBHelper productDBHelper;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class SearchViewActivity extends AppCompatActivity {
         loadProducts();
         chooseSearch();
 
-         //Khởi tạo GridLayoutManager và productRecyclerViewAdapter ở đây
+        //Khởi tạo GridLayoutManager và productRecyclerViewAdapter ở đây
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rcvsearchResult.setLayoutManager(gridLayoutManager);
         productRecyclerViewAdapter = new ProductRecyclerViewAdapter(new ArrayList<Product>(), this);
@@ -70,6 +72,7 @@ public class SearchViewActivity extends AppCompatActivity {
         });
 
     }
+
     private void chooseSearch() {
         btnMax.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +99,7 @@ public class SearchViewActivity extends AppCompatActivity {
             }
         });
     }
+
     private void searchAndSortByMaxPrice() {
         List<Product> searchResults = productDBHelper.getAllProducts(); // Lấy tất cả sản phẩm từ cơ sở dữ liệu
         Collections.sort(searchResults, new Comparator<Product>() { // Sắp xếp sản phẩm từ cao đến thấp
@@ -125,11 +129,13 @@ public class SearchViewActivity extends AppCompatActivity {
         productRecyclerViewAdapter = new ProductRecyclerViewAdapter(discountedProducts, this);
         rcvsearchResult.setAdapter(productRecyclerViewAdapter);
     }
+
     private void searchProducts(String query) {
         productDBHelper = new ProductDBHelper(this);
         List<Product> searchResults = productDBHelper.searchProductsByName(query);
         productRecyclerViewAdapter.updateData(searchResults);
     }
+
     private void loadProducts() {
         productDBHelper = new ProductDBHelper(this);
         List<Product> productList = productDBHelper.getAllProducts();
@@ -141,7 +147,11 @@ public class SearchViewActivity extends AppCompatActivity {
         btnNoti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SearchViewActivity.this, NotificationActivity.class));
+                sessionManager = new SessionManager(SearchViewActivity.this);
+                if (sessionManager.isLoggedIn())
+                    startActivity(new Intent(SearchViewActivity.this, NotificationActivity.class));
+                else
+                    startActivity(new Intent(SearchViewActivity.this, LoginActivity.class));
             }
         });
         btnBackHome.setOnClickListener(new View.OnClickListener() {

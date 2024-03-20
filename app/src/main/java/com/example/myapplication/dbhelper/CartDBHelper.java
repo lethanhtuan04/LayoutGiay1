@@ -37,7 +37,7 @@ public class CartDBHelper extends SQLiteOpenHelper {
     @NotNull
     private ContentValues createContentValues(@NotNull Cart cart) {
         ContentValues values = new ContentValues();
-        values.put("userId", cart.getUserId());
+        values.put("accId", cart.getAccId());
         values.put("productId", cart.getProductId());
         values.put("quantity", cart.getQuantity());
         values.put("status", cart.getStatus());
@@ -118,19 +118,19 @@ public class CartDBHelper extends SQLiteOpenHelper {
         return carts;
     }
 
-    public ArrayList<Cart> getAllCarts(Integer userId) {
+    public ArrayList<Cart> getAllCarts(Integer accId) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM Cart INNER JOIN Product ON Cart.productId = Product.id WHERE Cart.userId = ?",
-                new String[]{userId.toString()});
+                "SELECT * FROM Cart INNER JOIN Product ON Cart.productId = Product.id WHERE Cart.accId = ?",
+                new String[]{accId.toString()});
         return getCart(cursor);
     }
 
-    public ArrayList<Cart> getAllCartByStatus(Integer userId, String status) {
+    public ArrayList<Cart> getAllCartByStatus(Integer accId, String status) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM Cart INNER JOIN Product ON Cart.productId = Product.id WHERE Cart.userId = ? AND Cart.status LIKE ?",
-                new String[]{userId.toString(), "%" + status + "%"});
+                "SELECT * FROM Cart INNER JOIN Product ON Cart.productId = Product.id WHERE Cart.accId = ? AND Cart.status LIKE ?",
+                new String[]{accId.toString(), "%" + status + "%"});
         return getCart(cursor);
     }
 
@@ -163,8 +163,8 @@ public class CartDBHelper extends SQLiteOpenHelper {
         return subtotal;
     }
 
-    public double getTotalPhu(Integer userId) {
-        ArrayList<Cart> carts = getAllCartByStatus(userId, "wait");
+    public double getTotalPhu(Integer accId) {
+        ArrayList<Cart> carts = getAllCartByStatus(accId, "wait");
         return calculateSubtotal(carts);
     }
 

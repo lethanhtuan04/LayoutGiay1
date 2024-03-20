@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     public String DB_NAME = "AppShoes";
     public String DB_SUFFIX_PATH = "/databases/";
-    public static final String NOTIFICATION_ACTION = "Notification Action";
 
 
     @Override
