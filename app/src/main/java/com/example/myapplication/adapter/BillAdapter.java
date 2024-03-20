@@ -24,9 +24,16 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
     private View view;
     private Context context;
 
-    public BillAdapter(ArrayList<Bill> bills, Context context) {
-        this.bills = bills;
+public class BillAdapter extends ArrayAdapter<Bill> {
+    Activity context;
+    List<Bill> bills;
+    int layoutResource;
+
+    public BillAdapter(Activity context, int resource, List<Bill> objects) {
+        super(context, resource, objects);
         this.context = context;
+        this.bills = objects;
+        this.layoutResource = resource;
     }
 
     @NonNull
@@ -53,7 +60,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.productName.setText(product.getName());
         holder.productPrice.setText(product.getPrice().toString() + "đ");
         holder.billQuantity.setText(cart.getQuantity().toString());
-        holder.billTotalPrice.setText(bill.getPrice().toString());
+      //  holder.billTotalPrice.setText(bill.getPrice().toString());
         holder.billDeliveryAddress.setText(bill.getAddress());
         holder.billTime.setText(bill.getDate());
         String status = bill.getStatus();
@@ -87,6 +94,18 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         TextView billTime;
         TextView billDiscount;
 
+        TextView billid = row.findViewById(R.id.txtbillId);
+        billid.setText(bills.get(position).getId().toString());
+        TextView cartid = row.findViewById(R.id.txtcartId);
+        cartid.setText(bills.get(position).getCartId().toString());
+        TextView userid = row.findViewById(R.id.txtuserId);
+        cartid.setText(bills.get(position).getUserId().toString());
+        TextView phone = row.findViewById(R.id.txtphoneBill);
+        cartid.setText(bills.get(position).getPhone().toString());
+        TextView address = row.findViewById(R.id.txtaddressBill);
+        cartid.setText(bills.get(position).getAddress().toString());
+//        TextView price = row.findViewById(R.id.txtpriceBill);
+//        cartid.setText(bills.get(position).getPrice().toString());
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -102,5 +121,16 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
 //                billDiscount = itemView.findViewById(R.id.billDiscount);
         }
     }
+//        @NonNull
+//        public View View (int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+//            LayoutInflater layoutInflater = this.context.getLayoutInflater();
+//            View row = layoutInflater.inflate(this.layoutResource, null);
+//
+//            TextView userId = row.findViewById(R.id.txt_iduser);
+//            userId.setText(users.get(position).getId().toString());
+//            TextView userName = row.findViewById(R.id.txt_nameuser);
+//            userName.setText(users.get(position).getFullname());
+//            return row;
+//        }
 }
 

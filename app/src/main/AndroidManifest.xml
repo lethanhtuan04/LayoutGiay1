@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -25,6 +24,15 @@
             android:exported="false" />
         <activity
             android:name=".activity.StatusBillActivity"
+            android:exported="true" />
+        <activity
+            android:name=".dbhelper.BillDBHelper"
+            android:exported="true" />
+        <activity
+            android:name=".adapter.BillAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".activity.admin.BillHistoryActivity"
             android:exported="true" />
         <activity
             android:name=".activity.admin.ShowAdUserActivity"
