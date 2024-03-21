@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
@@ -35,11 +36,12 @@ import java.util.HashMap;
  */
 public class ProfileFragment extends Fragment {
     SessionManager sessionManager;
+    ConstraintLayout btnNotiProfile;
     TextView txtusername, txtemail;
     ImageView avatar;
 
     AppCompatButton btnlogout;
-    LinearLayout btnaccountSettings, deliveryStatus, btnNotiProfile, historyBill;
+    LinearLayout btnaccountSettings, deliveryStatus, historyBill;
 
 
     // TODO: Rename parameter arguments, choose names that match

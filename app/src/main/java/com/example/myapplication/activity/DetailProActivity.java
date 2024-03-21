@@ -111,7 +111,10 @@ public class DetailProActivity extends AppCompatActivity {
             public void onClick(View v) {
                 sessionManager = new SessionManager(DetailProActivity.this);
                 if (sessionManager.isLoggedIn())
-                    startActivity(new Intent(DetailProActivity.this, CartFragment.class));
+//                    startActivity(new Intent(DetailProActivity.this, CartFragment.class));
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.cart_fragment, new CartFragment())
+                            .commit();
                 else
                     startActivity(new Intent(DetailProActivity.this, LoginActivity.class));
 
