@@ -55,30 +55,82 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/nike" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:padding="16dp"
+            android:rowCount="3">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/vans" />
+            <ImageView
+                android:id="@+id/imageViewNike"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:adjustViewBounds="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/nike_logo" />
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/converse" />
+            <ImageView
+                android:id="@+id/imageViewAdidas"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:adjustViewBounds="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/adidas_logo" />
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/adidas" />
+            <ImageView
+                android:id="@+id/imageViewVans"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:adjustViewBounds="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/vans_logo" />
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/puma" />
+            <ImageView
+                android:id="@+id/imageViewConverse"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:adjustViewBounds="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/converse_logo" />
+
+            <!-- Ô trống -->
+            <ImageView
+                android:id="@+id/imageViewJordan"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:adjustViewBounds="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/jordan_logo" />
+
+            <ImageView
+                android:id="@+id/imageViewPuma"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:adjustViewBounds="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/puma_logo" />
+        </GridLayout>
 
     </LinearLayout>
 

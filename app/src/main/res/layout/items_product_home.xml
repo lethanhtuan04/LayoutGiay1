@@ -39,7 +39,7 @@
                 <TextView
                     android:id="@+id/txtTenSP"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="22dp"
                     android:layout_marginBottom="5dp"
                     android:justificationMode="inter_word"
                     android:text="Đôi giày đẹp nhất thế gian "

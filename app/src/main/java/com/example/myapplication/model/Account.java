@@ -1,23 +1,33 @@
 package com.example.myapplication.model;
 
-public class    Account {
+public class Account {
     private Integer id;
     private String username;
-    private String email;
     private Integer roleID;
+    private String email;
+    private byte[] avatar;
     private String status;
 
 
-    public Account(Integer id, String username,  Integer roleID, String email, String status) {
+    public Account(Integer id, String username, Integer roleID, String email, byte[] avatar, String status) {
         this.setId(id);
         this.setUsername(username);
         this.setEmail(email);
         this.setRoleID(roleID);
+        this.setAvatar(avatar);
         this.setStatus(status);
     }
 
     public Account(String username, String password, String email) {
-        this(-1, username, 2, email, "null");
+        this(-1, username, 2, email, null, null);
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
     }
 
     public Integer getId() {

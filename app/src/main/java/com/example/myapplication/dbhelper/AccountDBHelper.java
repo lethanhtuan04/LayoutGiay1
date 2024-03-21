@@ -34,7 +34,8 @@ public class AccountDBHelper extends SQLiteOpenHelper {
                 cursor.getString(1),//username
                 cursor.getInt(2),//roleid
                 cursor.getString(3),//email
-                cursor.getString(4)
+                cursor.getBlob(4),//avatar
+                cursor.getString(5)
         );
     }
 
@@ -49,7 +50,6 @@ public class AccountDBHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-
     public Account getAccountByEmail(String email) {
         Account account = null;
         SQLiteDatabase db = getReadableDatabase();
@@ -61,6 +61,18 @@ public class AccountDBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return account;
+    }
+    public int updateAvatar(String email, byte[] newAvatar) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("avatar", newAvatar);
+        // Điều kiện để cập nhật dòng dữ liệu cụ thể
+        String selection = "email = ?";
+        String[] selectionArgs = {email};
+        // Thực hiện cập nhật và trả về số dòng được ảnh hưởng
+        int count = db.update("Account", values, selection, selectionArgs);
+        db.close();
+        return count;
     }
 }
 

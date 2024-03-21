@@ -18,12 +18,19 @@
             android:background="@drawable/gradientbackgroup"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:src="@drawable/ic_human" />
+                app:cardCornerRadius="100dp"
+                android:layout_marginTop="40dp">
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_houman_60" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/txtusernamepro"
@@ -225,18 +232,18 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnlogout"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="30dp"
-            android:background="@color/startblue"
-            android:elevation="20dp"
-            android:text="Đăng xuất"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnlogout"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:background="@color/startblue"
+                android:elevation="20dp"
+                android:text="Đăng xuất"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
     </LinearLayout>
 </FrameLayout>

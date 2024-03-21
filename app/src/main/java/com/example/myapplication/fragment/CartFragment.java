@@ -28,6 +28,7 @@ import com.example.myapplication.dbhelper.NotificationDBHelper;
 import com.example.myapplication.model.Bill;
 import com.example.myapplication.model.Cart;
 import com.example.myapplication.model.Notification;
+import com.example.myapplication.utilities.AppUtilities;
 import com.example.myapplication.utilities.SessionManager;
 
 import java.text.DecimalFormat;
@@ -45,7 +46,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
     EditText edtphone, edtaddress, edtname;
     LinearLayout khongSP;
     private SessionManager sessionManager;
-    private TextView tongPhu, tongChinh, tongThue, phiVan, txtTotal;
+    private TextView tongPhu, tongChinh, tongThue, phiVan, txtTotal, txtDate;
     private HashMap<String, String> userDetails;
 
     private static final String ARG_PARAM1 = "param1";
@@ -186,20 +187,19 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
     }
 
 
-
     private void initializeViews(View view) {
         tongPhu = view.findViewById(R.id.txtTotalFee);
         tongChinh = view.findViewById(R.id.txtTotal);
         tongThue = view.findViewById(R.id.txtTax);
         txtTotal = view.findViewById(R.id.txttotal);
         phiVan = view.findViewById(R.id.txtDelivery);
-
+        txtDate = view.findViewById(R.id.txtDate);
         recyclerView = view.findViewById(R.id.list_item_pro_cart);
         coSP = view.findViewById(R.id.viewCoSP);
         khongSP = view.findViewById(R.id.viewKhongCoSanPham);
 
         btnOrder = view.findViewById(R.id.btnOrder);
-        edtphone = view.findViewById(R.id.edtPhoneBill);
+        edtphone = view.findViewById(R.id.edtPhone);
         edtaddress = view.findViewById(R.id.edtLocation);
         edtname = view.findViewById(R.id.edtName);
         layoutOrder = view.findViewById(R.id.layoutThanhToan);
@@ -248,6 +248,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
         phiVan.setText(fmdelivery + " đ");
         txtTotal.setText(fmTotal + "đ");
 
+        txtDate.setText(AppUtilities.getDateTimeNow());
         setDisplayCart(carts);
     }
 
@@ -260,6 +261,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
             khongSP.setVisibility(View.VISIBLE); // Hiển thị layout không có sản phẩm
         }
     }
+
     @Override
     public void onCartUpdated() {
         if (userDetails != null) {

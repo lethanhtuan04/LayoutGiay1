@@ -2,10 +2,13 @@ package com.example.myapplication.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +21,8 @@ import com.example.myapplication.activity.HistoryUserActivity;
 import com.example.myapplication.activity.LoginActivity;
 import com.example.myapplication.activity.NotificationActivity;
 import com.example.myapplication.activity.StatusBillActivity;
+import com.example.myapplication.dbhelper.AccountDBHelper;
+import com.example.myapplication.model.Account;
 import com.example.myapplication.utilities.SessionManager;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,6 +36,7 @@ import java.util.HashMap;
 public class ProfileFragment extends Fragment {
     SessionManager sessionManager;
     TextView txtusername, txtemail;
+    ImageView avatar;
 
     AppCompatButton btnlogout;
     LinearLayout btnaccountSettings, deliveryStatus, btnNotiProfile, historyBill;
@@ -90,6 +96,7 @@ public class ProfileFragment extends Fragment {
         txtemail = view.findViewById(R.id.txtemailpro);
         btnNotiProfile = view.findViewById(R.id.btnNotiProfile);
         historyBill = view.findViewById(R.id.historyBill);
+        avatar = view.findViewById(R.id.avatar);
 
 
         HashMap<String, String> userDetails = sessionManager.getUserDetails();
@@ -97,7 +104,18 @@ public class ProfileFragment extends Fragment {
         String email = userDetails.get(SessionManager.KEY_EMAIL);
         txtusername.setText(username);
         txtemail.setText(email);
+        AccountDBHelper accountDBHelper = new AccountDBHelper(getContext());
+        Account account = accountDBHelper.getAccountByEmail(email);
 
+        if (avatar != null) {
+            byte[] imageByteArray = account.getAvatar();
+            if (imageByteArray != null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
+                avatar.setImageBitmap(bitmap);
+            } else {
+                avatar.setImageResource(R.drawable.ic_houman_60);
+            }
+        }
         btnlogout = view.findViewById(R.id.btnlogout);
         btnaccountSettings = view.findViewById(R.id.btnaccountSettings);
 

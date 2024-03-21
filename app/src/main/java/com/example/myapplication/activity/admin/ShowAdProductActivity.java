@@ -51,8 +51,7 @@ public class ShowAdProductActivity extends AppCompatActivity {
                 Product product = adapter.getItem(position);
                 if (product != null) {
                     Intent intent = new Intent(ShowAdProductActivity.this, AdminProductActivity.class);
-                    intent.putExtra("product",
-                            product); // Gửi đối tượng Discount trực tiếp qua Intent
+                    intent.putExtra("idpro", product.getId()); // Gửi đối tượng Discount trực tiếp qua Intent
                     startActivity(intent);
                 }
             }

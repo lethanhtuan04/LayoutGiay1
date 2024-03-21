@@ -21,10 +21,11 @@ import java.util.List;
 
 public class AllProductActivity extends AppCompatActivity {
     RecyclerView recyclerView;
+
     ProductDBHelper productDBHelper;
     ImageView btnBack, btnNoti;
     List<Product> productList;
-    TextView btnAllPro, btnMax, btnMin, btnDiscount;
+    TextView btnAllPro, btnMax, btnMin, btnDiscount, edtsearch;
     ProductRecyclerViewAdapter productRecyclerViewAdapter;
 
     @Override
@@ -36,6 +37,12 @@ public class AllProductActivity extends AppCompatActivity {
         loadProducts();
         addClickListeners();
         chooseSearch();
+        edtsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AllProductActivity.this, SearchViewActivity.class));
+            }
+        });
     }
 
     // thêm phương thức mới để tìm kiếm và sắp xếp sản phẩm từ cao đến thấp.
@@ -134,6 +141,8 @@ public class AllProductActivity extends AppCompatActivity {
         btnMax = findViewById(R.id.searchPriceMax);
         btnMin = findViewById(R.id.searchPriceMin);
         btnDiscount = findViewById(R.id.searchDiscount);
+        edtsearch = findViewById(R.id.edtsearch);
+
 
     }
 }

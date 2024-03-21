@@ -33,19 +33,21 @@ public class Product implements Serializable {
         this.status = status;
     }
 
-    public Product(int id, String name, int type, double price,byte[] image1, String detail) {
+    public Product(int id, String name, int type, double price,byte[] image1, byte[] image2, byte[] image3, byte[] image4,
+                   String detail) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.price = price;
         this.image1 = image1;
         this.image2 = image2;
-        this.image3 = null;
-        this.image4 = null;
+        this.image3 = image3;
+        this.image4 = image4;
         this.detail = detail;
         this.star = 0.0f;
         this.status = null;
     }
+
 
     public void setType(int type) {
         this.type = type;
