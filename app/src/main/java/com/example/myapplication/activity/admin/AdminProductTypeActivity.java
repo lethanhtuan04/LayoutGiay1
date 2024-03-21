@@ -156,6 +156,7 @@ public class AdminProductTypeActivity extends AppCompatActivity {
         btnProTypeUpdate=findViewById(R.id.btnProTypeUpdate);
         btnProTypeDelete=findViewById(R.id.btnProTypeDelete);
 
+
         ProductType productType = (ProductType) getIntent().getSerializableExtra("productType");
 
         if (productType != null) {

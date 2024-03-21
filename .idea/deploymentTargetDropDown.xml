@@ -2,49 +2,8 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AdminProductActivity">
-        <State />
-      </entry>
-      <entry key="BillManagerAdminActivity">
-        <State />
-      </entry>
-      <entry key="DashboardActivity">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\nhatt\.android\avd\Pixel_7_Pro_API_31.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-20T16:25:12.811687200Z" />
-        </State>
-      </entry>
-      <entry key="NikeActivity">
-        <State />
-      </entry>
-      <entry key="TestActivity">
-        <State />
-      </entry>
       <entry key="app">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\nhatt\.android\avd\Pixel_7_Pro_API_31.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-21T14:37:44.006962200Z" />
-        </State>
+        <State />
       </entry>
     </value>
   </component>

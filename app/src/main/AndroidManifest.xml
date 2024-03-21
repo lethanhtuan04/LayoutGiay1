@@ -30,6 +30,7 @@
         <activity
             android:name=".activity.NikeActivity"
             android:exported="true" />
+        <activity android:name=".fragment.CartFragment" />
         <activity
             android:name=".activity.HistoryUserActivity"
             android:exported="false" />
