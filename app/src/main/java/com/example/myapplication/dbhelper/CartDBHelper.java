@@ -167,6 +167,42 @@ public class CartDBHelper extends SQLiteOpenHelper {
         ArrayList<Cart> carts = getAllCartByStatus(accId, "wait");
         return calculateSubtotal(carts);
     }
+    public Cart getCartById(int cartId) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM Cart INNER JOIN Product ON Cart.productId = Product.id WHERE Cart.id = ?",
+                new String[]{String.valueOf(cartId)});
+        Cart cart = null;
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            cart = cursorToCart(cursor);
+
+            byte[] imageByteArray1 = cursor.getBlob(9); // img1
+            byte[] imageByteArray2 = cursor.getBlob(10); // img2
+            byte[] imageByteArray3 = cursor.getBlob(11); // img3
+            byte[] imageByteArray4 = cursor.getBlob(12);//img4
+            // Lấy dữ liệu từ trường "image"
+            Product product = new Product(
+                    cursor.getInt(5), // id
+                    cursor.getInt(6), // type
+                    cursor.getString(7), // name
+                    cursor.getDouble(8), // price
+                    imageByteArray1,//img1
+                    imageByteArray2,//img2
+                    imageByteArray3,//img3
+                    imageByteArray4,// img4
+                    cursor.getString(13), // detail
+                    cursor.getFloat(14), // star
+                    cursor.getString(15) // status
+            );
+            cart.setProduct(product);
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        return cart;
+    }
+
 
 
 }

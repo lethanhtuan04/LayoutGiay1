@@ -107,7 +107,7 @@ public class ProfileFragment extends Fragment {
         AccountDBHelper accountDBHelper = new AccountDBHelper(getContext());
         Account account = accountDBHelper.getAccountByEmail(email);
 
-        if (avatar != null) {
+        if (account != null) {
             byte[] imageByteArray = account.getAvatar();
             if (imageByteArray != null) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
@@ -115,6 +115,8 @@ public class ProfileFragment extends Fragment {
             } else {
                 avatar.setImageResource(R.drawable.ic_houman_60);
             }
+        } else {
+            avatar.setImageResource(R.drawable.ic_houman_60); // Sử dụng hình ảnh mặc định
         }
         btnlogout = view.findViewById(R.id.btnlogout);
         btnaccountSettings = view.findViewById(R.id.btnaccountSettings);
@@ -142,6 +144,8 @@ public class ProfileFragment extends Fragment {
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 FirebaseAuth.getInstance().signOut();
                 sessionManager.logoutUser();
                 // Chuyển đến LoginActivity sau khi đăng xuất

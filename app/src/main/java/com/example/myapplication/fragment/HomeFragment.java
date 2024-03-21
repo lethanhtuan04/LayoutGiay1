@@ -176,13 +176,13 @@ public class HomeFragment extends Fragment {
                 NotificationDBHelper notificationDBHelper = new NotificationDBHelper(getContext());
                 int number_Noti;
                 if (iduser != null && !iduser.equals("null")) {
-                    number_Noti = notificationDBHelper.getNotificationCount(Integer.valueOf(iduser));
+                    number_Noti = notificationDBHelper.countNotifications(Integer.valueOf(iduser));
                 } else {
                     number_Noti = 0;
                 }
                 if (sessionManager.isLoggedIn()) {
-                    if (number_Noti>0)
-                    numberNoti.setText(String.valueOf(number_Noti));
+                    if (number_Noti > 0)
+                        numberNoti.setText(String.valueOf(number_Noti));
                     else
                         numberNoti.setVisibility(View.INVISIBLE);
                 } else {

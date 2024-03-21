@@ -12,7 +12,7 @@ import com.example.myapplication.R;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    LinearLayout btnDiscount, btnProductAdmin, btnProductType;
+    LinearLayout btnDiscount, btnProductAdmin, btnProductType, btnQLDonHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,12 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, ShowAdProductTypeActivity.class));
             }
         }));
+        btnQLDonHang.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, BillManagerAdminActivity.class));
+            }
+        }));
 
     }
 
@@ -50,6 +56,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnProductAdmin = findViewById(R.id.btnProductAdmin);
         btnDiscount = findViewById(R.id.btnDiscount);
         btnProductType = findViewById(R.id.btnProductType);
+        btnQLDonHang = findViewById(R.id.btnQLDonHang);
     }
 
     public void logout(View view) {

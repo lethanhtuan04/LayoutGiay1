@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:paddingHorizontal="5dp"
-    android:paddingVertical="5dp">
+    android:background="@color/white"
+    android:paddingHorizontal="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,16 +14,16 @@
 
         <ImageView
             android:id="@+id/billProductImage"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:layout_gravity="center"
             android:scaleType="centerInside"
-            />
+            android:src="@color/white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="5dp"
             android:layout_weight="10"
             android:orientation="vertical">
@@ -31,7 +31,7 @@
             <TextView
                 android:id="@+id/billProductName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:layout_margin="10dp"
                 android:text="Title"
                 android:textSize="18sp"
@@ -51,9 +51,8 @@
 
                 <TextView
                     android:id="@+id/txtbillId"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
 
                     android:textColor="#D32F2F"
                     android:textSize="16sp"
@@ -68,8 +67,8 @@
                     android:textStyle="italic|bold" />
 
                 <TextView
-                    android:id="@+id/txtuserId"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtaccId"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
 
                     android:textColor="#D32F2F"
@@ -77,30 +76,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:text="Cart Id:"
-                    android:textSize="16sp"
-                    android:textStyle="italic|bold" />
-
-                <TextView
-                    android:id="@+id/txtcartId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="1"
-                    android:textColor="#D32F2F"
-                    android:textSize="16sp"
-                    android:textAlignment="viewEnd"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -138,7 +113,7 @@
                     android:textStyle="italic|bold" />
 
                 <TextView
-                    android:id="@+id/txtpriceBill"
+                    android:id="@+id/billTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -193,8 +168,18 @@
                     android:text="time"
                     android:textSize="16sp" />
             </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:text="Thanh toán"
+                android:textColor="@color/Red"
+                android:textSize="23dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>

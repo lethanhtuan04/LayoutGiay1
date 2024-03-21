@@ -327,35 +327,38 @@ public class AdminProductActivity extends AppCompatActivity {
         addHinh3 = findViewById(R.id.addHinh3);
         addHinh4 = findViewById(R.id.addHinh4);
 
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("IDpro")) {
+            int IDproduct = (int) intent.getSerializableExtra("IDpro");
+            Product product;
+            ProductDBHelper productDBHelper = new ProductDBHelper(this);
+            product = productDBHelper.getProductById(IDproduct);
+            if (product != null) {
+                // Kiểm tra null trước khi gọi toString()
+                edtMaSP.setText(product.getId() + "");
+                edtTenSP.setText(product.getName());
+                edtLoaiSP.setText(product.getType() + "");
 
-        int IDproduct = (int) getIntent().getSerializableExtra("idpro");
-        Product product;
-        ProductDBHelper productDBHelper = new ProductDBHelper(this);
-        product = productDBHelper.getProductById(IDproduct);
+                edtMoTaSP.setText(product.getDetail());
+                edtGiaSP.setText(product.getPrice() + "");
 
-        if (product != null) {
-            edtMaSP.setText(product.getId().toString() + "");
-            edtTenSP.setText(product.getName().toString());
-            edtLoaiSP.setText(product.getType().toString() + "");
-            edtMoTaSP.setText(product.getDetail().toString());
-            edtGiaSP.setText(product.getPrice() + "");
+                byte[] imageByteArray = product.getImage1();
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
+                addHinh1.setImageBitmap(bitmap);
 
-            byte[] imageByteArray = product.getImage1();
-            Bitmap bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
-            addHinh1.setImageBitmap(bitmap);
+                byte[] imageByteArray2 = product.getImage2();
+                Bitmap bitmap2 = BitmapFactory.decodeByteArray(imageByteArray2, 0, imageByteArray2.length);
+                addHinh2.setImageBitmap(bitmap2);
 
-            byte[] imageByteArray2 = product.getImage2();
-            Bitmap bitmap2 = BitmapFactory.decodeByteArray(imageByteArray2, 0, imageByteArray2.length);
-            addHinh2.setImageBitmap(bitmap2);
+                byte[] imageByteArray3 = product.getImage3();
+                Bitmap bitmap3 = BitmapFactory.decodeByteArray(imageByteArray3, 0, imageByteArray3.length);
+                addHinh3.setImageBitmap(bitmap3);
 
-            byte[] imageByteArray3 = product.getImage3();
-            Bitmap bitmap3 = BitmapFactory.decodeByteArray(imageByteArray3, 0, imageByteArray3.length);
-            addHinh3.setImageBitmap(bitmap3);
-
-            byte[] imageByteArray4 = product.getImage4();
-            Bitmap bitmap4 = BitmapFactory.decodeByteArray(imageByteArray4, 0, imageByteArray4.length);
-            addHinh4.setImageBitmap(bitmap4);
+                byte[] imageByteArray4 = product.getImage4();
+                Bitmap bitmap4 = BitmapFactory.decodeByteArray(imageByteArray4, 0, imageByteArray4.length);
+                addHinh4.setImageBitmap(bitmap4);
+            }
         }
-
     }
 }
+

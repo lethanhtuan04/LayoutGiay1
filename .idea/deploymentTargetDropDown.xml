@@ -2,6 +2,12 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="AdminProductActivity">
+        <State />
+      </entry>
+      <entry key="BillManagerAdminActivity">
+        <State />
+      </entry>
       <entry key="DashboardActivity">
         <State>
           <targetSelectedWithDropDown>
@@ -21,6 +27,9 @@
       <entry key="NikeActivity">
         <State />
       </entry>
+      <entry key="TestActivity">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -29,12 +38,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\nhatt\.android\avd\Pixel_6_Pro_API_30.avd" />
+                  <value value="C:\Users\nhatt\.android\avd\Pixel_7_Pro_API_31.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-21T08:46:09.408381900Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-03-21T14:37:44.006962200Z" />
         </State>
       </entry>
     </value>

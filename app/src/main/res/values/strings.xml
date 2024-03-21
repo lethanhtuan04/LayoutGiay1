@@ -2,4 +2,9 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Mua hàng thành công</string>
+    <string name="content">Cám ơn bạn đã mua hàng</string>
+    <string name="titleCancel">Đơn hàng đã bị hủy</string>
+    <string name="contentCancel">Xin lỗi vì đơn hàng đã bị hủy. Bạn có thể lựa chọn các mặt hàng khác tại shop chúng tôi</string>
+
 </resources>

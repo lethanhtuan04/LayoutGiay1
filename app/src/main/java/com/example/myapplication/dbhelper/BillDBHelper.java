@@ -80,12 +80,34 @@ public class BillDBHelper extends SQLiteOpenHelper {
         return db.update("Bill", values, "id" + " = ?", new String[]{String.valueOf(billtId)});
     }
 
+    public int updateShippingBillStatus(int billtId) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", Bill.BILL_SHIPPING);
+        return db.update("Bill", values, "id" + " = ?", new String[]{String.valueOf(billtId)});
+    }
+
+    public int updateReceivedBillStatus(int billtId) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", Bill.BILL_RECEIVED);
+        return db.update("Bill", values, "id" + " = ?", new String[]{String.valueOf(billtId)});
+    }
+
+    public boolean updateBillStatus(int billId, String status) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", status);
+        int rowsAffected = db.update("Bill", values, "id" + " = ?", new String[]{String.valueOf(billId)});
+        return rowsAffected > 0;
+    }
+
     public int delete(@NotNull Bill bill) {
         SQLiteDatabase db = getWritableDatabase();
         return db.delete("Bill", "id" + " = ?", new String[]{String.valueOf(bill.getId())});
     }
 
-    public ArrayList<Bill> getAllBills(Integer accId) {
+    public ArrayList<Bill> getAllBillsForUser(Integer accId) {
         ArrayList<Bill> bills = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
@@ -186,7 +208,25 @@ public class BillDBHelper extends SQLiteOpenHelper {
         return bills;
     }
 
-
+    public ArrayList<Bill> getAllBills() {
+        ArrayList<Bill> bills = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Bill", null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    Bill bill = cursorToBill(cursor);
+                    bills.add(bill);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e("getAllBills", "Error while fetching bills: " + e.getMessage());
+        } finally {
+            cursor.close();
+        }
+        Log.d("getAllBills", "Total bills fetched: " + bills.size());
+        return bills;
+    }
 
 
     public Bill getBillById(Integer id) {
@@ -200,6 +240,29 @@ public class BillDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return bill;
     }
+
+    public ArrayList<Bill> getBillsByStatus(String status) {
+        ArrayList<Bill> bills = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM Bill WHERE status = ?",
+                new String[]{status});
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    Bill bill = cursorToBill(cursor);
+                    bills.add(bill);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e("getBillsByStatus", "Error while fetching bills: " + e.getMessage());
+        } finally {
+            cursor.close();
+        }
+        Log.d("getBillsByStatus", "Total bills fetched for status " + status + ": " + bills.size());
+        return bills;
+    }
+
 
 }
 

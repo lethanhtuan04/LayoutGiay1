@@ -253,6 +253,7 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/btnQLDonHang"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -276,7 +277,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Payment"
+                        android:text="QLDonHang"
                         android:textColor="@color/black"
                         android:textSize="50px"
                         android:textStyle="bold" />

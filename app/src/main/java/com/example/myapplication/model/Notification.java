@@ -5,6 +5,8 @@ public class Notification {
     public static final String NOTIFY_UNREAD = "Unread";
     public static final String NOTIFY_READ = "Read";
     public static final String NOTIFY_ORDER_PRODUCT = "Đặt hàng thành công ";
+    public static final String NOTIFY_CANCEL_ORDER_PRODUCT = "Đặt hàng thành công ";
+
     private Integer id;
     private Integer accId;
     private String type;

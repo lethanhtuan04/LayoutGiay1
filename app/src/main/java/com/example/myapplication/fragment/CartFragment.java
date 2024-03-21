@@ -2,7 +2,10 @@ package com.example.myapplication.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -167,12 +170,13 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
                             }
                             setDisplayCart(new ArrayList<>());
                             Toast.makeText(requireContext(), "Đã đặt hàng thành công.", Toast.LENGTH_SHORT).show();
+
+                            createNotificationChannel();
+                            showPurchaseSuccessNotification();
                         } else {
                             Toast.makeText(requireContext(), "Không thành công.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                } else {
-                    Toast.makeText(requireContext(), "Không có sản phẩm trong giỏ hàng", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -186,6 +190,23 @@ public class CartFragment extends Fragment implements CartAdapter.CartUpdateList
         builder.show();
     }
 
+    private void showPurchaseSuccessNotification() {
+        // Gọi hàm hiển thị thông báo từ lớp NotificationHelper
+        NotificationDBHelper.showNotification(getContext(), "Mua hàng thành công", "Cảm ơn bạn đã mua hàng!");
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.title);
+            String description = getString(R.string.content);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Your_Channel_ID", name, importance);
+            channel.setDescription(description);
+            // Đăng ký kênh với hệ thống
+            NotificationManager notificationManager = (NotificationManager) requireContext().getSystemService(requireContext().NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
 
     private void initializeViews(View view) {
         tongPhu = view.findViewById(R.id.txtTotalFee);

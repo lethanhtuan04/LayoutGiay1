@@ -12,5 +12,7 @@
     <color name="background_item">#5CDAB353</color>
     <color name="theme_color">#FFA000</color>
     <color name="purple">#D8BEFE</color>
+    <color name="green">#4CAF50</color>
+
 
 </resources>
