@@ -13,6 +13,7 @@
         android:layout_height="44dp"
         android:layout_above="@id/viewCoSP"
         android:layout_marginBottom="3dp"
+        android:background="@color/main_blue"
         android:elevation="5dp"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -28,8 +29,8 @@
             android:gravity="center"
             android:text="Giỏ hàng"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -40,7 +41,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/linearLayout5"
         android:layout_marginTop="48dp"
-        android:visibility="invisible">
+        android:visibility="visible">
 
 
         <LinearLayout
@@ -209,7 +210,7 @@
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
 
-                                android:src="@drawable/ic_name"
+                                android:src="@drawable/ic_user_outline"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -233,7 +234,7 @@
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
                                 android:layout_marginTop="16dp"
-                                android:src="@drawable/ic_phone"
+                                android:src="@drawable/ic_add_call"
                                 app:layout_constraintStart_toStartOf="@+id/imageView2"
                                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -257,7 +258,7 @@
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
                                 android:layout_marginTop="16dp"
-                                android:src="@drawable/ic_location"
+                                android:src="@drawable/ic_location_24"
                                 app:layout_constraintStart_toStartOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -281,7 +282,7 @@
                                 android:layout_height="36dp"
                                 android:layout_marginStart="4dp"
                                 android:layout_marginTop="16dp"
-                                android:src="@drawable/ic_date"
+                                android:src="@drawable/ic_date_24"
                                 app:layout_constraintStart_toStartOf="@+id/imgPayment"
                                 app:layout_constraintTop_toBottomOf="@+id/imgPayment" />
 
@@ -289,7 +290,7 @@
                                 android:id="@+id/txtDate"
                                 android:layout_width="330dp"
                                 android:layout_height="42dp"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="15dp"
                                 android:layout_marginTop="12dp"
                                 android:ems="15"
                                 android:gravity="center_vertical"
@@ -303,7 +304,7 @@
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
                                 android:layout_marginTop="16dp"
-                                android:src="@drawable/ic_payment"
+                                android:src="@drawable/ic_cre"
                                 app:layout_constraintStart_toStartOf="@+id/imageView3"
                                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
@@ -312,9 +313,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="16dp"
-                                android:text="Cash"
+                                android:text="COD"
                                 android:textSize="22sp"
-                                android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.054"
                                 app:layout_constraintStart_toEndOf="@+id/imgPayment"
@@ -383,7 +383,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <ImageView
             android:layout_width="wrap_content"
