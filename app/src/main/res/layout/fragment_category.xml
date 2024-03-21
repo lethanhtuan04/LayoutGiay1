@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,127 +8,152 @@
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
-        android:id="@+id/layout1"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/main_blue"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/searchViewfromCate"
-            android:layout_width="340dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="9dp"
-            android:background="@drawable/search_background"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="10dp"
-            android:drawableTint="#808080"
-            android:hint="Tìm kiếm"
-            android:padding="5dp"
-            android:paddingStart="10dp"
-            android:singleLine="true"
-            android:textColorHint="@color/main_blue"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:id="@+id/btnNotifromCate"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_bell_outline" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="57dp"
-        android:gravity="center"
         android:orientation="vertical">
 
-        <GridLayout
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/main_blue"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/searchViewfromCate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="9dp"
+                android:layout_weight="1"
+                android:background="@drawable/search_background"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="10dp"
+                android:drawableTint="#808080"
+                android:gravity="center_vertical"
+                android:hint="Tìm kiếm"
+                android:padding="5dp"
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                android:textColorHint="@color/main_blue"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:id="@+id/btnNotifromCate"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_bell_outline" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:columnCount="2"
-            android:columnOrderPreserved="false"
-            android:padding="16dp"
-            android:rowCount="3">
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageViewNike"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/nike_logo" />
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:columnCount="2"
+                android:columnOrderPreserved="false"
+                android:padding="16dp"
+                android:rowCount="3">
 
-            <ImageView
-                android:id="@+id/imageViewAdidas"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/adidas_logo" />
+                <ImageView
+                    android:id="@+id/imageViewNike"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:adjustViewBounds="true"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/nike_logo" />
 
-            <ImageView
-                android:id="@+id/imageViewVans"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/vans_logo" />
+                <ImageView
+                    android:id="@+id/imageViewAdidas"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:adjustViewBounds="true"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/adidas_logo" />
 
-            <ImageView
-                android:id="@+id/imageViewConverse"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/converse_logo" />
+                <ImageView
+                    android:id="@+id/imageViewVans"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:adjustViewBounds="true"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/vans_logo" />
 
-            <!-- Ô trống -->
-            <ImageView
-                android:id="@+id/imageViewJordan"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/jordan_logo" />
+                <ImageView
+                    android:id="@+id/imageViewConverse"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:adjustViewBounds="true"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/converse_logo" />
 
-            <ImageView
-                android:id="@+id/imageViewPuma"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/puma_logo" />
-        </GridLayout>
+                <!-- Ô trống -->
+                <ImageView
+                    android:id="@+id/imageViewJordan"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:adjustViewBounds="true"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/jordan_logo" />
 
+                <ImageView
+                    android:id="@+id/imageViewPuma"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:adjustViewBounds="true"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/puma_logo" />
+            </GridLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <TextView
+            android:id="@+id/numberNoti"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_number_noti"
+            android:gravity="center"
+            android:text="9"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
