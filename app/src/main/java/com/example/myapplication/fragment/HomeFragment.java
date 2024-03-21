@@ -27,16 +27,18 @@ import com.example.myapplication.activity.NotificationActivity;
 import com.example.myapplication.activity.SearchViewActivity;
 import com.example.myapplication.adapter.HorizontalProductAdapter;
 import com.example.myapplication.adapter.ProductRecyclerViewAdapter;
+import com.example.myapplication.dbhelper.NotificationDBHelper;
 import com.example.myapplication.dbhelper.ProductDBHelper;
 import com.example.myapplication.model.Product;
 import com.example.myapplication.utilities.SessionManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
     private Context mContext;
-    private TextView searchView, btnseeAllPro;
+    private TextView searchView, btnseeAllPro, numberNoti;
     private ViewFlipper viewFlipper;
     private RecyclerView recyclerView;
     private ProductRecyclerViewAdapter productRecyclerViewAdapter;
@@ -79,11 +81,13 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        sessionManager = new SessionManager(getContext());
         initViews(view);
         setupSearchView();
         setupVerticalRecyclerView();
         setupHorizontalRecyclerView(view);
         setupViewFlipper();
+        setNoti(view);
         return view;
     }
 
@@ -162,4 +166,30 @@ public class HomeFragment extends Fragment {
         viewFlipper.setInAnimation(slideIn);
         viewFlipper.setOutAnimation(slideOut);
     }
+
+    private void setNoti(View view) {
+        numberNoti = view.findViewById(R.id.numberNoti);
+        if (sessionManager != null) {
+            HashMap<String, String> userDetails = sessionManager.getUserDetails();
+            if (userDetails != null) {
+                String iduser = userDetails.get(SessionManager.KEY_IDUSER);
+                NotificationDBHelper notificationDBHelper = new NotificationDBHelper(getContext());
+                int number_Noti;
+                if (iduser != null && !iduser.equals("null")) {
+                    number_Noti = notificationDBHelper.getNotificationCount(Integer.valueOf(iduser));
+                } else {
+                    number_Noti = 0;
+                }
+                if (sessionManager.isLoggedIn()) {
+                    if (number_Noti>0)
+                    numberNoti.setText(String.valueOf(number_Noti));
+                    else
+                        numberNoti.setVisibility(View.INVISIBLE);
+                } else {
+                    numberNoti.setVisibility(View.INVISIBLE);
+                }
+            }
+        }
+    }
+
 }

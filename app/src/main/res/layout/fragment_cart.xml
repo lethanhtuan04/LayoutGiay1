@@ -10,7 +10,9 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
+
         android:layout_height="44dp"
+        android:layout_above="@id/viewCoSP"
         android:layout_marginBottom="3dp"
         android:elevation="5dp"
         android:orientation="horizontal"
@@ -37,6 +39,7 @@
         android:id="@+id/viewCoSP"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/linearLayout5"
         android:layout_marginTop="48dp"
         android:visibility="visible">
 
@@ -44,7 +47,7 @@
         <LinearLayout
             android:id="@+id/layouttren"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_above="@id/layoutThanhToan"
             android:layout_marginBottom="56dp"
             android:orientation="vertical"

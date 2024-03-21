@@ -73,6 +73,16 @@ public class NotificationDBHelper extends SQLiteOpenHelper {
 
         return contentValues;
     }
+    public int getNotificationCount(Integer accId) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM Notification WHERE accId = ? AND status = ?",
+                new String[]{accId.toString(), Notification.NOTIFY_UNREAD});
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        cursor.close();
+        return count;
+    }
 
 
     public long insert(Notification notification) {
